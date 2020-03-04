@@ -13,7 +13,5 @@ install:
 - sudo bash -c 'echo "deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" >> /etc/apt/sources.list'
 - sudo apt-get update
 - sudo apt-get install valgrind clang-format
-- pip install wheel  # https://stackoverflow.com/a/44862371/767632
-- pip install -r requirements.txt -r requirements-dev.txt
 - valgrind --version
 - clang-format --version
