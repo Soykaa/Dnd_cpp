@@ -1,3 +1,0 @@
-/home/user/dnd_prj/Dnd_cpp/Character/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/user/dnd_prj/Dnd_cpp/Character/cmake-build-debug/CMakeFiles/DND_CPP.dir
-/home/user/dnd_prj/Dnd_cpp/Character/cmake-build-debug/CMakeFiles/edit_cache.dir
