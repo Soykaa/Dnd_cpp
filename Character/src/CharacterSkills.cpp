@@ -6,17 +6,17 @@
 //!@class CharacterSkills: realization
 //! default constructor
 CharacterSkills::CharacterSkills()
-        : intelligence_(rand() % 10 + 1), wisdom_(rand() % 10 + 1),
-        strength_(rand() % 10 + 1), dexterity_(rand() % 10 + 1),
-        constitution_(rand() % 10 + 1), charisma_(rand() % 10 + 1)
-        {}
+        : intelligence_(rand() % 18 + 1), wisdom_(rand() % 18 + 1),
+          strength_(rand() % 18 + 1), dexterity_(rand() % 18 + 1),
+          constitution_(rand() % 18 + 1), charisma_(rand() % 18 + 1)
+{}
 
 //! non-default constructor
 CharacterSkills::CharacterSkills(size_t intelligence, size_t wisdom, size_t strength, size_t dexterity, size_t constitution, size_t charisma)
         : intelligence_(intelligence), wisdom_(wisdom),
-        strength_(strength), dexterity_(dexterity),
-        constitution_(constitution), charisma_(charisma)
-        {}
+          strength_(strength), dexterity_(dexterity),
+          constitution_(constitution), charisma_(charisma)
+{}
 
 //! setters
 void CharacterSkills::setIntelligence(size_t intelligence) {
