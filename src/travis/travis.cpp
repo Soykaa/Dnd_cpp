@@ -1,5 +1,5 @@
 #include "travis/travis.h"
 
-int sum(int a, int b) {
+int Sum(int a, int b) {
     return a + b;
 }
