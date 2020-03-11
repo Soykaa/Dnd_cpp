@@ -13,7 +13,9 @@ install:
     - sudo apt-get update
     - sudo apt-get install cmake
     - cmake --version
+    - pip install cpplint
 script:
+    - cpplint --recursive --root="src" --filter=-legal/copyright src/
     - cd bin
     - cmake ..
     - make
