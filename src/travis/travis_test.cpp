@@ -3,5 +3,5 @@
 #include "travis/travis.h"
 
 TEST(Sum, AddsValues) {
-    EXPECT_EQ(Sum(1, 2), 4);
+    EXPECT_EQ(Sum(1, 2), 3);
 }
