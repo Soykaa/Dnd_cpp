@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-    
+
 #include "travis/travis.h"
 
 TEST(Sum, AddsValues) {
