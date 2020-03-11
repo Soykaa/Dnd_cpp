@@ -5,5 +5,5 @@
 int main() {
     int a, b;
     std::cin >> a >> b;
-    std::ciut << sum(a, b) << std::endl;
+    std::cout << sum(a, b) << std::endl;
 }
