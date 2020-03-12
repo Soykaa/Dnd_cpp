@@ -1,17 +1,23 @@
-#???
+language: cpp
 
-language: minimal
 dist: bionic
 
 cache:
-- pip
+    - pip
 before_install:
-- git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-- git fetch origin master
+    - git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+    - git fetch origin master
 install:
-- sudo bash -c 'echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" >> /etc/apt/sources.list'
-- sudo bash -c 'echo "deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" >> /etc/apt/sources.list'
-- sudo apt-get update
-- sudo apt-get install valgrind clang-format
-- valgrind --version
-- clang-format --version
+    - sudo bash -c 'echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" >> /etc/apt/sources.list'
+    - sudo bash -c 'echo "deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe" >> /etc/apt/sources.list'
+    - sudo apt-get update
+    - sudo apt-get install cmake
+    - cmake --version
+    - pip install cpplint
+script:
+    - cpplint --recursive --root="src" --filter=-legal/copyright src/
+    - cd bin
+    - cmake ..
+    - make
+    - ./run_tests
+
