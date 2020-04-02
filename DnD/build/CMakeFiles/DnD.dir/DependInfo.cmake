@@ -4,19 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/user/DnD/tmp/build/DnD_autogen/mocs_compilation.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/DnD_autogen/mocs_compilation.cpp.o"
-  "/home/user/DnD/tmp/src/board.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/board.cpp.o"
-  "/home/user/DnD/tmp/src/character.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/character.cpp.o"
-  "/home/user/DnD/tmp/src/character_skills.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/character_skills.cpp.o"
-  "/home/user/DnD/tmp/src/dice.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/dice.cpp.o"
-  "/home/user/DnD/tmp/src/encounter.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/encounter.cpp.o"
-  "/home/user/DnD/tmp/src/game_board.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/game_board.cpp.o"
-  "/home/user/DnD/tmp/src/game_menu.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/game_menu.cpp.o"
-  "/home/user/DnD/tmp/src/gift.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/gift.cpp.o"
-  "/home/user/DnD/tmp/src/main.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/main.cpp.o"
-  "/home/user/DnD/tmp/src/message.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/message.cpp.o"
-  "/home/user/DnD/tmp/src/obstacle.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/obstacle.cpp.o"
-  "/home/user/DnD/tmp/src/player.cpp" "/home/user/DnD/tmp/build/CMakeFiles/DnD.dir/src/player.cpp.o"
+  "/home/user/Dnd_cpp/DnD/build/DnD_autogen/mocs_compilation.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/DnD_autogen/mocs_compilation.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/board.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/board.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/character.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/character.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/character_skills.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/character_skills.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/dice.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/dice.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/encounter.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/encounter.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/game_board.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/game_board.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/game_menu.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/game_menu.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/gift.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/gift.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/main.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/main.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/message.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/message.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/obstacle.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/obstacle.cpp.o"
+  "/home/user/Dnd_cpp/DnD/src/player.cpp" "/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir/src/player.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

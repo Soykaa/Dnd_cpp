@@ -16,7 +16,7 @@ GameBoard::GameBoard(QWidget *parent) {
 
 	scene_ = new QGraphicsScene();
 	scene_->setSceneRect(0, 0, size_, size_);
-	setBackgroundBrush(QBrush(QImage("images/new_background.png")));
+	setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
 	setScene(scene_);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

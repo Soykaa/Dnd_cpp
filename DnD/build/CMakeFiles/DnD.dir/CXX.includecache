@@ -176,29 +176,29 @@ QGraphicsItem
 
 ../include/utility.h
 
-/home/user/DnD/tmp/build/DnD_autogen/6YEA5652QU/moc_game_menu.cpp
+/home/user/Dnd_cpp/DnD/build/DnD_autogen/6YEA5652QU/moc_game_menu.cpp
 ../../../include/game_menu.h
-/home/user/DnD/tmp/include/game_menu.h
+/home/user/Dnd_cpp/DnD/include/game_menu.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/user/DnD/tmp/build/DnD_autogen/6YEA5652QU/moc_player.cpp
+/home/user/Dnd_cpp/DnD/build/DnD_autogen/6YEA5652QU/moc_player.cpp
 ../../../include/player.h
-/home/user/DnD/tmp/include/player.h
+/home/user/Dnd_cpp/DnD/include/player.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/user/DnD/tmp/build/DnD_autogen/mocs_compilation.cpp
+/home/user/Dnd_cpp/DnD/build/DnD_autogen/mocs_compilation.cpp
 6YEA5652QU/moc_game_menu.cpp
-/home/user/DnD/tmp/build/DnD_autogen/6YEA5652QU/moc_game_menu.cpp
+/home/user/Dnd_cpp/DnD/build/DnD_autogen/6YEA5652QU/moc_game_menu.cpp
 6YEA5652QU/moc_player.cpp
-/home/user/DnD/tmp/build/DnD_autogen/6YEA5652QU/moc_player.cpp
+/home/user/Dnd_cpp/DnD/build/DnD_autogen/6YEA5652QU/moc_player.cpp
 
-/home/user/DnD/tmp/include/board.h
+/home/user/Dnd_cpp/DnD/include/board.h
 iostream
 -
 cstddef
@@ -206,57 +206,57 @@ cstddef
 array
 -
 utility.h
-/home/user/DnD/tmp/include/utility.h
+/home/user/Dnd_cpp/DnD/include/utility.h
 encounter.h
-/home/user/DnD/tmp/include/encounter.h
+/home/user/Dnd_cpp/DnD/include/encounter.h
 character.h
-/home/user/DnD/tmp/include/character.h
+/home/user/Dnd_cpp/DnD/include/character.h
 character_skills.h
-/home/user/DnD/tmp/include/character_skills.h
+/home/user/Dnd_cpp/DnD/include/character_skills.h
 
-/home/user/DnD/tmp/include/character.h
+/home/user/Dnd_cpp/DnD/include/character.h
 iostream
 -
 iosfwd
 -
 character_skills.h
-/home/user/DnD/tmp/include/character_skills.h
+/home/user/Dnd_cpp/DnD/include/character_skills.h
 
-/home/user/DnD/tmp/include/character_skills.h
+/home/user/Dnd_cpp/DnD/include/character_skills.h
 cstddef
 -
 
-/home/user/DnD/tmp/include/dice.h
+/home/user/Dnd_cpp/DnD/include/dice.h
 QGraphicsTextItem
 -
 
-/home/user/DnD/tmp/include/encounter.h
+/home/user/Dnd_cpp/DnD/include/encounter.h
 utility.h
-/home/user/DnD/tmp/include/utility.h
+/home/user/Dnd_cpp/DnD/include/utility.h
 
-/home/user/DnD/tmp/include/game_board.h
+/home/user/Dnd_cpp/DnD/include/game_board.h
 QGraphicsView
 -
 QKeyEvent
 -
 player.h
-/home/user/DnD/tmp/include/player.h
+/home/user/Dnd_cpp/DnD/include/player.h
 dice.h
-/home/user/DnD/tmp/include/dice.h
+/home/user/Dnd_cpp/DnD/include/dice.h
 obstacle.h
-/home/user/DnD/tmp/include/obstacle.h
+/home/user/Dnd_cpp/DnD/include/obstacle.h
 gift.h
-/home/user/DnD/tmp/include/gift.h
+/home/user/Dnd_cpp/DnD/include/gift.h
 board.h
-/home/user/DnD/tmp/include/board.h
+/home/user/Dnd_cpp/DnD/include/board.h
 message.h
-/home/user/DnD/tmp/include/message.h
+/home/user/Dnd_cpp/DnD/include/message.h
 character.h
-/home/user/DnD/tmp/include/character.h
+/home/user/Dnd_cpp/DnD/include/character.h
 character_skills.h
-/home/user/DnD/tmp/include/character_skills.h
+/home/user/Dnd_cpp/DnD/include/character_skills.h
 
-/home/user/DnD/tmp/include/game_menu.h
+/home/user/Dnd_cpp/DnD/include/game_menu.h
 QMainWindow
 -
 QPushButton
@@ -264,23 +264,23 @@ QPushButton
 QWidget
 -
 board.h
-/home/user/DnD/tmp/include/board.h
+/home/user/Dnd_cpp/DnD/include/board.h
 game_board.h
-/home/user/DnD/tmp/include/game_board.h
+/home/user/Dnd_cpp/DnD/include/game_board.h
 
-/home/user/DnD/tmp/include/gift.h
+/home/user/Dnd_cpp/DnD/include/gift.h
 QGraphicsPixmapItem
 -
 
-/home/user/DnD/tmp/include/message.h
+/home/user/Dnd_cpp/DnD/include/message.h
 QGraphicsTextItem
 -
 
-/home/user/DnD/tmp/include/obstacle.h
+/home/user/Dnd_cpp/DnD/include/obstacle.h
 QGraphicsPixmapItem
 -
 
-/home/user/DnD/tmp/include/player.h
+/home/user/Dnd_cpp/DnD/include/player.h
 QGraphicsPixmapItem
 -
 QObject
@@ -288,53 +288,53 @@ QObject
 QGraphicsItem
 -
 
-/home/user/DnD/tmp/include/utility.h
+/home/user/Dnd_cpp/DnD/include/utility.h
 
-/home/user/DnD/tmp/src/board.cpp
+/home/user/Dnd_cpp/DnD/src/board.cpp
 include/board.h
-/home/user/DnD/tmp/src/include/board.h
+/home/user/Dnd_cpp/DnD/src/include/board.h
 
-/home/user/DnD/tmp/src/character.cpp
+/home/user/Dnd_cpp/DnD/src/character.cpp
 cstring
 -
 include/character.h
-/home/user/DnD/tmp/src/include/character.h
+/home/user/Dnd_cpp/DnD/src/include/character.h
 
-/home/user/DnD/tmp/src/character_skills.cpp
+/home/user/Dnd_cpp/DnD/src/character_skills.cpp
 iostream
 -
 include/character_skills.h
-/home/user/DnD/tmp/src/include/character_skills.h
+/home/user/Dnd_cpp/DnD/src/include/character_skills.h
 
-/home/user/DnD/tmp/src/dice.cpp
+/home/user/Dnd_cpp/DnD/src/dice.cpp
 include/dice.h
-/home/user/DnD/tmp/src/include/dice.h
+/home/user/Dnd_cpp/DnD/src/include/dice.h
 QFont
 -
 
-/home/user/DnD/tmp/src/encounter.cpp
+/home/user/Dnd_cpp/DnD/src/encounter.cpp
 include/encounter.h
-/home/user/DnD/tmp/src/include/encounter.h
+/home/user/Dnd_cpp/DnD/src/include/encounter.h
 
-/home/user/DnD/tmp/src/game_board.cpp
+/home/user/Dnd_cpp/DnD/src/game_board.cpp
 QDebug
 -
 QApplication
 -
 include/game_board.h
-/home/user/DnD/tmp/src/include/game_board.h
+/home/user/Dnd_cpp/DnD/src/include/game_board.h
 include/player.h
-/home/user/DnD/tmp/src/include/player.h
+/home/user/Dnd_cpp/DnD/src/include/player.h
 include/obstacle.h
-/home/user/DnD/tmp/src/include/obstacle.h
+/home/user/Dnd_cpp/DnD/src/include/obstacle.h
 include/dice.h
-/home/user/DnD/tmp/src/include/dice.h
+/home/user/Dnd_cpp/DnD/src/include/dice.h
 include/character.h
-/home/user/DnD/tmp/src/include/character.h
+/home/user/Dnd_cpp/DnD/src/include/character.h
 include/character_skills.h
-/home/user/DnD/tmp/src/include/character_skills.h
+/home/user/Dnd_cpp/DnD/src/include/character_skills.h
 
-/home/user/DnD/tmp/src/game_menu.cpp
+/home/user/Dnd_cpp/DnD/src/game_menu.cpp
 QCoreApplication
 -
 QApplication
@@ -344,49 +344,49 @@ QMessageBox
 QPixmap
 -
 include/board.h
-/home/user/DnD/tmp/src/include/board.h
+/home/user/Dnd_cpp/DnD/src/include/board.h
 include/game_menu.h
-/home/user/DnD/tmp/src/include/game_menu.h
+/home/user/Dnd_cpp/DnD/src/include/game_menu.h
 ui_game_menu.h
-/home/user/DnD/tmp/src/ui_game_menu.h
+/home/user/Dnd_cpp/DnD/src/ui_game_menu.h
 
-/home/user/DnD/tmp/src/gift.cpp
+/home/user/Dnd_cpp/DnD/src/gift.cpp
 include/gift.h
-/home/user/DnD/tmp/src/include/gift.h
+/home/user/Dnd_cpp/DnD/src/include/gift.h
 
-/home/user/DnD/tmp/src/main.cpp
+/home/user/Dnd_cpp/DnD/src/main.cpp
 include/board.h
-/home/user/DnD/tmp/src/include/board.h
+/home/user/Dnd_cpp/DnD/src/include/board.h
 include/game_menu.h
-/home/user/DnD/tmp/src/include/game_menu.h
+/home/user/Dnd_cpp/DnD/src/include/game_menu.h
 include/game_board.h
-/home/user/DnD/tmp/src/include/game_board.h
+/home/user/Dnd_cpp/DnD/src/include/game_board.h
 QApplication
 -
 
-/home/user/DnD/tmp/src/message.cpp
+/home/user/Dnd_cpp/DnD/src/message.cpp
 include/message.h
-/home/user/DnD/tmp/src/include/message.h
+/home/user/Dnd_cpp/DnD/src/include/message.h
 QFont
 -
 
-/home/user/DnD/tmp/src/obstacle.cpp
+/home/user/Dnd_cpp/DnD/src/obstacle.cpp
 include/obstacle.h
-/home/user/DnD/tmp/src/include/obstacle.h
+/home/user/Dnd_cpp/DnD/src/include/obstacle.h
 QGraphicsPixmapItem
 -
 
-/home/user/DnD/tmp/src/player.cpp
+/home/user/Dnd_cpp/DnD/src/player.cpp
 include/player.h
-/home/user/DnD/tmp/src/include/player.h
+/home/user/Dnd_cpp/DnD/src/include/player.h
 QDebug
 -
 QKeyEvent
 -
 include/game_board.h
-/home/user/DnD/tmp/src/include/game_board.h
+/home/user/Dnd_cpp/DnD/src/include/game_board.h
 include/message.h
-/home/user/DnD/tmp/src/include/message.h
+/home/user/Dnd_cpp/DnD/src/include/message.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QCoreApplication
 qcoreapplication.h

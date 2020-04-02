@@ -1,4 +1,4 @@
-# Install script for directory: /home/user/DnD/tmp
+# Install script for directory: /home/user/Dnd_cpp/DnD
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/user/DnD/tmp/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/user/Dnd_cpp/DnD/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

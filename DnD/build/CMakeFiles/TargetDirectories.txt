@@ -1,4 +1,4 @@
-/home/user/DnD/tmp/build/CMakeFiles/rebuild_cache.dir
-/home/user/DnD/tmp/build/CMakeFiles/DnD.dir
-/home/user/DnD/tmp/build/CMakeFiles/edit_cache.dir
-/home/user/DnD/tmp/build/CMakeFiles/DnD_autogen.dir
+/home/user/Dnd_cpp/DnD/build/CMakeFiles/rebuild_cache.dir
+/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD.dir
+/home/user/Dnd_cpp/DnD/build/CMakeFiles/edit_cache.dir
+/home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD_autogen.dir

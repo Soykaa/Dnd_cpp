@@ -7,5 +7,5 @@
 extern GameBoard *game;
 
 Player::Player(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
-	setPixmap(QPixmap("images/player.png"));
+	setPixmap(QPixmap("../images/player.png"));
 }

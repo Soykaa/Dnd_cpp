@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/user/DnD/tmp
+CMAKE_SOURCE_DIR = /home/user/Dnd_cpp/DnD
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/user/DnD/tmp/build
+CMAKE_BINARY_DIR = /home/user/Dnd_cpp/DnD/build
 
 # Utility rule file for DnD_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/user/DnD/tmp/build
 include CMakeFiles/DnD_autogen.dir/progress.make
 
 CMakeFiles/DnD_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/user/DnD/tmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC, UIC and RCC for target DnD"
-	/usr/bin/cmake -E cmake_autogen /home/user/DnD/tmp/build/CMakeFiles/DnD_autogen.dir ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/user/Dnd_cpp/DnD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC, UIC and RCC for target DnD"
+	/usr/bin/cmake -E cmake_autogen /home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD_autogen.dir ""
 
 DnD_autogen: CMakeFiles/DnD_autogen
 DnD_autogen: CMakeFiles/DnD_autogen.dir/build.make
@@ -72,6 +72,6 @@ CMakeFiles/DnD_autogen.dir/clean:
 .PHONY : CMakeFiles/DnD_autogen.dir/clean
 
 CMakeFiles/DnD_autogen.dir/depend:
-	cd /home/user/DnD/tmp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/user/DnD/tmp /home/user/DnD/tmp /home/user/DnD/tmp/build /home/user/DnD/tmp/build /home/user/DnD/tmp/build/CMakeFiles/DnD_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/user/Dnd_cpp/DnD/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/user/Dnd_cpp/DnD /home/user/Dnd_cpp/DnD /home/user/Dnd_cpp/DnD/build /home/user/Dnd_cpp/DnD/build /home/user/Dnd_cpp/DnD/build/CMakeFiles/DnD_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/DnD_autogen.dir/depend
 
