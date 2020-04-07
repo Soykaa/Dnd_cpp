@@ -2,7 +2,14 @@
 
 //! Some kind of tmp file
 
+#include <iostream>
+#include "Character.h"
+#include "Backpack.h"
+
 int main() {
-	std::cout << 30;
+    CharacterSkills cs;
+    Backpack bp;
+    Hero h(cs, bp);
+    std::cout << h.getName();
 	return 0;
 }

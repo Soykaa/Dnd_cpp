@@ -10,12 +10,12 @@ class CharacterSkills {
 public:
     CharacterSkills();
     CharacterSkills(size_t intelligence, size_t wisdom, size_t strength, size_t dexterity, size_t constitution, size_t charisma);
-    [[nodiscard]] size_t getIntelligence() const;
-    [[nodiscard]] size_t getWisdom() const;
-    [[nodiscard]] size_t getStrength() const;
-    [[nodiscard]] size_t getDexterity() const;
-    [[nodiscard]] size_t getConstitution() const;
-    [[nodiscard]] size_t getCharisma() const;
+    size_t getIntelligence() const;
+    size_t getWisdom() const;
+    size_t getStrength() const;
+    size_t getDexterity() const;
+    size_t getConstitution() const;
+    size_t getCharisma() const;
 
     void setIntelligence(size_t intelligence);
     void setWisdom(size_t wisdom);
