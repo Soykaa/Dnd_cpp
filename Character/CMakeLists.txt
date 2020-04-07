@@ -16,17 +16,23 @@ if(WINDOWS)
             src/Character.cpp
             src/CharacterSkills.cpp
             src/main.cpp
+            src/Item.cpp
+            src/Backpack.cpp
             )
 elseif(LINUX)
     add_executable(DND_CPP
             src/Character.cpp
             src/CharacterSkills.cpp
             src/main.cpp
+            src/Item.cpp
+            src/Backpack.cpp
             )
 elseif(MACOSX)
     add_executable(DND_CPP
         src/Character.cpp
         src/CharacterSkills.cpp
         src/main.cpp
+        src/Item.cpp
+        src/Backpack.cpp
     )
 endif()
