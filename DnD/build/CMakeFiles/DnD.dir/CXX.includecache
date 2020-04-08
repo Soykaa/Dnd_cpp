@@ -47,6 +47,8 @@ QGraphicsView
 -
 QKeyEvent
 -
+utility.h
+../include/utility.h
 player.h
 ../include/player.h
 dice.h
@@ -137,6 +139,8 @@ QGraphicsView
 -
 QKeyEvent
 -
+utility.h
+../include/utility.h
 player.h
 ../include/player.h
 dice.h
@@ -175,6 +179,10 @@ QGraphicsItem
 -
 
 ../include/utility.h
+gift.h
+../include/gift.h
+obstacle.h
+../include/obstacle.h
 
 /home/user/Dnd_cpp/DnD/build/DnD_autogen/6YEA5652QU/moc_game_menu.cpp
 ../../../include/game_menu.h
@@ -239,6 +247,8 @@ QGraphicsView
 -
 QKeyEvent
 -
+utility.h
+/home/user/Dnd_cpp/DnD/include/utility.h
 player.h
 /home/user/Dnd_cpp/DnD/include/player.h
 dice.h
@@ -289,6 +299,10 @@ QGraphicsItem
 -
 
 /home/user/Dnd_cpp/DnD/include/utility.h
+gift.h
+/home/user/Dnd_cpp/DnD/include/gift.h
+obstacle.h
+/home/user/Dnd_cpp/DnD/include/obstacle.h
 
 /home/user/Dnd_cpp/DnD/src/board.cpp
 include/board.h
@@ -353,28 +367,34 @@ ui_game_menu.h
 /home/user/Dnd_cpp/DnD/src/gift.cpp
 include/gift.h
 /home/user/Dnd_cpp/DnD/src/include/gift.h
+include/game_board.h
+/home/user/Dnd_cpp/DnD/src/include/game_board.h
 
 /home/user/Dnd_cpp/DnD/src/main.cpp
+QApplication
+-
 include/board.h
 /home/user/Dnd_cpp/DnD/src/include/board.h
 include/game_menu.h
 /home/user/Dnd_cpp/DnD/src/include/game_menu.h
 include/game_board.h
 /home/user/Dnd_cpp/DnD/src/include/game_board.h
-QApplication
--
 
 /home/user/Dnd_cpp/DnD/src/message.cpp
-include/message.h
-/home/user/Dnd_cpp/DnD/src/include/message.h
 QFont
 -
+include/message.h
+/home/user/Dnd_cpp/DnD/src/include/message.h
+include/game_board.h
+/home/user/Dnd_cpp/DnD/src/include/game_board.h
 
 /home/user/Dnd_cpp/DnD/src/obstacle.cpp
-include/obstacle.h
-/home/user/Dnd_cpp/DnD/src/include/obstacle.h
 QGraphicsPixmapItem
 -
+include/obstacle.h
+/home/user/Dnd_cpp/DnD/src/include/obstacle.h
+include/game_board.h
+/home/user/Dnd_cpp/DnD/src/include/game_board.h
 
 /home/user/Dnd_cpp/DnD/src/player.cpp
 include/player.h

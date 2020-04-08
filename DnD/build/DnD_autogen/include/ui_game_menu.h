@@ -37,14 +37,14 @@ public:
         pushButton->setGeometry(QRect(225, 255, 300, 70));
         pushButton->setStyleSheet(QLatin1String("font: 63 11pt \"Ubuntu\";\n"
 "font-size:27px;\n"
-"background-color: rgb(136, 138, 133);\n"
+"background-color: #808080;\n"
 "color: rgb(255, 255, 255);"));
         pushButton_3 = new QPushButton(GameWindow);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(225, 355, 300, 70));
-        pushButton_3->setStyleSheet(QLatin1String("background-color: rgb(136, 138, 133);\n"
-"font: 57 11pt \"Ubuntu\";\n"
-"font-size:25px;\n"
+        pushButton_3->setStyleSheet(QLatin1String("font: 63 11pt \"Ubuntu\";\n"
+"font-size:27px;\n"
+"background-color: rgb(136, 138, 133);\n"
 "color: rgb(255, 255, 255);"));
         label = new QLabel(GameWindow);
         label->setObjectName(QStringLiteral("label"));

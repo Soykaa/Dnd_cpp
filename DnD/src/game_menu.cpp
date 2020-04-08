@@ -25,7 +25,7 @@ GameWindow::~GameWindow() {
 void GameWindow::on_pushButton_clicked() {
 	hide();
 	game = new GameBoard();
-	game->show();
+	game->makeGame();
 }
 
 void GameWindow::on_pushButton_3_clicked() {
