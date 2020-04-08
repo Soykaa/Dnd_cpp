@@ -15,9 +15,8 @@ install:
     - cmake --version
     - pip install cpplint
 script:
-    - cpplint --recursive --root="src" --filter=-legal/copyright src/
+    - cpplint --recursive --root="src" --filter=-legal/copyright src/ include/
     - cd bin
     - cmake ..
     - make
     - ./run_tests
-
