@@ -5,10 +5,10 @@ cmake_minimum_required(VERSION 3.12)
 project(DND_CPP)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "-g -Wall -Wextra")
-include_directories(src)
+include_directories(include)
 
 set(TRAVIS_SOURCES src/travis/travis.cpp)
-set(TRAVIS_MAIN src/main_travis.cpp)
+set(TRAVIS_MAIN src/travis/main_travis.cpp)
 
 add_executable(travis ${TRAVIS_SOURCES} ${TRAVIS_MAIN})
 
@@ -44,6 +44,6 @@ endif()
 
 ############################################################################
 # Unit tests.
-file(GLOB_RECURSE UNIT_TEST_SOURCES "src/*_test.cpp")
+file(GLOB_RECURSE UNIT_TEST_SOURCES "tests/*_test.cpp")
 add_executable(run_tests ${UNIT_TEST_SOURCES} ${TRAVIS_SOURCES})
 target_link_libraries(run_tests gtest_main)
