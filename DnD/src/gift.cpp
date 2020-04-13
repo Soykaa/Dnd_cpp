@@ -9,7 +9,7 @@ Gift::Gift(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
 
 void Gift::setGift(int x, int y) {
 	int k = game->cell_width;
-	setPixmap(QPixmap("../images/gift.png").scaled(k, k));
+	setPixmap(QPixmap("images/gift.png").scaled(k, k));
 	setPos(x * game->cell_width, y * game->cell_width);
-	game->scene_->addItem(this);
+	game->scene1_->addItem(this);
 }

@@ -8,6 +8,7 @@
 #include "dice.h"
 #include "obstacle.h"
 #include "gift.h"
+#include "door.h"
 #include "board.h"
 #include "message.h"
 #include "character.h"
@@ -17,16 +18,25 @@ class GameBoard : public QGraphicsView {
 	//Q_OBJECT
 public:
 	GameBoard(QWidget *parent = 0);
-	QGraphicsScene *scene_;
+	enum class Location {
+	    firstLocation, //можно назвать как-то осмысленно
+	    secondLocation,
+	};
+	Location currentLocation_;
+	QGraphicsScene *scene1_;
+	QGraphicsScene *scene2_;
+	void changeLocation();
 	Player *player_;
 	Player2* player2_;
 	std::vector<Dice*> dices_;
 	std::vector<GiftCord> gifts_;
 	std::vector<ObstacleCord> obstacles_;
+	Door *door_;
 	void makeGifts(int amount);
 	void makeObstacles(int amount);
 	void makeGift(int giftNum, int x, int y);
 	void makeObstacle(int obstNum, int x, int y);
+	void makeDoor(int x, int y);
 	void makeGame();
 	Board b;
 	void keyPressEvent(QKeyEvent *event);

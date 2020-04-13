@@ -14,5 +14,5 @@ void Message::setMessage(int playerNum) {
 		setPlainText(QString("Победа игрока 2!!!"));
 	setDefaultTextColor(Qt::red);
 	setFont(QFont("Lobster", 70));
-	game->scene_->addItem(this);
+	game->scene1_->addItem(this);
 }

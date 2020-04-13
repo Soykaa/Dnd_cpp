@@ -1,0 +1,4 @@
+/Users/milyausha/CPP_PROJECT/Dnd_cpp/DnD/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/milyausha/CPP_PROJECT/Dnd_cpp/DnD/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/milyausha/CPP_PROJECT/Dnd_cpp/DnD/cmake-build-debug/CMakeFiles/DnD.dir
+/Users/milyausha/CPP_PROJECT/Dnd_cpp/DnD/cmake-build-debug/CMakeFiles/DnD_autogen.dir
