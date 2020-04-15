@@ -22,8 +22,8 @@ public:
 	explicit Character(CharacterSkills& cs);
 	Character(const char* name, CharacterSkills& cs);
 
-	[[nodiscard]] const char * getName() const;
-	[[nodiscard]] char getSymbOnField() const;
+    const char * getName() const;
+    char getSymbOnField() const;
 
 	size_t getHealth() const;
 	size_t getActionPoints() const;
@@ -37,13 +37,14 @@ public:
 	void characterInfo();
 	CharacterSkills& cs_;
 private:
+    size_t character_level_;
+    CharRace race_;
+    CharClass class_;
+    size_t health_;
+    size_t action_points_;
 	char* name_;
 	char symb_on_field_;
-	size_t character_level_;
-	size_t health_;
-	size_t action_points_;
-	CharRace race_;
-	CharClass class_;
 };
 
 #endif //CHARACTER.H
+

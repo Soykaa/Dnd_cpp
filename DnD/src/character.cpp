@@ -5,9 +5,8 @@
 
 //! default constructor
 Character::Character(CharacterSkills& cs)
-		: character_level_(1), race_(CharRace::dragonborn),
-		  class_(CharClass::fighter), cs_(cs),
-		  health_(10), action_points_(20) {
+        : cs_(cs), character_level_(1), race_(CharRace::dragonborn),
+          class_(CharClass::fighter), health_(10), action_points_(20) {
 	name_ = new char[strlen("Sergey") + 1];
 	strcpy(name_, "Sergey");
 	symb_on_field_ = 'C';
