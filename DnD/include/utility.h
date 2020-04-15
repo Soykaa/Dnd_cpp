@@ -5,32 +5,32 @@
 #include "obstacle.h"
 
 enum class Type {
-	emptyField,
-	obstacle,
-	door,
-	start,
-	finnish,
-	gift,
-	// TODO
+    emptyField,
+    obstacle,
+    door,
+    start,
+    finnish,
+    gift,
+    // TODO
 };
 
 enum class Direction {
-	up,
-	down,
-	left,
-	right,
+    up,
+    down,
+    left,
+    right,
 };
 
 struct GiftCord {
-	Gift* gift;
-	int x;
-	int y;
+    Gift* gift;
+    int x;
+    int y;
 };
 
 struct ObstacleCord {
-	Obstacle* obst;
-	int x;
-	int y;
+    Obstacle* obst;
+    int x;
+    int y;
 };
 
 #endif

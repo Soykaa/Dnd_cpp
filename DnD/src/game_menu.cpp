@@ -19,15 +19,15 @@ GameWindow::GameWindow(QWidget *parent)
 }
 
 GameWindow::~GameWindow() {
-	delete ui;
+    delete ui;
 }
 
 void GameWindow::on_pushButton_clicked() {
-	hide();
-	game = new GameBoard();
-	game->makeGame();
+    hide();
+    game = new GameBoard();
+    game->makeGame();
 }
 
 void GameWindow::on_pushButton_3_clicked() {
-	QApplication::quit();
+    QApplication::quit();
 }

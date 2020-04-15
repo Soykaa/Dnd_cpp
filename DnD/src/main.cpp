@@ -7,12 +7,12 @@
 GameBoard *game;
 
 int main(int argc, char *argv[]) {
-	QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-	GameWindow window;
-	window.resize(750, 750);
-	window.setWindowTitle("Dungeon and dragons");
-	window.show();
+    GameWindow window;
+    window.resize(750, 750);
+    window.setWindowTitle("Dungeon and dragons");
+    window.show();
 
-	return app.exec();
-}	
+    return app.exec();
+}   

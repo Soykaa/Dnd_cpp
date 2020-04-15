@@ -5,8 +5,8 @@
 
 class Obstacle : public QGraphicsPixmapItem {
 public:
-	Obstacle(QGraphicsItem *parent = 0);
-	void setObstacle(int x, int y);
+    Obstacle(QGraphicsItem *parent = 0);
+    void setObstacle(int x, int y);
 };
 
 #endif //DND_OBSTACLE_H

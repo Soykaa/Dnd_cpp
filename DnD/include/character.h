@@ -9,41 +9,41 @@
 
 //! enums
 enum class CharRace {
-	dragonborn
+    dragonborn
 };
 
 enum class CharClass {
-	fighter
+    fighter
 };
 
 //! @class Character
 class Character {
 public:
-	explicit Character(CharacterSkills& cs);
-	Character(const char* name, CharacterSkills& cs);
+    explicit Character(CharacterSkills& cs);
+    Character(const char* name, CharacterSkills& cs);
 
     const char * getName() const;
     char getSymbOnField() const;
 
-	size_t getHealth() const;
-	size_t getActionPoints() const;
-	CharacterSkills getCharacterSkills() const;
-	CharRace getRace() const;
-	CharClass getClass() const;
+    size_t getHealth() const;
+    size_t getActionPoints() const;
+    CharacterSkills getCharacterSkills() const;
+    CharRace getRace() const;
+    CharClass getClass() const;
 
-	void setHealth(size_t health);
-	void setActionPoints(size_t ap);
+    void setHealth(size_t health);
+    void setActionPoints(size_t ap);
 
-	void characterInfo();
-	CharacterSkills& cs_;
+    void characterInfo();
+    CharacterSkills& cs_;
 private:
     size_t character_level_;
     CharRace race_;
     CharClass class_;
     size_t health_;
     size_t action_points_;
-	char* name_;
-	char symb_on_field_;
+    char* name_;
+    char symb_on_field_;
 };
 
 #endif //CHARACTER.H

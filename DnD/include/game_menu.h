@@ -13,19 +13,19 @@ namespace Ui { class GameWindow; }
 QT_END_NAMESPACE
 
 class GameWindow : public QWidget {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	GameWindow(QWidget *parent = nullptr);
-	~GameWindow();
+    GameWindow(QWidget *parent = nullptr);
+    ~GameWindow();
 
 private slots:
-	//void showGame();
-	void on_pushButton_clicked();
-	void on_pushButton_3_clicked();
+    //void showGame();
+    void on_pushButton_clicked();
+    void on_pushButton_3_clicked();
 
 private:
-	Ui::GameWindow *ui;
+    Ui::GameWindow *ui;
 };
 
 #endif // GAMEWINDOW_H
