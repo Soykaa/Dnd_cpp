@@ -9,6 +9,14 @@ class Player : public QObject, public QGraphicsPixmapItem {
 	Q_OBJECT
 public:
 	Player(QGraphicsItem *parent = 0);
+	void setPlayer();
+};
+
+class Player2 : public QObject, public QGraphicsPixmapItem {
+	Q_OBJECT
+public:
+	Player2(QGraphicsItem *parent = 0);
+	void setPlayer2();
 };
 
 #endif //DND_PLAYER_H

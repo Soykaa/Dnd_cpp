@@ -1,7 +1,8 @@
+#include <QApplication>
 #include "include/board.h"
 #include "include/game_menu.h"
 #include "include/game_board.h"
-#include <QApplication>
+
 
 GameBoard *game;
 

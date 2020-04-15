@@ -25,7 +25,7 @@
 			<property name="styleSheet">
 	<string notr="true">font: 63 11pt &quot;Ubuntu&quot;;
 font-size:27px;
-background-color: rgb(136, 138, 133);
+background-color: #808080;
 color: rgb(255, 255, 255);</string>
 			</property>
 			<property name="text">
@@ -42,9 +42,9 @@ color: rgb(255, 255, 255);</string>
 	</rect>
 			</property>
 			<property name="styleSheet">
-	<string notr="true">background-color: rgb(136, 138, 133);
-font: 57 11pt &quot;Ubuntu&quot;;
-font-size:25px;
+	<string notr="true">font: 63 11pt &quot;Ubuntu&quot;;
+font-size:27px;
+background-color: rgb(136, 138, 133);
 color: rgb(255, 255, 255);</string>
 			</property>
 			<property name="text">

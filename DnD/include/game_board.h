@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include "utility.h"
 #include "player.h"
 #include "dice.h"
 #include "obstacle.h"
@@ -18,13 +19,24 @@ public:
 	GameBoard(QWidget *parent = 0);
 	QGraphicsScene *scene_;
 	Player *player_;
-	Dice *dice_;
-	Obstacle *obstacle_;
-	Gift *gift_;
-	Encounter e;
+	Player2* player2_;
+	std::vector<Dice*> dices_;
+	std::vector<GiftCord> gifts_;
+	std::vector<ObstacleCord> obstacles_;
+	void makeGifts(int amount);
+	void makeObstacles(int amount);
+	void makeGift(int giftNum, int x, int y);
+	void makeObstacle(int obstNum, int x, int y);
+	void makeGame();
 	Board b;
 	void keyPressEvent(QKeyEvent *event);
-	const int size_ = 750;
+	bool gameIsFinished = false;
+	int start_x = 0;
+	int start_y = 0;
+	const int board_size = 1000;
+	const int window_width = 1000;
+	const int window_height = 1000;
+	const int cell_width = board_size / b.getAmountOfEncounters();
 };
 
 #endif //DND_GAME_BOARD_H
