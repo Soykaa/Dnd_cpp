@@ -10,12 +10,10 @@ extern GameBoard *game;
 
 GameWindow::GameWindow(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::GameWindow)
-{
+    , ui(new Ui::GameWindow) {
     ui->setupUi(this);
     QPixmap pix("../images/dungeon.webp");
     ui->label->setPixmap(pix.scaled(750, 750));
-
 }
 
 GameWindow::~GameWindow() {

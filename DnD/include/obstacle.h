@@ -5,7 +5,7 @@
 
 class Obstacle : public QGraphicsPixmapItem {
 public:
-    Obstacle(QGraphicsItem *parent = 0);
+    explicit Obstacle(QGraphicsItem *parent = 0);
     void setObstacle(int x, int y);
 };
 

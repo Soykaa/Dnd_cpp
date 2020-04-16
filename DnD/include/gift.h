@@ -6,7 +6,7 @@
 
 class Gift : public QGraphicsPixmapItem {
 public:
-    Gift(QGraphicsItem *parent = 0);
+    explicit Gift(QGraphicsItem *parent = 0);
     bool is_taken;
     void setGift(int x, int y);
 };

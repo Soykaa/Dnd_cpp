@@ -16,7 +16,7 @@ class GameWindow : public QWidget {
     Q_OBJECT
 
 public:
-    GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
 
 private slots:

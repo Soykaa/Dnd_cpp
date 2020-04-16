@@ -5,7 +5,7 @@
 
 class Dice : public QGraphicsTextItem {
 public:
-    Dice(QGraphicsItem *parent = 0);
+    explicit Dice(QGraphicsItem *parent = 0);
     void throw_dice();
     int get_number() {return dice_number_;}
 private:

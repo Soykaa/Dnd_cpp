@@ -9,7 +9,7 @@
 
 class Message : public QGraphicsTextItem {
 public:
-    Message(QGraphicsItem *parent = 0);
+    explicit Message(QGraphicsItem *parent = 0);
     void setMessage(int playerNum);
 };
 

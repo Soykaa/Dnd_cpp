@@ -17,15 +17,13 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_GameWindow
-{
+class Ui_GameWindow {
 public:
     QPushButton *pushButton;
     QPushButton *pushButton_3;
     QLabel *label;
 
-    void setupUi(QWidget *GameWindow)
-    {
+    void setupUi(QWidget *GameWindow) {
         if (GameWindow->objectName().isEmpty())
             GameWindow->setObjectName(QString::fromUtf8("GameWindow"));
         GameWindow->resize(800, 600);
@@ -55,14 +53,12 @@ public:
         QMetaObject::connectSlotsByName(GameWindow);
     } // setupUi
 
-    void retranslateUi(QWidget *GameWindow)
-    {
+    void retranslateUi(QWidget *GameWindow) {
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "GameWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("GameWindow", "\320\235\320\260\321\207\320\260\321\202\321\214 \320\270\320\263\321\200\321\203", nullptr));
         pushButton_3->setText(QCoreApplication::translate("GameWindow", "\320\237\320\276\320\272\320\270\320\275\321\203\321\202\321\214 \320\277\320\276\320\264\320\267\320\265\320\274\320\265\320\273\321\214\320\265", nullptr));
         label->setText(QString());
     } // retranslateUi
-
 };
 
 namespace Ui {

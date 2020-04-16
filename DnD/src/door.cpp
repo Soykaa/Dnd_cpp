@@ -8,4 +8,4 @@ Door::Door(QGraphicsItem *parent) : QGraphicsPixmapItem(parent), player1(false),
 void Door::setDoor() {
     int size = game->cell_width;
     setPixmap(QPixmap("../images/door.png").scaled(size, size));
-};
+}
