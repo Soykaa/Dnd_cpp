@@ -17,7 +17,7 @@ GameBoard::GameBoard(QWidget *parent) {
     scene2_ = new QGraphicsScene();
 	scene1_->setSceneRect(0, 0, window_width, window_height);
 	scene2_->setSceneRect(0, 0, window_width, window_height);
-	setBackgroundBrush(QBrush(QImage("images/new_background.png")));
+	setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
 	setScene(scene1_);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -167,7 +167,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
 
 void GameBoard::changeLocation() {
     if (currentLocation_ == Location::firstLocation) {
-        setBackgroundBrush(QBrush(QImage("images/forest.png")));
+        setBackgroundBrush(QBrush(QImage("../images/forest.png")));
         scene2_->addItem(player_);
         scene2_->addItem(player2_);
         scene2_->addItem(door_);
@@ -179,7 +179,7 @@ void GameBoard::changeLocation() {
         return;
     }
     if (currentLocation_ == Location::secondLocation) {
-        setBackgroundBrush(QBrush(QImage("images/new_background.png")));
+        setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
         door_->setPos(10 * game->cell_width, 10 * game ->cell_width);
         b.changeOneFieldType(11, 11, Type::emptyField);
         b.changeOneFieldType(10, 10, Type::door);

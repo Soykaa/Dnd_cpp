@@ -62,53 +62,6 @@ void Board::changeOneFieldType(size_t i, size_t j, Type type) {
 }
 
 void Board::makeTurn_1(Direction direction) {
-<<<<<<< HEAD
-    size_t X = characterPosition_X_1;
-    size_t Y = characterPosition_Y_1;
-    if (direction == Direction::down) {
-            if (board_[X][Y + 1].getType() != Type::emptyField) {
-                if (board_[X][Y + 1].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_Y_1++;
-        if (characterPosition_Y_1 >= amountOfEncounters_)
-            characterPosition_Y_1--;
-    }
-    if (direction == Direction::up) {
-        if (characterPosition_Y_1 <= 0)
-            return;
-        if (board_[X][Y - 1].getType() != Type::emptyField) {
-            if (board_[X][Y - 1].getType() == Type::obstacle) {
-                return;
-            }
-        }
-    characterPosition_Y_1--;
-    if (characterPosition_Y_1 < 0)
-        characterPosition_Y_1++;
-    }
-    if (direction == Direction::right) {
-            if (board_[X + 1][Y].getType() != Type::emptyField) {
-                if (board_[X + 1][Y].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_X_1++;
-        if (characterPosition_X_1 >= amountOfEncounters_)
-            characterPosition_X_1--;
-    }
-    if (direction == Direction::left) {
-        if (characterPosition_X_1 <= 0)
-            return;
-        if (board_[X - 1][Y].getType() != Type::emptyField) {
-            if (board_[X - 1][Y].getType() == Type::obstacle) {
-                return;
-            }
-        }
-        characterPosition_X_1--;
-        if (characterPosition_X_1 < 0)
-            characterPosition_X_1++;
-=======
 	size_t X = characterPosition_X_1;
 	size_t Y = characterPosition_Y_1;
 	if (direction == Direction::down) {
@@ -170,60 +123,10 @@ void Board::makeTurn_1(Direction direction) {
     board_[characterPosition_X_1][characterPosition_Y_1].getType() == Type::door ? game->door_->player1 = true : game ->door_->player1 = false;
 	if (game->door_->player1 and game->door_->player2) {
         game->changeLocation();
->>>>>>> d21c036a5721b86ec8de06087c248ec7c8f80d02
     }
 }
 
 void Board::makeTurn_2(Direction direction) {
-<<<<<<< HEAD
-    size_t X = characterPosition_X_2;
-    size_t Y = characterPosition_Y_2;
-    if (direction == Direction::down) {
-            if (board_[X][Y + 1].getType() != Type::emptyField) {
-                if (board_[X][Y + 1].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_Y_2++;
-        if (characterPosition_Y_2 >= amountOfEncounters_)
-            characterPosition_Y_2--;
-    }
-    if (direction == Direction::up) {
-        if (characterPosition_Y_2 <= 0)
-            return;
-        if (board_[X][Y - 1].getType() != Type::emptyField) {
-            if (board_[X][Y - 1].getType() == Type::obstacle) {
-                return;
-            }
-        }
-    characterPosition_Y_2--;
-    if (characterPosition_Y_2 < 0)
-        characterPosition_Y_2++;
-    }
-    if (direction == Direction::right) {
-            if (board_[X + 1][Y].getType() != Type::emptyField) {
-                if (board_[X + 1][Y].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_X_2++;
-        if (characterPosition_X_2 >= amountOfEncounters_)
-            characterPosition_X_2--;
-    }
-    if (direction == Direction::left) {
-        if (characterPosition_X_2 <= 0)
-            return;
-            if (board_[X - 1][Y].getType() != Type::emptyField) {
-                if (board_[X - 1][Y].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_X_2--;
-        if (characterPosition_X_2 < 0)
-            characterPosition_X_2++;
-    }
-}
-=======
 	size_t X = characterPosition_X_2;
 	size_t Y = characterPosition_Y_2;
 	if (direction == Direction::down) {
@@ -287,4 +190,3 @@ void Board::makeTurn_2(Direction direction) {
         }
 	}
 }
->>>>>>> d21c036a5721b86ec8de06087c248ec7c8f80d02
