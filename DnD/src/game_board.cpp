@@ -90,11 +90,12 @@ void GameBoard::makeDoor(int x, int y) {
     door_->setPos(x * game->cell_width, y * game->cell_width);
     scenes[0]->addItem(door_);
     boards[0].changeOneFieldType(x, y, Type::door);
-    boards[1].changeOneFieldType(x+1, y+1, Type::door);
+    boards[1].changeOneFieldType(x + 1, y + 1, Type::door);
 }
 
 void GameBoard::keyPressEvent(QKeyEvent *event) {
     int i = locationNum;
+    qDebug() << "dext " << boards[i].h1->cs_.getDexterity() << "\n";
     qDebug() << i << "\n";
     if (event->key() == Qt::Key_Any) {
         QApplication::quit();

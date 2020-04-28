@@ -21,8 +21,8 @@ private:
 
 
 public:
-    Character *h1 = nullptr;
-    Character *h2 = nullptr;
+    Hero *h1 = nullptr;
+    Hero *h2 = nullptr;
     Board();
     Encounter getField(size_t i, size_t j);
     Type getFieldType(size_t i, size_t j);

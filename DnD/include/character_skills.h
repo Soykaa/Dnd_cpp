@@ -24,13 +24,12 @@ public:
     void setConstitution(size_t constitution);
     void setCharisma(size_t charisma);
 private:
-    size_t intelligence_;
-    size_t wisdom_;
     size_t strength_;
     size_t dexterity_;
     size_t constitution_;
+    size_t intelligence_;
+    size_t wisdom_;
     size_t charisma_;
 };
 
 #endif //DND_CPP_CHARACTER_SKILLS_H
-

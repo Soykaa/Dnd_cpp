@@ -42,7 +42,8 @@ CharGen::~CharGen() {
 
 void CharGen::on_randomMode_clicked() {
     CharacterSkills cs;
-    game->boards[0].h1 = new Character(cs);
+    Backpack bp;
+    game->boards[0].h1 = new Hero(cs, bp);
     CharGen::ui->standardMode->setEnabled(false);
     CharGen::ui->randomMode->setText("Generating...");
     sleep(500);
