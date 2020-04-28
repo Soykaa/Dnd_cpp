@@ -9,7 +9,7 @@ class Player : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
     explicit Player(QGraphicsItem *parent = 0);
-    void setPlayer();
+    void setPlayer(const QString str);
 };
 
 class Player2 : public QObject, public QGraphicsPixmapItem {

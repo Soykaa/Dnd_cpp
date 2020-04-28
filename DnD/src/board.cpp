@@ -4,10 +4,7 @@
 
 extern GameBoard *game;
 
-Board::Board() {
-    h1 = new Character(&cs);
-    h2 = new Character(&cs);
-}
+Board::Board() {}
 
 Encounter Board::getField(size_t i, size_t j) {
     return board_[i][j];
@@ -73,10 +70,6 @@ void Board::makeTurn_1(Direction direction) {
         characterPosition_Y_1++;
         if (characterPosition_Y_1 >= amountOfEncounters_)
             characterPosition_Y_1--;
-        board_[characterPosition_X_1][characterPosition_Y_1].getType() == Type::door ? game->door_->player1 = true : game ->door_->player1 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
     if (direction == Direction::up) {
         if (characterPosition_Y_1 <= 0)
@@ -90,9 +83,6 @@ void Board::makeTurn_1(Direction direction) {
         if (characterPosition_Y_1 < 0)
             characterPosition_Y_1++;
         board_[characterPosition_X_1][characterPosition_Y_1].getType() == Type::door ? game->door_->player1 = true : game ->door_->player1 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
     if (direction == Direction::right) {
             if (board_[X + 1][Y].getType() != Type::emptyField) {
@@ -103,10 +93,6 @@ void Board::makeTurn_1(Direction direction) {
         characterPosition_X_1++;
         if (characterPosition_X_1 >= amountOfEncounters_)
             characterPosition_X_1--;
-        board_[characterPosition_X_1][characterPosition_Y_1].getType() == Type::door ? game->door_->player1 = true : game ->door_->player1 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
     if (direction == Direction::left) {
         if (characterPosition_X_1 <= 0)
@@ -119,10 +105,6 @@ void Board::makeTurn_1(Direction direction) {
         characterPosition_X_1--;
         if (characterPosition_X_1 < 0)
             characterPosition_X_1++;
-    }
-    board_[characterPosition_X_1][characterPosition_Y_1].getType() == Type::door ? game->door_->player1 = true : game ->door_->player1 = false;
-    if (game->door_->player1 and game->door_->player2) {
-        game->changeLocation();
     }
 }
 
@@ -138,10 +120,6 @@ void Board::makeTurn_2(Direction direction) {
         characterPosition_Y_2++;
         if (characterPosition_Y_2 >= amountOfEncounters_)
             characterPosition_Y_2--;
-        board_[characterPosition_X_2][characterPosition_Y_2].getType() == Type::door ? game->door_->player2 = true : game ->door_->player2 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
     if (direction == Direction::up) {
         if (characterPosition_Y_2 <= 0)
@@ -154,10 +132,6 @@ void Board::makeTurn_2(Direction direction) {
         characterPosition_Y_2--;
         if (characterPosition_Y_2 < 0)
             characterPosition_Y_2++;
-        board_[characterPosition_X_2][characterPosition_Y_2].getType() == Type::door ? game->door_->player2 = true : game ->door_->player2 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
     if (direction == Direction::right) {
             if (board_[X + 1][Y].getType() != Type::emptyField) {
@@ -168,10 +142,6 @@ void Board::makeTurn_2(Direction direction) {
         characterPosition_X_2++;
         if (characterPosition_X_2 >= amountOfEncounters_)
             characterPosition_X_2--;
-        board_[characterPosition_X_2][characterPosition_Y_2].getType() == Type::door ? game->door_->player2 = true : game ->door_->player2 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
     if (direction == Direction::left) {
         if (characterPosition_X_2 <= 0)
@@ -184,9 +154,5 @@ void Board::makeTurn_2(Direction direction) {
         characterPosition_X_2--;
         if (characterPosition_X_2 < 0)
             characterPosition_X_2++;
-        board_[characterPosition_X_2][characterPosition_Y_2].getType() == Type::door ? game->door_->player2 = true : game ->door_->player2 = false;
-        if (game->door_->player1 and game->door_->player2) {
-            game->changeLocation();
-        }
     }
 }

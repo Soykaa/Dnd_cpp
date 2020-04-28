@@ -6,6 +6,7 @@
 #include <QWidget>
 #include "board.h"
 #include "game_board.h"
+#include "chargen.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,7 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
+    CharGen *chg;
 };
 
 #endif // GAMEWINDOW_H

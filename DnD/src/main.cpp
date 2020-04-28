@@ -1,4 +1,5 @@
 #include <QApplication>
+#include "include/chargen.h"
 #include "include/board.h"
 #include "include/game_menu.h"
 #include "include/game_board.h"

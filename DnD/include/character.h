@@ -19,8 +19,8 @@ enum class CharClass {
 //! @class Character
 class Character {
 public:
-    explicit Character(CharacterSkills* cs);
-    Character(const char* name, CharacterSkills* cs);
+    explicit Character(CharacterSkills& cs);
+    Character(const char* name, CharacterSkills& cs);
 
     const char * getName() const;
     char getSymbOnField() const;

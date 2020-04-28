@@ -10,7 +10,6 @@ public:
     explicit Encounter(Type type);
     Encounter(const Encounter& other);
     Encounter& operator=(const Encounter& other);
-    //bool operator!=(Encounter& other);
     ~Encounter() {}
     Type getType() {return type_; }
     void changeType(Type type);

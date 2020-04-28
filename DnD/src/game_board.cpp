@@ -11,73 +11,76 @@
 extern GameBoard *game;
 
 GameBoard::GameBoard() {
-    b.changeOneFieldType(b.getAmountOfEncounters() - 1, b.getAmountOfEncounters() - 1, Type::finnish);
+    boards.resize(2);
+    scenes.resize(2);
+    boards[0].changeOneFieldType(boards[0].getAmountOfEncounters() - 1, boards[0].getAmountOfEncounters() - 1, Type::finnish);
     currentLocation_ = Location::firstLocation;
-    scene1_ = new QGraphicsScene();
-    scene2_ = new QGraphicsScene();
-    scene1_->setSceneRect(0, 0, window_width, window_height);
-    scene2_->setSceneRect(0, 0, window_width, window_height);
+    for (auto& scene : scenes) {
+        scene = new QGraphicsScene();
+        scene -> setSceneRect(0, 0, window_width, window_height);
+    }
     setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
-    setScene(scene1_);
+    setScene(scenes[0]);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(window_width, window_height);
     player_ = new Player();
-    player2_ = new Player2();
+    player2_ = new Player();
 }
 
 
-void GameBoard::makeGift(int giftNum, int x, int y) {
+void GameBoard::makeGift(int giftNum, int x, int y, int location) {
     gifts_[giftNum].gift = new Gift();
-    gifts_[giftNum].gift->setGift(x, y);
+    gifts_[giftNum].gift->setGift(x, y, location);
     gifts_[giftNum].x = x;
     gifts_[giftNum].y = y;
-    b.changeOneFieldType(x, y, Type::gift);
+    boards[location].changeOneFieldType(x, y, Type::gift);
 }
 
 void GameBoard::makeGame() {
-    player_->setPlayer();
+    player_->setPlayer("../images/dragonborn.png");
     player_->setPos(0, 0);
     player_->setFlag(QGraphicsItem::ItemIsFocusable);
     player_->setFocus();
-    scene1_->addItem(player_);
-    player2_->setPlayer2();
+    scenes[0]->addItem(player_);
+    player2_->setPlayer("../images/character.png");
     player2_->setPos(0, 0);
     player2_->setFlag(QGraphicsItem::ItemIsFocusable);
     player2_->setFocus();
-    scene1_->addItem(player2_);
-    makeGifts(10);
-    makeObstacles(100);
-    makeDoor(10, 10);
+    scenes[0]->addItem(player2_);
+    makeDoor(5, 5);
+    makeGifts(3, 1);
+    makeObstacles(30, 0);
+    makeObstacles(45, 1);
     show();
 }
 
 
-void GameBoard::makeGifts(int amount) {
+void GameBoard::makeGifts(int amount, int location) {
     gifts_.resize(amount);
     for (int i = 0; i < amount; i++) {
-        int x = rand() % b.getAmountOfEncounters();
-        int y = rand() % b.getAmountOfEncounters();
-        if (b.getFieldType(x, y) == Type::emptyField)
-            makeGift(i, x, y);
+        int x = rand() % boards[location].getAmountOfEncounters();
+        int y = rand() % boards[location].getAmountOfEncounters();
+        if (boards[location].getFieldType(x, y) == Type::emptyField)
+            makeGift(i, x, y, location);
     }
 }
 
-void GameBoard::makeObstacle(int obstNum, int x, int y) {
+void GameBoard::makeObstacle(int obstNum, int x, int y, int location) {
     obstacles_[obstNum].obst = new Obstacle();
-    obstacles_[obstNum].obst->setObstacle(x, y);
+    obstacles_[obstNum].obst->setObstacle(x, y, location);
     obstacles_[obstNum].x = x;
     obstacles_[obstNum].y = y;
-    b.changeOneFieldType(x, y, Type::obstacle);
+    boards[location].changeOneFieldType(x, y, Type::obstacle);
 }
 
-void GameBoard::makeObstacles(int amount) {
+void GameBoard::makeObstacles(int amount, int location) {
     obstacles_.resize(amount);
     for (int i = 0; i < amount; i++) {
-        int x = rand() % b.getAmountOfEncounters();
-        int y = rand() % b.getAmountOfEncounters();
-        if (b.getFieldType(x, y) == Type::emptyField)
-            makeObstacle(0, x, y);
+        int x = rand() % boards[location].getAmountOfEncounters();
+        int y = rand() % boards[location].getAmountOfEncounters();
+        if (boards[location].getFieldType(x, y) == Type::emptyField)
+            makeObstacle(i, x, y, location);
     }
 }
 
@@ -85,10 +88,14 @@ void GameBoard::makeDoor(int x, int y) {
     door_ = new Door();
     door_->setDoor();
     door_->setPos(x * game->cell_width, y * game->cell_width);
-    scene1_->addItem(door_);
-    b.changeOneFieldType(x, y, Type::door);
+    scenes[0]->addItem(door_);
+    boards[0].changeOneFieldType(x, y, Type::door);
+    boards[1].changeOneFieldType(x+1, y+1, Type::door);
 }
+
 void GameBoard::keyPressEvent(QKeyEvent *event) {
+    int i = locationNum;
+    qDebug() << i << "\n";
     if (event->key() == Qt::Key_Any) {
         QApplication::quit();
     }
@@ -96,96 +103,113 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
         return;
 
     if (event->key() == Qt::Key_Left) {
-            b.makeTurn_1(Direction::left);
+            boards[i].makeTurn_1(Direction::left);
     }
     if (event->key() == Qt::Key_Right) {
-            b.makeTurn_1(Direction::right);
+            boards[i].makeTurn_1(Direction::right);
     }
     if (event->key() == Qt::Key_Up) {
-            b.makeTurn_1(Direction::up);
+            boards[i].makeTurn_1(Direction::up);
     }
     if (event->key() == Qt::Key_Down) {
-            b.makeTurn_1(Direction::down);
+            boards[i].makeTurn_1(Direction::down);
     }
 
 
     if (event->key() == Qt::Key_A) {
-            b.makeTurn_2(Direction::left);
+            boards[i].makeTurn_2(Direction::left);
     }
     if (event->key() == Qt::Key_D) {
-            b.makeTurn_2(Direction::right);
+            boards[i].makeTurn_2(Direction::right);
     }
     if (event->key() == Qt::Key_W) {
-            b.makeTurn_2(Direction::up);
+            boards[i].makeTurn_2(Direction::up);
     }
     if (event->key() == Qt::Key_S) {
-            b.makeTurn_2(Direction::down);
+            boards[i].makeTurn_2(Direction::down);
     }
-    int x_1 = b.getCharacterPosition_X_1();
-    int y_1 = b.getCharacterPosition_Y_1();
+    int x_1 = boards[i].getCharacterPosition_X_1();
+    int y_1 = boards[i].getCharacterPosition_Y_1();
     player_->setPos(start_x + x_1 * cell_width, start_y + y_1 * cell_width);
 
-    int x_2 = b.getCharacterPosition_X_2();
-    int y_2 = b.getCharacterPosition_Y_2();
+    int x_2 = boards[i].getCharacterPosition_X_2();
+    int y_2 = boards[i].getCharacterPosition_Y_2();
     player2_->setPos(start_x + x_2 * cell_width, start_y + y_2 * cell_width);
 
-    if (b.getFieldType(b.getCharacterPosition_X_1(), b.getCharacterPosition_Y_1()) == Type::gift) {
-        b.takeGift_1(18);
+
+    if (boards[i].getFieldType(boards[i].getCharacterPosition_X_1(), boards[i].getCharacterPosition_Y_1()) == Type::finnish) {
+        qDebug() << "finnish\n";
+    }
+    if (boards[i].getFieldType(boards[i].getCharacterPosition_X_1(), boards[i].getCharacterPosition_Y_1()) == Type::gift) {
+        boards[i].takeGift_1(18);
         for (GiftCord g : gifts_) {
-            if (g.x == b.getCharacterPosition_X_1() && g.y == b.getCharacterPosition_Y_1())
+            if (g.x == boards[i].getCharacterPosition_X_1() && g.y == boards[i].getCharacterPosition_Y_1())
                 g.gift->~Gift();
         }
     }
 
-    if (b.getFieldType(b.getCharacterPosition_X_2(), b.getCharacterPosition_Y_2()) == Type::gift) {
-        b.takeGift_2(18);
+    if (boards[i].getFieldType(boards[i].getCharacterPosition_X_2(), boards[i].getCharacterPosition_Y_2()) == Type::gift) {
+        boards[i].takeGift_2(18);
         for (GiftCord g : gifts_) {
-            if (g.x == b.getCharacterPosition_X_2() && g.y == b.getCharacterPosition_Y_2())
+            if (g.x == boards[i].getCharacterPosition_X_2() && g.y == boards[i].getCharacterPosition_Y_2())
                 g.gift->~Gift();
         }
     }
 
-    if (b.getFieldType(b.getCharacterPosition_X_1(), b.getCharacterPosition_Y_1()) == Type::finnish and b.canWin_1()) {
+    if (boards[i].getFieldType(boards[i].getCharacterPosition_X_1(), boards[i].getCharacterPosition_Y_1()) == Type::finnish and boards[i].canWin_1()) {
         gameIsFinished = true;
         Message *text = new Message();
-        text->setMessage(1);
+        text->setMessage(1, 0);
         text->setPos(30, 300);
         player_->~Player();
-        player2_->~Player2();
+        player2_->~Player();
         // game->scene1_->addItem(text);
-    } else if (b.getFieldType(b.getCharacterPosition_X_2(), b.getCharacterPosition_Y_2()) == Type::finnish and b.canWin_2()) {
+    } else if (boards[i].getFieldType(boards[i].getCharacterPosition_X_2(), boards[i].getCharacterPosition_Y_2()) == Type::finnish and boards[i].canWin_2()) {
         gameIsFinished = true;
         Message *text = new Message();
-        text->setMessage(2);
+        text->setMessage(2, 0);
         text->setPos(30, 300);
         player_->~Player();
-        player2_->~Player2();
+        player2_->~Player();
+    }
+
+    if (boards[i].getFieldType(boards[i].getCharacterPosition_X_1(), boards[i].getCharacterPosition_Y_1()) == Type::door &&
+            boards[i].getFieldType(boards[i].getCharacterPosition_X_2(), boards[i].getCharacterPosition_Y_2()) == Type::door) {
+        qDebug() << "door\n";
+        changeLocation();
     }
 }
 
 void GameBoard::changeLocation() {
     if (currentLocation_ == Location::firstLocation) {
+        locationNum = 1;
+        boards[1].h1 = boards[0].h1;
+        boards[1].h2 = boards[0].h2;
         setBackgroundBrush(QBrush(QImage("../images/forest.png")));
-        scene2_->addItem(player_);
-        scene2_->addItem(player2_);
-        scene2_->addItem(door_);
-        door_->setPos(11 * game->cell_width, 11 * game->cell_width);
-        b.changeOneFieldType(10, 10, Type::emptyField);
-        b.changeOneFieldType(11, 11, Type::door);
-        setScene(scene2_);
+        scenes[1]->addItem(player_);
+        scenes[1]->addItem(player2_);
+        scenes[1]->addItem(door_);
+        door_->setPos(6 * game->cell_width, 6 * game->cell_width);
+        //boards[1].changeOneFieldType(10, 10, Type::emptyField);
+        boards[1].changeOneFieldType(6, 6, Type::door);
+        setScene(scenes[1]);
         currentLocation_ = Location::secondLocation;
         return;
     }
     if (currentLocation_ == Location::secondLocation) {
+        boards[0].h1 = boards[1].h1;
+        boards[0].h2 = boards[1].h2;
+        locationNum = 0;
         setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
-        door_->setPos(10 * game->cell_width, 10 * game ->cell_width);
-        b.changeOneFieldType(11, 11, Type::emptyField);
-        b.changeOneFieldType(10, 10, Type::door);
-        scene1_->addItem(player_);
-        scene1_->addItem(player2_);
-        scene1_->addItem(door_);
-        setScene(scene1_);
+        door_->setPos(5 * game->cell_width, 5 * game ->cell_width);
+        //boards[0].changeOneFieldType(11, 11, Type::emptyField);
+        //boards[0].changeOneFieldType(10, 10, Type::door);
+        scenes[0]->addItem(player_);
+        scenes[0]->addItem(player2_);
+        scenes[0]->addItem(door_);
+        setScene(scenes[0]);
         currentLocation_ = Location::firstLocation;
+        return;
     }
 }
 

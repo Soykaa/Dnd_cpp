@@ -1,4 +1,4 @@
-#include "include/encounter.h"
+   #include "include/encounter.h"
 
 void Encounter::changeType(Type type) {
     type_ = type;

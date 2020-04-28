@@ -4,8 +4,8 @@
 #include "include/character.h"
 
 //! default constructor
-Character::Character(CharacterSkills* cs)
-        : cs_(*cs), character_level_(1), race_(CharRace::dragonborn),
+Character::Character(CharacterSkills& cs)
+        : cs_(cs), character_level_(1), race_(CharRace::dragonborn),
           class_(CharClass::fighter), health_(10), action_points_(20) {
     name_ = new char[strlen("Sergey") + 1];
     snprintf(name_, strlen("Sergey") + 1, "Sergey");
@@ -13,8 +13,8 @@ Character::Character(CharacterSkills* cs)
 }
 
 //! non-default constructor
-Character::Character(const char *name, CharacterSkills* cs)
-        : cs_(*cs), character_level_(1),
+Character::Character(const char *name, CharacterSkills& cs)
+        : cs_(cs), character_level_(1),
           race_(CharRace::dragonborn), class_(CharClass::fighter),
           health_(10), action_points_(20) {
     symb_on_field_ = 'C';
