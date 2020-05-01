@@ -39,9 +39,9 @@ CharGen2::~CharGen2()
 void CharGen2::on_randomMode_clicked()
 {
     CharGen2::ui->standardMode->setEnabled(false);
-    CharGen2::ui->randomMode->setText("Generating...");
+    CharGen2::ui->randomMode->setText("Герерирую...");
     sleep(2000);
-    CharGen2::ui->randomMode->setText("Generated");
+    CharGen2::ui->randomMode->setText("Сгенерировано");
     CharGen2::ui->randomMode->setEnabled(false);
     CharGen2::ui->nextStep->show();
 }
