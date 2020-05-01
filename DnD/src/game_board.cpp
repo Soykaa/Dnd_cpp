@@ -11,9 +11,10 @@
 extern GameBoard *game;
 
 GameBoard::GameBoard() {
+    setMouseTracking(true);
     boards.resize(2);
     scenes.resize(2);
-    boards[0].changeOneFieldType(boards[0].getAmountOfEncounters() - 1, boards[0].getAmountOfEncounters() - 1, Type::finnish);
+    boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 1, boards[1].getAmountOfEncounters() - 1, Type::finnish);
     currentLocation_ = Location::firstLocation;
     for (auto& scene : scenes) {
         scene = new QGraphicsScene();
@@ -160,16 +161,15 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X_1(), boards[i].getCharacterPosition_Y_1()) == Type::finnish and boards[i].canWin_1()) {
         gameIsFinished = true;
         Message *text = new Message();
-        text->setMessage(1, 0);
-        text->setPos(30, 300);
+        text->setMessage(i);
+        text->setPos(280, 400);
         player_->~Player();
         player2_->~Player();
-        // game->scene1_->addItem(text);
     } else if (boards[i].getFieldType(boards[i].getCharacterPosition_X_2(), boards[i].getCharacterPosition_Y_2()) == Type::finnish and boards[i].canWin_2()) {
         gameIsFinished = true;
         Message *text = new Message();
-        text->setMessage(2, 0);
-        text->setPos(30, 300);
+        text->setMessage(i);
+        text->setPos(280, 400);
         player_->~Player();
         player2_->~Player();
     }
@@ -191,7 +191,12 @@ void GameBoard::changeLocation() {
         scenes[1]->addItem(player2_);
         scenes[1]->addItem(door_);
         door_->setPos(6 * game->cell_width, 6 * game->cell_width);
-        //boards[1].changeOneFieldType(10, 10, Type::emptyField);
+        boards[1].characterPosition_X_1 = 6;
+        boards[1].characterPosition_X_2 = 6;
+        boards[1].characterPosition_Y_1 = 6;
+        boards[1].characterPosition_Y_2 = 6;
+        player_->setPos(start_x + boards[1].getCharacterPosition_X_1() * cell_width, start_y + boards[1].getCharacterPosition_Y_1() * cell_width);
+        player2_->setPos(start_x + boards[1].getCharacterPosition_X_2() * cell_width, start_y + boards[1].getCharacterPosition_Y_2() * cell_width);
         boards[1].changeOneFieldType(6, 6, Type::door);
         setScene(scenes[1]);
         currentLocation_ = Location::secondLocation;
@@ -203,14 +208,17 @@ void GameBoard::changeLocation() {
         locationNum = 0;
         setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
         door_->setPos(5 * game->cell_width, 5 * game ->cell_width);
-        //boards[0].changeOneFieldType(11, 11, Type::emptyField);
-        //boards[0].changeOneFieldType(10, 10, Type::door);
         scenes[0]->addItem(player_);
         scenes[0]->addItem(player2_);
+        boards[1].characterPosition_X_1 = 5;
+        boards[1].characterPosition_X_2 = 5;
+        boards[1].characterPosition_Y_1 = 5;
+        boards[1].characterPosition_Y_2 = 5;
+        player_->setPos(start_x + boards[1].getCharacterPosition_X_1() * cell_width, start_y + boards[1].getCharacterPosition_Y_1() * cell_width);
+        player2_->setPos(start_x + boards[1].getCharacterPosition_X_2() * cell_width, start_y + boards[1].getCharacterPosition_Y_2() * cell_width);
         scenes[0]->addItem(door_);
         setScene(scenes[0]);
         currentLocation_ = Location::firstLocation;
         return;
     }
 }
-

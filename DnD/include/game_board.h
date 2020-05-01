@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include <QGraphicsSceneMouseEvent>
 #include <vector>
 #include "utility.h"
 #include "player.h"

@@ -21,7 +21,6 @@ public:
     ~GameWindow();
 
 private slots:
-    //void showGame();
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();
 

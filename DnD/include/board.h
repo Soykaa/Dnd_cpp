@@ -13,16 +13,14 @@ class Board {
 private:
     static const int amountOfEncounters_ = 10;
     std::array<std::array<Encounter, amountOfEncounters_>, amountOfEncounters_> board_;
-    int characterPosition_X_1 = 0;
-    int characterPosition_Y_1 = 0;
-    int characterPosition_X_2 = 0;
-    int characterPosition_Y_2 = 0;
-    CharacterSkills cs;
-
 
 public:
     Hero *h1 = nullptr;
     Hero *h2 = nullptr;
+    int characterPosition_X_1 = 0;
+    int characterPosition_Y_1 = 0;
+    int characterPosition_X_2 = 0;
+    int characterPosition_Y_2 = 0;
     Board();
     Encounter getField(size_t i, size_t j);
     Type getFieldType(size_t i, size_t j);
