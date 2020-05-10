@@ -11,16 +11,17 @@
 class Backpack {
 public:
     Backpack() = default;
-    ~Backpack();
+    //~Backpack();
     //Backpack(const Backpack&) = delete;
     //Backpack& operator=(const Backpack&) = delete;
 
-    void addItem(Item*);
+    void addItem(Item);
     void deleteItem(ItemType type);
     Item getItem(ItemType it);
     bool isFull();
+    bool findItem(ItemType it);
 private:
-    std::vector<Item*> items_;
+    std::vector<Item> items_;
     std::ostream& output(std::ostream& out);
 
     friend std::ostream& operator <<(std::ostream& out, Backpack& bp);

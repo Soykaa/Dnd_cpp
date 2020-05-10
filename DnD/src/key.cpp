@@ -1,13 +1,13 @@
-#include <QGraphicsPixmapItem>
-#include "include/obstacle.h"
+#include "include/key.h"
 #include "include/game_board.h"
-
 
 extern GameBoard *game;
 
-Obstacle::Obstacle(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
+Key::Key(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
+    is_taken = false;
+}
 
-void Obstacle::setObstacle(const QString str, int x, int y, int locationNum) {
+void Key::setKey(const QString str, int x, int y, int locationNum) {
     int k = game->cell_width;
     setPixmap(QPixmap(str).scaled(k, k));
     setPos(x * game->cell_width, y * game->cell_width);
