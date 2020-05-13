@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/img">
         <file>char_bg.png</file>
+        <file>qst.png</file>
+        <file>gst_bg</file>
     </qresource>
 </RCC>

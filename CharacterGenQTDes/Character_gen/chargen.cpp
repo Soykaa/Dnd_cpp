@@ -11,6 +11,7 @@ CharGen::CharGen(QWidget *parent)
     ui->setupUi(this);
 
     chg = new CharGen2();
+    chgt = new CharGenTree();
 
     setFixedSize(400, 460);
 
@@ -33,8 +34,7 @@ CharGen::CharGen(QWidget *parent)
     move(center);
 }
 
-CharGen::~CharGen()
-{
+CharGen::~CharGen(){
     delete ui;
 }
 
@@ -48,8 +48,12 @@ void CharGen::on_randomMode_clicked()
     CharGen::ui->nextStep->show();
 }
 
-void CharGen::on_nextStep_clicked()
-{
+void CharGen::on_nextStep_clicked() {
     chg->show();
+    this->close();
+}
+
+void CharGen::on_standardMode_clicked() {
+    chgt->show();
     this->close();
 }

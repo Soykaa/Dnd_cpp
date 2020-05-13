@@ -27,16 +27,22 @@ SOURCES += \
         main.cpp \
         chargen.cpp \
     sleep.cpp \
-    chargen2.cpp
+    chargen2.cpp \
+    chargentree2.cpp \
+    chargentree.cpp
 
 HEADERS += \
         chargen.h \
     sleep.h \
-    chargen2.h
+    chargen2.h \
+    chargentree2.h \
+    chargentree.h
 
 FORMS += \
     chargen.ui \
-    chargen2.ui
+    chargen2.ui \
+    chargentree.ui \
+    chargentree2.ui
 
 RESOURCES += \
     img.qrc

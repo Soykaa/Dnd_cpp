@@ -68,7 +68,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Start</string>
+    <string>Старт</string>
    </property>
    <property name="iconSize">
     <size>

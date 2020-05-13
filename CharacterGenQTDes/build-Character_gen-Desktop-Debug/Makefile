@@ -53,16 +53,24 @@ OBJECTS_DIR   = ./
 SOURCES       = ../Character_gen/main.cpp \
 		../Character_gen/chargen.cpp \
 		../Character_gen/sleep.cpp \
-		../Character_gen/chargen2.cpp qrc_img.cpp \
+		../Character_gen/chargen2.cpp \
+		../Character_gen/chargentree2.cpp \
+		../Character_gen/chargentree.cpp qrc_img.cpp \
 		moc_chargen.cpp \
-		moc_chargen2.cpp
+		moc_chargen2.cpp \
+		moc_chargentree2.cpp \
+		moc_chargentree.cpp
 OBJECTS       = main.o \
 		chargen.o \
 		sleep.o \
 		chargen2.o \
+		chargentree2.o \
+		chargentree.o \
 		qrc_img.o \
 		moc_chargen.o \
-		moc_chargen2.o
+		moc_chargen2.o \
+		moc_chargentree2.o \
+		moc_chargentree.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -139,10 +147,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Character_gen/Character_gen.pro ../Character_gen/chargen.h \
 		../Character_gen/sleep.h \
-		../Character_gen/chargen2.h ../Character_gen/main.cpp \
+		../Character_gen/chargen2.h \
+		../Character_gen/chargentree2.h \
+		../Character_gen/chargentree.h ../Character_gen/main.cpp \
 		../Character_gen/chargen.cpp \
 		../Character_gen/sleep.cpp \
-		../Character_gen/chargen2.cpp
+		../Character_gen/chargen2.cpp \
+		../Character_gen/chargentree2.cpp \
+		../Character_gen/chargentree.cpp
 QMAKE_TARGET  = Character_gen
 DESTDIR       = 
 TARGET        = Character_gen
@@ -151,7 +163,7 @@ TARGET        = Character_gen
 first: all
 ####### Build rules
 
-$(TARGET): ui_chargen.h ui_chargen2.h $(OBJECTS)  
+$(TARGET): ui_chargen.h ui_chargen2.h ui_chargentree.h ui_chargentree2.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Character_gen/Character_gen.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -329,9 +341,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Character_gen/img.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Character_gen/chargen.h ../Character_gen/sleep.h ../Character_gen/chargen2.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Character_gen/main.cpp ../Character_gen/chargen.cpp ../Character_gen/sleep.cpp ../Character_gen/chargen2.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Character_gen/chargen.ui ../Character_gen/chargen2.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Character_gen/chargen.h ../Character_gen/sleep.h ../Character_gen/chargen2.h ../Character_gen/chargentree2.h ../Character_gen/chargentree.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Character_gen/main.cpp ../Character_gen/chargen.cpp ../Character_gen/sleep.cpp ../Character_gen/chargen2.cpp ../Character_gen/chargentree2.cpp ../Character_gen/chargentree.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Character_gen/chargen.ui ../Character_gen/chargen2.ui ../Character_gen/chargentree.ui ../Character_gen/chargentree2.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -360,7 +372,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_img.cpp
 qrc_img.cpp: ../Character_gen/img.qrc \
 		/usr/lib/qt5/bin/rcc \
-		../Character_gen/char_bg.png
+		../Character_gen/qst.png \
+		../Character_gen/char_bg.png \
+		../Character_gen/gst_bg
 	/usr/lib/qt5/bin/rcc -name img ../Character_gen/img.qrc -o qrc_img.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -369,9 +383,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_chargen.cpp moc_chargen2.cpp
+compiler_moc_header_make_all: moc_chargen.cpp moc_chargen2.cpp moc_chargentree2.cpp moc_chargentree.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_chargen.cpp moc_chargen2.cpp
+	-$(DEL_FILE) moc_chargen.cpp moc_chargen2.cpp moc_chargentree2.cpp moc_chargentree.cpp
 moc_chargen.cpp: ../Character_gen/chargen2.h \
 		../Character_gen/chargen.h \
 		moc_predefs.h \
@@ -383,11 +397,22 @@ moc_chargen2.cpp: ../Character_gen/chargen2.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/user/dnd_prj/Dnd_cpp/CharacterGenQTDes/Character_gen -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Character_gen/chargen2.h -o moc_chargen2.cpp
 
+moc_chargentree2.cpp: ../Character_gen/chargentree2.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/user/dnd_prj/Dnd_cpp/CharacterGenQTDes/Character_gen -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Character_gen/chargentree2.h -o moc_chargentree2.cpp
+
+moc_chargentree.cpp: ../Character_gen/chargentree2.h \
+		../Character_gen/chargentree.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/user/dnd_prj/Dnd_cpp/CharacterGenQTDes/Character_gen -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Character_gen/chargentree.h -o moc_chargentree.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_chargen.h ui_chargen2.h
+compiler_uic_make_all: ui_chargen.h ui_chargen2.h ui_chargentree.h ui_chargentree2.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_chargen.h ui_chargen2.h
+	-$(DEL_FILE) ui_chargen.h ui_chargen2.h ui_chargentree.h ui_chargentree2.h
 ui_chargen.h: ../Character_gen/chargen.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../Character_gen/chargen.ui -o ui_chargen.h
@@ -395,6 +420,14 @@ ui_chargen.h: ../Character_gen/chargen.ui \
 ui_chargen2.h: ../Character_gen/chargen2.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../Character_gen/chargen2.ui -o ui_chargen2.h
+
+ui_chargentree.h: ../Character_gen/chargentree.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../Character_gen/chargentree.ui -o ui_chargentree.h
+
+ui_chargentree2.h: ../Character_gen/chargentree2.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../Character_gen/chargentree2.ui -o ui_chargentree2.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -421,9 +454,19 @@ sleep.o: ../Character_gen/sleep.cpp
 
 chargen2.o: ../Character_gen/chargen2.cpp ../Character_gen/chargen.h \
 		../Character_gen/chargen2.h \
-		ui_chargen.h \
+		ui_chargen2.h \
 		../Character_gen/sleep.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chargen2.o ../Character_gen/chargen2.cpp
+
+chargentree2.o: ../Character_gen/chargentree2.cpp ../Character_gen/chargentree2.h \
+		ui_chargentree2.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chargentree2.o ../Character_gen/chargentree2.cpp
+
+chargentree.o: ../Character_gen/chargentree.cpp ../Character_gen/chargentree.h \
+		../Character_gen/chargentree2.h \
+		ui_chargentree.h \
+		ui_chargentree2.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chargentree.o ../Character_gen/chargentree.cpp
 
 qrc_img.o: qrc_img.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_img.o qrc_img.cpp
@@ -433,6 +476,12 @@ moc_chargen.o: moc_chargen.cpp
 
 moc_chargen2.o: moc_chargen2.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chargen2.o moc_chargen2.cpp
+
+moc_chargentree2.o: moc_chargentree2.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chargentree2.o moc_chargentree2.cpp
+
+moc_chargentree.o: moc_chargentree.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chargentree.o moc_chargentree.cpp
 
 ####### Install
 

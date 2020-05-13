@@ -10,6 +10,8 @@ CharGen2::CharGen2(QWidget *parent)
     ui(new Ui::CharGen2) {
     ui->setupUi(this);
 
+    chgt2 = new CharGenTree2();
+
     setFixedSize(400, 460);
 
     QPixmap pic(":/img/char_bg.png");
@@ -31,19 +33,22 @@ CharGen2::CharGen2(QWidget *parent)
     move(center);
 }
 
-CharGen2::~CharGen2()
-{
+CharGen2::~CharGen2() {
     delete ui;
 }
 
-void CharGen2::on_randomMode_clicked()
-{
+void CharGen2::on_randomMode_clicked() {
     CharGen2::ui->standardMode->setEnabled(false);
     CharGen2::ui->randomMode->setText("Герерирую...");
     sleep(2000);
     CharGen2::ui->randomMode->setText("Сгенерировано");
     CharGen2::ui->randomMode->setEnabled(false);
     CharGen2::ui->nextStep->show();
+}
+
+void CharGen2::on_standardMode_clicked() {
+    chgt2->show();
+    this->close();
 }
 
 
