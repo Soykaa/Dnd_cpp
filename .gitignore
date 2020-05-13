@@ -2,3 +2,5 @@
 *.o
 *.obj
 .idea
+*.swp
+DnD/build/
