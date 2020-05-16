@@ -6,7 +6,7 @@
 //! default constructor
 Character::Character(CharacterSkills& cs)
         : cs_(cs), character_level_(1), race_(CharRace::dragonborn),
-          class_(CharClass::fighter), health_(10), action_points_(20) {
+          class_(CharClass::fighter), health_(10) {
 	name_ = new char[strlen("Sergey") + 1];
 	strcpy(name_, "Sergey");
 	symb_on_field_ = 'C';
@@ -35,10 +35,6 @@ size_t Character::getHealth() const {
 	return health_;
 }
 
-size_t Character::getActionPoints() const {
-	return action_points_;
-}
-
 CharRace Character::getRace() const {
 	return race_;
 }
@@ -54,10 +50,6 @@ CharacterSkills Character::getCharacterSkills() const {
 //! setters
 void Character::setHealth(size_t health) {
 	Character::health_ = health;
-}
-
-void Character::setActionPoints(size_t ap) {
-	Character::action_points_ = ap;
 }
 
 void Character::characterInfo() {
@@ -82,7 +74,6 @@ void Character::characterInfo() {
 	std::cout << "Race: " << cur_race << std::endl;
 	std::cout << "Class: " << cur_class << std::endl;
 	std::cout << "Health: " << health_ << std::endl;
-	std::cout << "Action points: " << action_points_ << std::endl;
 	std::cout << "Intelligence: " << cur_intelligence << std::endl;
 	std::cout << "Wisdom: " << cur_wisdom << std::endl;
 	std::cout << "Strength: " << cur_strength << std::endl;

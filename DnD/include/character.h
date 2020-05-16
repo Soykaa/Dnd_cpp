@@ -26,13 +26,11 @@ public:
     char getSymbOnField() const;
 
 	size_t getHealth() const;
-	size_t getActionPoints() const;
 	CharacterSkills getCharacterSkills() const;
 	CharRace getRace() const;
 	CharClass getClass() const;
 
 	void setHealth(size_t health);
-	void setActionPoints(size_t ap);
 
 	void characterInfo();
 	CharacterSkills& cs_;
@@ -41,7 +39,6 @@ private:
     CharRace race_;
     CharClass class_;
     size_t health_;
-    size_t action_points_;
 	char* name_;
 	char symb_on_field_;
 };
