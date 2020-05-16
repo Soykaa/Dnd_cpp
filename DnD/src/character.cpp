@@ -23,18 +23,12 @@ void Character::setHealth(size_t health) {
 //! default constructor
 Enemy::Enemy()
     : Character(), hit_points_(rand() % 18 + 1),
-    class_(CharClass::enemy) {
-    symb_on_field_ = 'E';
-}
+    class_(CharClass::enemy) {}
 
 //! destructor
 Enemy::~Enemy() = default;
 
 //! getters
-char Enemy::getSymbOnField() const {
-    return symb_on_field_;
-}
-
 CharClass Enemy::getClass() const {
     return class_;
 }
@@ -50,23 +44,12 @@ void Enemy::setHitPoints(size_t hit_points) {
 
 //!@class Hero: realization
 //! default constructor
-<<<<<<< HEAD
-Character::Character(CharacterSkills& cs)
-        : cs_(cs), character_level_(1), race_(CharRace::dragonborn),
-          class_(CharClass::fighter), health_(10) {
-	name_ = new char[strlen("Sergey") + 1];
-	strcpy(name_, "Sergey");
-	symb_on_field_ = 'C';
-=======
 Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
         : Character(), character_level_(1),
         race_(CharRace::dragonborn), class_(CharClass::fighter),
         cs_(cs), action_points_(20), bp_(bp) {
     name_ = new char[strlen("Sergey") + 1];
-    //strcpy(name_, "Sergey");
     snprintf(name_, strlen("Sergey") + 1, "Sergey");
-    symb_on_field_ = 'H';
->>>>>>> 05761682c0771e37e6abc971aa4794c67b51ee69
 }
 
 //! non-default constructor
@@ -74,10 +57,8 @@ Hero::Hero(const char *name, const CharacterSkills& cs, const Backpack& bp)
         : Character(), cs_(cs), bp_(bp),
         character_level_(1), race_(CharRace::dragonborn),
         class_(CharClass::fighter), action_points_(20) {
-    symb_on_field_ = 'H';
     name_ = new char[strlen(name) + 1];
     snprintf(name_, strlen(name) + 1, name);
-    //strcpy(name_, name);
 }
 
 //! Destructor
@@ -90,21 +71,9 @@ const char* Hero::getName() const {
     return name_;
 }
 
-char Hero::getSymbOnField() const {
-    return symb_on_field_;
-}
-
-<<<<<<< HEAD
-CharRace Character::getRace() const {
-	return race_;
-=======
-size_t Hero::getActionPoints() const {
-    return action_points_;
-}
 
 CharRace Hero::getRace() const {
     return race_;
->>>>>>> 05761682c0771e37e6abc971aa4794c67b51ee69
 }
 
 CharClass Hero::getClass() const {
@@ -113,46 +82,6 @@ CharClass Hero::getClass() const {
 
 CharacterSkills Hero::getHeroSkills() const {
     return cs_;
-}
-
-//! setters
-<<<<<<< HEAD
-void Character::setHealth(size_t health) {
-	Character::health_ = health;
-}
-
-void Character::characterInfo() {
-	size_t cur_intelligence = cs_.getIntelligence();
-	size_t cur_wisdom = cs_.getWisdom();
-	size_t cur_strength = cs_.getStrength();
-	size_t cur_dexterity = cs_.getDexterity();
-	size_t cur_constitution = cs_.getConstitution();
-	size_t cur_charisma = cs_.getCharisma();
-
-	std::string cur_race, cur_class;
-	if (race_ == CharRace::dragonborn)
-		cur_race = "Dragonborn";
-	if (class_ == CharClass::fighter)
-		cur_class = "Fighter";
-
-	std::cout << "*********************************************************" << std::endl;
-	std::cout << "=========================================================" << std::endl;
-	std::cout << "          " << name_ << "           "
-			  << "Level " << character_level_ << "            "<< std::endl;
-	std::cout << "=========================================================" << std::endl;
-	std::cout << "Race: " << cur_race << std::endl;
-	std::cout << "Class: " << cur_class << std::endl;
-	std::cout << "Health: " << health_ << std::endl;
-	std::cout << "Intelligence: " << cur_intelligence << std::endl;
-	std::cout << "Wisdom: " << cur_wisdom << std::endl;
-	std::cout << "Strength: " << cur_strength << std::endl;
-	std::cout << "Dexterity: " << cur_dexterity << std::endl;
-	std::cout << "Constitution: " << cur_constitution << std::endl;
-	std::cout << "Charisma: " << cur_charisma << std::endl;
-	std::cout << "*********************************************************" << std::endl;
-=======
-void Hero::setActionPoints(size_t ap) {
-    Hero::action_points_ = ap;
 }
 
 void Hero::heroInfo() {
@@ -177,7 +106,6 @@ void Hero::heroInfo() {
     std::cout << "Race: " << cur_race << std::endl;
     std::cout << "Class: " << cur_class << std::endl;
     std::cout << "Health: " << health_ << std::endl;
-    std::cout << "Action points: " << action_points_ << std::endl;
     std::cout << "Intelligence: " << cur_intelligence << std::endl;
     std::cout << "Wisdom: " << cur_wisdom << std::endl;
     std::cout << "Strength: " << cur_strength << std::endl;
@@ -185,5 +113,4 @@ void Hero::heroInfo() {
     std::cout << "Constitution: " << cur_constitution << std::endl;
     std::cout << "Charisma: " << cur_charisma << std::endl;
     std::cout << "*********************************************************" << std::endl;
->>>>>>> 05761682c0771e37e6abc971aa4794c67b51ee69
 }
