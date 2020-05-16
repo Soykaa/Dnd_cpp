@@ -6,17 +6,17 @@
 #include <QGraphicsItem>
 
 class Player : public QObject, public QGraphicsPixmapItem {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	Player(QGraphicsItem *parent = 0);
-	void setPlayer();
+    explicit Player(QGraphicsItem *parent = 0);
+    void setPlayer(const QString str);
 };
 
 class Player2 : public QObject, public QGraphicsPixmapItem {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	Player2(QGraphicsItem *parent = 0);
-	void setPlayer2();
+    explicit Player2(QGraphicsItem *parent = 0);
+    void setPlayer2();
 };
 
 #endif //DND_PLAYER_H

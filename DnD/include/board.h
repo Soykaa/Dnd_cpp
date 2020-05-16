@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstddef>
 #include <array>
+#include <vector>
+#include <utility>
 #include "utility.h"
 #include "encounter.h"
 #include "character.h"
@@ -11,33 +13,27 @@
 
 class Board {
 private:
-	static const int amountOfEncounters_ = 20;
-	std::array<std::array<Encounter, amountOfEncounters_>, amountOfEncounters_> board_;
-	size_t characterPosition_X_1 = 0;
-	size_t characterPosition_Y_1 = 0;
-	size_t characterPosition_X_2 = 0;
-	size_t characterPosition_Y_2 = 0;
-	CharacterSkills cs;
-	Character *h1;
-	Character *h2;
-	
+    static const int amountOfEncounters_ = 10;
+    std::array<std::array<Encounter, amountOfEncounters_>, amountOfEncounters_> board_;
+
 public:
-	Board();
-	Encounter getField(size_t i, size_t j);
-	Type getFieldType(size_t i, size_t j);
-	size_t getAmountOfEncounters();
-	size_t getCharacterPosition_X_1();
-	size_t getCharacterPosition_Y_1();
-	size_t getCharacterPosition_X_2();
-	size_t getCharacterPosition_Y_2();
-	bool canWin_1();
-	bool canWin_2();
-	void makeTurn_1(Direction direction);
-	void makeTurn_2(Direction direction);
-	void takeGift_1(size_t deltaDexterity);
-	void takeGift_2(size_t deltaDexterity);
-	void changeOneFieldType(size_t i, size_t j, Type type);
-	~Board() {};
+    std::vector<HeroCord> heroes;
+    Board();
+    Encounter getField(size_t i, size_t j);
+    Type getFieldType(size_t i, size_t j);
+    size_t getAmountOfEncounters();
+    int getCharacterPosition_X(int heroNum);
+    int getCharacterPosition_Y(int heroNum);
+    void takeItem(int x, int y, int heroNum);
+    bool canOpenDoor(int heroNum);
+    bool canWin(int heroNum);
+    bool canDestroyWall(int heroNum);
+    void destroyWall(int x, int y);
+    std::pair<int, int> check(int heroNum);
+    void makeTurn(Direction direction, int heroNum);
+    void takeGift(size_t deltaDexterity, int heroNum);
+    void changeOneFieldType(size_t i, size_t j, Type type);
+    ~Board() {}
 };
 
 #endif
