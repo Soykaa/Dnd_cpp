@@ -32,27 +32,27 @@
   <widget class="QPushButton" name="standardMode">
    <property name="geometry">
     <rect>
-     <x>35</x>
+     <x>25</x>
      <y>275</y>
-     <width>130</width>
+     <width>160</width>
      <height>50</height>
     </rect>
    </property>
    <property name="text">
-    <string>Standard mode</string>
+    <string>Стандартный режим</string>
    </property>
   </widget>
   <widget class="QPushButton" name="randomMode">
    <property name="geometry">
     <rect>
-     <x>235</x>
+     <x>220</x>
      <y>275</y>
-     <width>130</width>
+     <width>160</width>
      <height>50</height>
     </rect>
    </property>
    <property name="text">
-    <string>Random mode</string>
+    <string>Случайный режим</string>
    </property>
   </widget>
   <widget class="QCommandLinkButton" name="nextStep">
@@ -68,7 +68,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Start</string>
+    <string>Старт</string>
    </property>
    <property name="iconSize">
     <size>

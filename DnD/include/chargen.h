@@ -6,7 +6,9 @@
 #include <QPushButton>
 #include <QCommandLinkButton>
 #include <QTime>
+
 #include "chargen2.h"
+#include "chargentree.h"
 
 namespace Ui {
 class CharGen;
@@ -16,7 +18,7 @@ class CharGen : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit CharGen(QWidget *parent = 0);
+    explicit CharGen(QWidget* parent = 0);
     ~CharGen();
 
 private slots:
@@ -24,9 +26,12 @@ private slots:
 
     void on_nextStep_clicked();
 
+    void on_standardMode_clicked();
+
 private:
-    Ui::CharGen *ui;
-    CharGen2 *chg;
+    Ui::CharGen* ui;
+    CharGen2* chg;
+    CharGenTree* chgt;
 };
 
 #endif // CHARGEN_H

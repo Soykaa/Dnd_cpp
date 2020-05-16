@@ -7,6 +7,8 @@
 #include <QCommandLinkButton>
 #include <QTime>
 
+#include "chargentree2.h"
+
 namespace Ui {
 class CharGen2;
 }
@@ -20,11 +22,12 @@ public:
 
 private slots:
     void on_randomMode_clicked();
-
+    void on_standardMode_clicked();
     void on_nextStep_clicked();
 
 private:
-    Ui::CharGen2 *ui;
+    Ui::CharGen2* ui;
+    CharGenTree2* chgt2;
 };
 
 #endif // CHARGEN2_H

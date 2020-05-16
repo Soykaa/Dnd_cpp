@@ -14,6 +14,7 @@ CharGen2::CharGen2(QWidget *parent)
     ui->setupUi(this);
 
     setFixedSize(400, 460);
+    chgt2 = new CharGenTree2();
 
     QPixmap pic("../images/char_bg.png");
     CharGen2::ui->bg->setScaledContents(true);
@@ -44,9 +45,9 @@ void CharGen2::on_randomMode_clicked() {
     game->boards[0].heroes[1].h = new Hero(cs, bp);
     game->boards[1].heroes[1].h = game->boards[0].heroes[1].h;
     CharGen2::ui->standardMode->setEnabled(false);
-    CharGen2::ui->randomMode->setText("Generating...");
+    CharGen2::ui->randomMode->setText("Герерирую...");
     sleep(100);
-    CharGen2::ui->randomMode->setText("Generated");
+    CharGen2::ui->randomMode->setText("Сгенерировано");
     CharGen2::ui->randomMode->setEnabled(false);
     CharGen2::ui->nextStep->show();
 }
@@ -54,4 +55,9 @@ void CharGen2::on_randomMode_clicked() {
 void CharGen2::on_nextStep_clicked() {
     hide();
     game->makeGame();
+}
+
+void CharGen2::on_standardMode_clicked() {
+    chgt2->show();
+    this->close();
 }

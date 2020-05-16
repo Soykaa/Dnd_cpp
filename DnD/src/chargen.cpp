@@ -14,6 +14,7 @@ CharGen::CharGen(QWidget *parent)
     ui->setupUi(this);
 
     chg = new CharGen2();
+    chgt = new CharGenTree();
 
     setFixedSize(400, 460);
 
@@ -46,9 +47,9 @@ void CharGen::on_randomMode_clicked() {
     game->boards[0].heroes[0].h = new Hero(cs, bp);
     game->boards[1].heroes[0].h = game->boards[0].heroes[0].h;
     CharGen::ui->standardMode->setEnabled(false);
-    CharGen::ui->randomMode->setText("Generating...");
-    sleep(100);
-    CharGen::ui->randomMode->setText("Generated");
+    CharGen::ui->randomMode->setText("Генерирую...");
+    sleep(200);
+    CharGen::ui->randomMode->setText("Сгенерировано");
     CharGen::ui->randomMode->setEnabled(false);
     CharGen::ui->nextStep->show();
 }
@@ -56,4 +57,9 @@ void CharGen::on_randomMode_clicked() {
 void CharGen::on_nextStep_clicked() {
     hide();
     chg->show();
+}
+
+void CharGen::on_standardMode_clicked() {
+    hide();
+    chgt->show();
 }
