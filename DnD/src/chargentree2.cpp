@@ -14,6 +14,8 @@ CharGenTree2::CharGenTree2(QWidget *parent)
 
     setFixedSize(650, 560);
 
+    chgs = new CharGenSkills();
+
     QPixmap pic("../images/char_bg.png");
     CharGenTree2::ui->bg->setScaledContents(true);
     CharGenTree2::ui->bg->setPixmap(pic);
@@ -42,8 +44,8 @@ CharGenTree2::CharGenTree2(QWidget *parent)
 }
 
 void CharGenTree2::on_next_step_clicked() {
-    game->makeGame();
-    this->close();
+    hide();
+    chgs->show();
 }
 
 CharGenTree2::~CharGenTree2() {

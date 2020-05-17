@@ -48,7 +48,7 @@ void CharGen::on_randomMode_clicked() {
     game->boards[1].heroes[0].h = game->boards[0].heroes[0].h;
     CharGen::ui->standardMode->setEnabled(false);
     CharGen::ui->randomMode->setText("Генерирую...");
-    sleep(200);
+    sleep(600);
     CharGen::ui->randomMode->setText("Сгенерировано");
     CharGen::ui->randomMode->setEnabled(false);
     CharGen::ui->nextStep->show();

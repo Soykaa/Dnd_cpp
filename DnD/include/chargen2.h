@@ -8,6 +8,7 @@
 #include <QTime>
 
 #include "chargentree2.h"
+#include "chargenskills.h"
 
 namespace Ui {
 class CharGen2;
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::CharGen2* ui;
     CharGenTree2* chgt2;
+    CharGenSkills* chgs;
 };
 
 #endif // CHARGEN2_H

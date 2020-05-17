@@ -91,7 +91,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Старт</string>
+    <string>Далее</string>
    </property>
    <property name="iconSize">
     <size>
