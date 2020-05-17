@@ -23,7 +23,6 @@ CharGenTree2::CharGenTree2(QWidget *parent)
     QPixmap picqst("../images/gst_bg");
     CharGenTree2::ui->qstbg->setScaledContents(true);
     CharGenTree2::ui->qstbg->setPixmap(picqst);
-
     QPixmap q("../images/qst.png");
     CharGenTree2::ui->qst->setScaledContents(true);
     CharGenTree2::ui->qst->setPixmap(q);
