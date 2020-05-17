@@ -23,7 +23,7 @@ public:
 
 private:
     Ui::CharGenTree2* ui;
-	CharGenSkills* chgs;
+    CharGenSkills* chgs;
 
 private slots:
     void on_next_step_clicked();
