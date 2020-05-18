@@ -17,7 +17,7 @@
 #include "character_skills.h"
 
 class GameBoard : public QGraphicsView {
-    //Q_OBJECT
+    Q_OBJECT
 public:
     int locationNum = 0;
     GameBoard();
@@ -47,11 +47,11 @@ public:
     std::vector<QGraphicsScene*>scenes;
     void keyPressEvent(QKeyEvent *event);
     bool gameIsFinished = false;
-    int start_x = 0;
+    int start_x = 400;
     int start_y = 0;
-    const int board_size = 1000;
-    const int window_width = 1000;
-    const int window_height = 1000;
+    const int board_size = 600;
+    const int window_width = 1400;
+    const int window_height = 800;
     const int cell_width = board_size / boards[0].getAmountOfEncounters();
 };
 

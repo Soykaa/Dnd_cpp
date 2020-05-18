@@ -61,12 +61,12 @@ void GameBoard::makeKeys(int location) {
 
 void GameBoard::makeGame() {
     player_->setPlayer("../images/dragonborn.png");
-    player_->setPos(0, 0);
+    player_->setPos(start_x, start_y);
     player_->setFlag(QGraphicsItem::ItemIsFocusable);
     player_->setFocus();
     scenes[0]->addItem(player_);
     player2_->setPlayer("../images/character.png");
-    player2_->setPos(0, 0);
+    player2_->setPos(start_x, start_y);
     player2_->setFlag(QGraphicsItem::ItemIsFocusable);
     player2_->setFocus();
     scenes[0]->addItem(player2_);
@@ -126,7 +126,7 @@ void GameBoard::makeObstacles() {
 void GameBoard::makeDoor(int x, int y) {
     door_ = new Door();
     door_->setDoor();
-    door_->setPos(x * game->cell_width, y * game->cell_width);
+    door_->setPos(x * game->cell_width + start_x, y * game->cell_width + start_y);
     scenes[0]->addItem(door_);
     boards[0].changeOneFieldType(x, y, Type::door);
     boards[1].changeOneFieldType(x + 1, y + 1, Type::door);
@@ -252,7 +252,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
         gameIsFinished = true;
         Message *text = new Message();
         text->setMessage(i);
-        text->setPos(280, 400);
+        text->setPos(500, 400);
 
         player_->~Player();
         player2_->~Player();
@@ -269,11 +269,11 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
 void GameBoard::changeLocation() {
     if (currentLocation_ == Location::firstLocation) {
         locationNum = 1;
-        setBackgroundBrush(QBrush(QImage("../images/forest.png")));
+        setBackgroundBrush(QBrush(QImage("../images/second_location.jpg")));
         scenes[1]->addItem(player_);
         scenes[1]->addItem(player2_);
         scenes[1]->addItem(door_);
-        door_->setPos(6 * game->cell_width, 6 * game->cell_width);
+        door_->setPos(6 * game->cell_width + start_x, 6 * game->cell_width + start_y);
         boards[1].heroes[0].x = 6;
         boards[1].heroes[0].y = 6;
         boards[1].heroes[1].x = 6;
@@ -288,7 +288,7 @@ void GameBoard::changeLocation() {
     if (currentLocation_ == Location::secondLocation) {
         locationNum = 0;
         setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
-        door_->setPos(5 * game->cell_width, 5 * game ->cell_width);
+        door_->setPos(5 * game->cell_width + start_x, 5 * game ->cell_width + start_y);
         scenes[0]->addItem(player_);
         scenes[0]->addItem(player2_);
         boards[1].heroes[0].x = 5;
