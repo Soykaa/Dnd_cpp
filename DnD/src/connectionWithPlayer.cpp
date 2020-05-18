@@ -23,6 +23,6 @@ WindowForText::WindowForText(QGraphicsItem *parent) : QGraphicsPixmapItem(parent
 
 void WindowForText::setWindowForText(const QString str, int locationNum) {
     setPixmap(QPixmap(str).scaled(game->start_x - game->cell_width, 350));
-    setPos(0, 45aaaaaaaaaaaaaaaaaaaaaaaa0);
+    setPos(0, 450);
     game->scenes[locationNum]->addItem(this);
 }
