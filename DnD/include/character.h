@@ -4,6 +4,7 @@
 #define CHARACTER_H_
 
 #include <iostream>
+#include <string>
 #include <iosfwd>
 #include "character_skills.h"
 #include "backpack.h"

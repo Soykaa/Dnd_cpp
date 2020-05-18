@@ -1,6 +1,5 @@
 /* Author: Itsenko Ekaterina */
 
-#include <string>
 #include "include/character.h"
 #include "include/backpack.h"
 
@@ -23,8 +22,7 @@ void Character::setHealth(size_t health) {
 //! default constructor
 Enemy::Enemy()
     : Character(), hit_points_(rand() % 18 + 1),
-    class_(CharClass::enemy) 
-    {}
+    class_(CharClass::enemy) {}
 
 //! destructor
 Enemy::~Enemy() = default;

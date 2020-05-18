@@ -18,6 +18,7 @@
 
 class GameBoard : public QGraphicsView {
     Q_OBJECT
+    
 public:
     int locationNum = 0;
     GameBoard();
