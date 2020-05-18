@@ -11,20 +11,13 @@
 //! enums
 enum class CharRace {
     dragonborn,
-    dwarf,
     elf,
-    gnome,
-    human,
-    orc
+    human
 };
 
 enum class CharClass {
     fighter,
     druid,
-    paladin,
-    ranger,
-    rogue,
-    warlock,
     wizard,
     enemy //special one!
 };
@@ -32,12 +25,6 @@ enum class CharClass {
 enum class SuperPowers {
     athletics,
     arcrobatics,
-    stealth,
-    arcana,
-    investigation,
-    medicine,
-    survival,
-    deception,
     persuasion
 };
 
@@ -62,7 +49,8 @@ public:
     Hero(const char* name, const CharacterSkills& cs, const Backpack& bp);
     ~Hero() override;
 
-    const char* getName() const;
+    void setName(std::string name);
+    std::string getName() const;
     CharacterSkills getHeroSkills() const;
     CharRace getRace() const;
     CharClass getClass() const;
@@ -71,11 +59,11 @@ public:
     Backpack bp_;
 
 private:
-    char* name_;
+    std::string name_;
     size_t character_level_;
-    size_t action_points_;
     CharRace race_;
     CharClass class_;
+    SuperPowers sp_;
 };
 
 //! @class Enemy
