@@ -46,8 +46,7 @@ void Enemy::setHitPoints(size_t hit_points) {
 //!@class Hero: realization
 //! default constructor
 Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
-        : Character(), character_level_(1),
-        cs_(cs), bp_(bp) {
+        : Character(), cs_(cs), bp_(bp), character_level_(1) {
     int num_for_race = rand() % 3 + 1, num_for_class = rand() % 3 + 1,
     num_for_sp = rand() % 3 + 1;
 
@@ -85,13 +84,11 @@ Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
             sp_ = SuperPowers::athletics;
             break;
     }
-
-
     name_ = "Sergey";
 }
 
 //! non-default constructor
-Hero::Hero(const char* name, const CharacterSkills& cs, const Backpack& bp)
+Hero::Hero(std::string name, const CharacterSkills& cs, const Backpack& bp)
         : Character(), cs_(cs), bp_(bp),
         character_level_(1), race_(CharRace::dragonborn),
         class_(CharClass::fighter) {
@@ -116,10 +113,6 @@ CharRace Hero::getRace() const {
 
 CharClass Hero::getClass() const {
     return class_;
-}
-
-CharacterSkills Hero::getHeroSkills() const {
-    return cs_;
 }
 
 void Hero::heroInfo() {

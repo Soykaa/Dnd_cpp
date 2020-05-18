@@ -46,8 +46,11 @@ protected:
 class Hero: public Character {
 public:
     Hero(const CharacterSkills& cs, const Backpack& bp);
-    Hero(const char* name, const CharacterSkills& cs, const Backpack& bp);
+    Hero(std::string name, const CharacterSkills& cs, const Backpack& bp);
     ~Hero() override;
+
+    CharacterSkills cs_;
+    Backpack bp_;
 
     void setName(std::string name);
     std::string getName() const;
@@ -55,12 +58,10 @@ public:
     CharRace getRace() const;
     CharClass getClass() const;
     void heroInfo();
-    CharacterSkills cs_;
-    Backpack bp_;
 
 private:
-    std::string name_;
     size_t character_level_;
+    std::string name_;
     CharRace race_;
     CharClass class_;
     SuperPowers sp_;
