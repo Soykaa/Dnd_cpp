@@ -16,6 +16,7 @@ GameBoard::GameBoard() {
     boards.resize(2);
     scenes.resize(2);
     gifts_.resize(2);
+    frame_.resize(2);
     // keys_.resize(2);
     obstacles_.resize(2);
     boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 1, boards[1].getAmountOfEncounters() - 1, Type::finnish);
@@ -59,7 +60,28 @@ void GameBoard::makeKeys(int location) {
     makeKey(0, 9, 0);
 }
 
+void GameBoard::makeFrame(const QString str) {
+    for (int i = 0; i < window_width; i += cell_width) {
+        Obstacle* o1 = new Obstacle();
+        o1->setForFrame(str, start_x - cell_width, i, 0);
+        Obstacle* o2 = new Obstacle();
+        o2->setForFrame(str, start_x + board_size, i, 0);
+        Obstacle* o3 = new Obstacle();
+        o3->setForFrame(str, start_x - cell_width, i, 1);
+        Obstacle* o4 = new Obstacle();
+        o4->setForFrame(str, start_x + board_size, i, 1);
+    }
+    for (int i = start_x; i < board_size + start_x; i += cell_width) {
+        Obstacle* o1 = new Obstacle();
+        o1->setForFrame(str, i, window_height - cell_width, 0);
+        Obstacle* o2 = new Obstacle();
+        o2->setForFrame(str, i, window_height - cell_width, 1);
+    }
+}
+
 void GameBoard::makeGame() {
+    makeLeftWindow();
+    makeFrame("../images/obstacle.png");
     player_->setPlayer("../images/dragonborn.png");
     player_->setPos(start_x, start_y);
     player_->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -79,6 +101,20 @@ void GameBoard::makeGame() {
     show();
 }
 
+void GameBoard::makeLeftWindow() {
+    Window* bkg = new Window();
+    Master* master = new Master();
+    WindowForText* wft = new WindowForText();
+    bkg->setWindow("../images/a.svg", 0);
+    master->setMaster("../images/qst.png", 0);
+    wft->setWindowForText("../images/gst_bg", 0);
+    Window* bkg2 = new Window();
+    Master* master2 = new Master();
+    WindowForText* wft2 = new WindowForText();
+    bkg2->setWindow("../images/a.svg", 1);
+    master2->setMaster("../images/qst.png", 1);
+    wft2->setWindowForText("../images/gst_bg", 1);
+}
 
 void GameBoard::makeRandomGifts(int amount, int location) {
     for (int i = 0; i < amount; i++) {

@@ -15,9 +15,11 @@
 #include "message.h"
 #include "character.h"
 #include "character_skills.h"
+#include "connectionWithPlayer.h"
 
 class GameBoard : public QGraphicsView {
     Q_OBJECT
+
 public:
     int locationNum = 0;
     GameBoard();
@@ -29,10 +31,14 @@ public:
     void changeLocation();
     Player* player_;
     Player* player2_;
+    //Window* bkg;
+    //Master* master;
+    //WindowForText* wft;
     std::vector<KeyCord>keys_;
     std::vector<Dice*> dices_;
     std::vector<std::vector<GiftCord>> gifts_;
     std::vector<std::vector<ObstacleCord>> obstacles_;
+    std::vector<std::vector<Obstacle*>> frame_;
     Door *door_;
     void makeRandomGifts(int amount, int location);
     void makeRandomObstacles(int amount, int location);
@@ -42,17 +48,19 @@ public:
     void makeKeys(int location);
     void makeObstacle(const QString str, int x, int y, int location, bool destroyable);
     void makeDoor(int x, int y);
+    void makeFrame(const QString str);
     void makeGame();
+    void makeLeftWindow();
     std::vector<Board>boards;
     std::vector<QGraphicsScene*>scenes;
     void keyPressEvent(QKeyEvent *event);
     bool gameIsFinished = false;
     int start_x = 400;
     int start_y = 0;
-    const int board_size = 600;
+    const int board_size = 795;
+    const double cell_width = board_size / boards[0].getAmountOfEncounters();
     const int window_width = 1400;
-    const int window_height = 800;
-    const int cell_width = board_size / boards[0].getAmountOfEncounters();
+    const int window_height = board_size + cell_width;
 };
 
 #endif //DND_GAME_BOARD_H

@@ -13,7 +13,7 @@
 
 class Board {
 private:
-    static const int amountOfEncounters_ = 10;
+    static const int amountOfEncounters_ = 15;
     std::array<std::array<Encounter, amountOfEncounters_>, amountOfEncounters_> board_;
 
 public:
