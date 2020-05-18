@@ -1,13 +1,12 @@
 /* Author: Itsenko Ekaterina */
 
-#include <cstring>
 #include "include/character.h"
 #include "include/backpack.h"
 
 //!@class Character: realization
 Character::Character()
     : health_(100)
-    {};
+    {}
 
 Character::~Character() = default;
 
@@ -45,32 +44,66 @@ void Enemy::setHitPoints(size_t hit_points) {
 //!@class Hero: realization
 //! default constructor
 Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
-        : Character(), character_level_(1),
-        race_(CharRace::dragonborn), class_(CharClass::fighter),
-        cs_(cs), action_points_(20), bp_(bp) {
-    name_ = new char[strlen("Sergey") + 1];
-    snprintf(name_, strlen("Sergey") + 1, "Sergey");
+        : Character(), cs_(cs), bp_(bp), character_level_(1) {
+    int num_for_race = rand() % 3 + 1, num_for_class = rand() % 3 + 1,
+    num_for_sp = rand() % 3 + 1;
+
+    switch (num_for_race) {
+        case 1:
+            race_ = CharRace::dragonborn;
+            break;
+        case 2:
+            race_ = CharRace::elf;
+            break;
+        default:
+            race_ = CharRace::human;
+            break;
+    }
+
+    switch (num_for_class) {
+        case 1:
+            class_ = CharClass::wizard;
+            break;
+        case 2:
+            class_ = CharClass::druid;
+            break;
+        default:
+            class_ = CharClass::fighter;
+            break;
+    }
+    switch (num_for_sp) {
+        case 1:
+            sp_ = SuperPowers::athletics;
+            break;
+        case 2:
+            sp_ = SuperPowers::persuasion;
+            break;
+        default:
+            sp_ = SuperPowers::athletics;
+            break;
+    }
+    name_ = "Sergey";
 }
 
 //! non-default constructor
-Hero::Hero(const char *name, const CharacterSkills& cs, const Backpack& bp)
+Hero::Hero(std::string name, const CharacterSkills& cs, const Backpack& bp)
         : Character(), cs_(cs), bp_(bp),
         character_level_(1), race_(CharRace::dragonborn),
-        class_(CharClass::fighter), action_points_(20) {
-    name_ = new char[strlen(name) + 1];
-    snprintf(name_, strlen(name) + 1, name);
+        class_(CharClass::fighter) {
+    name_ = name;
 }
 
 //! Destructor
-Hero::~Hero() {
-    delete [] name_;
+Hero::~Hero() = default;
+
+void Hero::setName(std::string name) {
+    name_ = name;
 }
 
 //! getters
-const char* Hero::getName() const {
+std::string Hero::getName() const {
     return name_;
 }
-
 
 CharRace Hero::getRace() const {
     return race_;
@@ -78,10 +111,6 @@ CharRace Hero::getRace() const {
 
 CharClass Hero::getClass() const {
     return class_;
-}
-
-CharacterSkills Hero::getHeroSkills() const {
-    return cs_;
 }
 
 void Hero::heroInfo() {
