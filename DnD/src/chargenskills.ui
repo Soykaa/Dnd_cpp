@@ -142,11 +142,40 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Century Schoolbook L</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
    <property name="autoFillBackground">
     <bool>true</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(136, 138, 133);
+color: white
+</string>
+   </property>
    <property name="text">
-    <string>Старт</string>
+    <string>  Старт</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="text1">

@@ -12,7 +12,7 @@ CharGenTree::CharGenTree(QWidget *parent)
 
     setFixedSize(650, 560);
 
-    QPixmap pic("../images/char_bg.png");
+    QPixmap pic("../images/a.svg");
     CharGenTree::ui->bg->setScaledContents(true);
     CharGenTree::ui->bg->setPixmap(pic);
 

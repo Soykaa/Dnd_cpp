@@ -18,7 +18,7 @@ CharGen::CharGen(QWidget *parent)
 
     setFixedSize(400, 460);
 
-    QPixmap pic("../images/char_bg.png");
+    QPixmap pic("../images/a.svg");
     CharGen::ui->bg->setScaledContents(true);
     CharGen::ui->bg->setPixmap(pic.scaled(400, 460));
 
