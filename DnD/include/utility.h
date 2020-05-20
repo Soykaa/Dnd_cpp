@@ -5,6 +5,7 @@
 #include "obstacle.h"
 #include "character.h"
 #include "key.h"
+#include "connectionWithPlayer.h"
 
 enum class Type {
     emptyField,
@@ -47,6 +48,15 @@ struct KeyCord {
     Key* key;
     int x;
     int y;
+};
+
+struct ConnectionWindow {
+    Window* window;
+    Master* master;
+    WindowForText* wft_l;
+    WindowForText_D* wft_b;
+    MessForPlayer* mess;
+    MessForPlayer* hint;
 };
 
 #endif

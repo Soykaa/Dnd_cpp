@@ -23,13 +23,13 @@ GameBoard::GameBoard() {
     currentLocation_ = Location::firstLocation;
     for (auto& scene : scenes) {
         scene = new QGraphicsScene();
-        scene -> setSceneRect(0, 0, window_width, window_height);
+        scene -> setSceneRect(0, 0, window_width, window_height + extract_height);
     }
     setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
     setScene(scenes[0]);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(window_width, window_height);
+    setFixedSize(window_width, window_height + extract_height);
     player_ = new Player();
     player2_ = new Player();
 }
@@ -61,7 +61,7 @@ void GameBoard::makeKeys(int location) {
 }
 
 void GameBoard::makeFrame(const QString str) {
-    for (int i = 0; i < window_width; i += cell_width) {
+    for (int i = 0; i < window_height; i += cell_width) {
         Obstacle* o1 = new Obstacle();
         o1->setForFrame(str, start_x - cell_width, i, 0);
         Obstacle* o2 = new Obstacle();
@@ -102,12 +102,17 @@ void GameBoard::makeGame() {
 }
 
 void GameBoard::makeLeftWindow() {
-    Window* bkg = new Window();
-    Master* master = new Master();
-    WindowForText* wft = new WindowForText();
-    bkg->setWindow("../images/a.svg", 0);
-    master->setMaster("../images/qst.png", 0);
-    wft->setWindowForText("../images/gst_bg", 0);
+    conWind.window = new Window();
+    conWind.master = new Master();
+    conWind.wft_l = new WindowForText();
+    conWind.window->setWindow("../images/a.svg", 0);
+    conWind.master->setMaster("../images/qst.png", 0);
+    conWind.wft_l->setWindowForText("../images/gst_bg", 0);
+    conWind.wft_b = new WindowForText_D();
+    conWind.wft_b->setWindowForText_D("../images/gst_bg", 0);
+    conWind.hint = new MessForPlayer();
+    conWind.hint->setMessForPlayer("<h1> Нажмите пробел, чтобы начать игру </h1>", 470, 870, 0);
+
     Window* bkg2 = new Window();
     Master* master2 = new Master();
     WindowForText* wft2 = new WindowForText();
@@ -170,10 +175,26 @@ void GameBoard::makeDoor(int x, int y) {
 
 void GameBoard::keyPressEvent(QKeyEvent *event) {
     int i = locationNum;
-    //qDebug() << "dext " << boards[i].h1->cs_.getDexterity() << "\n";
-    //qDebug() << i << "\n";
     if (event->key() == Qt::Key_Any) {
         QApplication::quit();
+    }
+    if (firstMove) {
+        conWind.mess = new MessForPlayer();
+        conWind.mess->setMessForPlayer("<h1>Приветствую Вас, <br> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; путники</h1>", 40, 575, 0);
+        sleep(500);
+        conWind.mess->setMessForPlayer("<h1>&nbsp;&nbsp;Вы забрели в <br>мое подземелье</h1>", 40, 575, 0);
+        sleep(500);
+        conWind.mess->setMessForPlayer("<h1>&nbsp;&nbsp;Найти выход <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;будет сложно, <br> &nbsp;&nbsp;но вы справитесь <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;если будете <br>действовать сообща</h1>",
+                                        25, 525, 0);
+        sleep(500);
+        conWind.mess->setMessForPlayer("<h1>Я буду помогать вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;и <br> &nbsp;&nbsp;давать подсказки</h1>",
+                                        25, 575, 0);
+        sleep(500);
+        conWind.mess->setMessForPlayer("<h1>Вот первая из них: </h1>", 35, 600, 0);
+        sleep(500);
+        conWind.mess->setMessForPlayer("<h1> &nbsp;&nbsp;&nbsp;&nbsp;Дверь откроется <br> только <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;двумя <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ключами <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;одновременно</h1>",
+                                        15, 550, 0);
+        firstMove = false;
     }
     if (gameIsFinished)
         return;
@@ -255,7 +276,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     qDebug() << a << " " << b << "\n";
     if (a != -1 && b != -1 && boards[i].canDestroyWall(0)) {
         qDebug() << "press F to destroy wall " << a << " " << b << "\n";
-        if (event->key() == Qt::Key_F) {
+        if (event->key() == Qt::Key_Shift) {
             qDebug() << "f pressed\n";
             for (ObstacleCord o : obstacles_[i])
                 if (o.x == a && o.y == b) {
@@ -270,7 +291,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     auto[c, d] = boards[i].check(1);
     if (c != -1 && d != -1 && boards[i].canDestroyWall(1)) {
         qDebug() << "press F to destroy wall " << c << " " << d << "\n";
-        if (event->key() == Qt::Key_F) {
+        if (event->key() == Qt::Key_CapsLock) {
             qDebug() << "f pressed\n";
             for (ObstacleCord o : obstacles_[i])
                 if (o.x == c && o.y == d) {

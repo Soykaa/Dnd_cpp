@@ -31,9 +31,8 @@ public:
     void changeLocation();
     Player* player_;
     Player* player2_;
-    //Window* bkg;
-    //Master* master;
-    //WindowForText* wft;
+    bool firstMove = true;
+    ConnectionWindow conWind;
     std::vector<KeyCord>keys_;
     std::vector<Dice*> dices_;
     std::vector<std::vector<GiftCord>> gifts_;
@@ -61,6 +60,7 @@ public:
     const double cell_width = board_size / boards[0].getAmountOfEncounters();
     const int window_width = 1400;
     const int window_height = board_size + cell_width;
+    const int extract_height = 90;
 };
 
 #endif //DND_GAME_BOARD_H
