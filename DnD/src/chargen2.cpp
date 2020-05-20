@@ -17,7 +17,7 @@ CharGen2::CharGen2(QWidget *parent)
     chgt2 = new CharGenTree2();
     chgs = new CharGenSkills();
 
-    QPixmap pic("../images/char_bg.png");
+    QPixmap pic("../images/a.svg");
     CharGen2::ui->bg->setScaledContents(true);
     CharGen2::ui->bg->setPixmap(pic);
 
@@ -52,11 +52,6 @@ void CharGen2::on_randomMode_clicked() {
     CharGen2::ui->randomMode->setEnabled(false);
     CharGen2::ui->nextStep->show();
 }
-
-//void CharGen2::on_nextStep_clicked() {
-//    hide();
-//    game->makeGame();
-//}
 
 void CharGen2::on_nextStep_clicked() {
     hide();

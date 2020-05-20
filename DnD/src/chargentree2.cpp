@@ -16,7 +16,7 @@ CharGenTree2::CharGenTree2(QWidget *parent)
 
     chgs = new CharGenSkills();
 
-    QPixmap pic("../images/char_bg.png");
+    QPixmap pic("../images/a.svg");
     CharGenTree2::ui->bg->setScaledContents(true);
     CharGenTree2::ui->bg->setPixmap(pic);
 

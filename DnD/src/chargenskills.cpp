@@ -13,7 +13,7 @@ CharGenSkills::CharGenSkills(QWidget *parent) :
 
     setFixedSize(650, 560);
 
-    QPixmap pic("../images/char_bg.png");
+    QPixmap pic("../images/a.svg");
     CharGenSkills::ui->bg->setScaledContents(true);
     CharGenSkills::ui->bg->setPixmap(pic.scaled(650, 560));
 
