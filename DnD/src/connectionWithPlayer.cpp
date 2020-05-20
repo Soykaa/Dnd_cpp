@@ -1,7 +1,6 @@
 #include "include/connectionWithPlayer.h"
-#include "include/game_board.h"
 #include <QTextEdit>
-#include <cstring>
+#include "include/game_board.h"
 
 extern GameBoard *game;
 
