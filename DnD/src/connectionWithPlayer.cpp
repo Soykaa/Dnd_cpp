@@ -38,14 +38,13 @@ void WindowForText_D::setWindowForText_D(const QString str, int locationNum) {
 }
 
 MessForPlayer::MessForPlayer(QGraphicsItem *parent) : QGraphicsTextItem(parent) {
-	    game->scenes[0]->addItem(this);
+        game->scenes[0]->addItem(this);
 }
 
 void MessForPlayer::setMessForPlayer(const QString str, int x, int y, int locationNum) {
-	std::string s1 = "aa";
-	std::string s2 = "bb";
-	std::string s = s1 + s2;
+    std::string s1 = "aa";
+    std::string s2 = "bb";
+    std::string s = s1 + s2;
     setHtml(str);
-    //setHtml("<html><style>.ex {background: #fffff5;}</style><body><p class='ex' align='center' Ntrcn</body></html>");
     setPos(x, y);
 }

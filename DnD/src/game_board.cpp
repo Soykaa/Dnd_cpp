@@ -181,17 +181,17 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     if (firstMove) {
         conWind.mess = new MessForPlayer();
         conWind.mess->setMessForPlayer("<h1>Приветствую Вас, <br> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; путники</h1>", 40, 575, 0);
-        sleep(500);
+        sleep(800);
         conWind.mess->setMessForPlayer("<h1>&nbsp;&nbsp;Вы забрели в <br>мое подземелье</h1>", 40, 575, 0);
-        sleep(500);
+        sleep(800);
         conWind.mess->setMessForPlayer("<h1>&nbsp;&nbsp;Найти выход <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;будет сложно, <br> &nbsp;&nbsp;но вы справитесь <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;если будете <br>действовать сообща</h1>",
                                         25, 525, 0);
-        sleep(500);
+        sleep(800);
         conWind.mess->setMessForPlayer("<h1>Я буду помогать вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;и <br> &nbsp;&nbsp;давать подсказки</h1>",
                                         25, 575, 0);
-        sleep(500);
+        sleep(800);
         conWind.mess->setMessForPlayer("<h1>Вот первая из них: </h1>", 35, 600, 0);
-        sleep(500);
+        sleep(800);
         conWind.mess->setMessForPlayer("<h1> &nbsp;&nbsp;&nbsp;&nbsp;Дверь откроется <br> только <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;двумя <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ключами <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;одновременно</h1>",
                                         15, 550, 0);
         firstMove = false;
