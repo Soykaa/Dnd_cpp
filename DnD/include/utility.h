@@ -1,11 +1,14 @@
 #ifndef UTILITY_H_INCLUDED
 #define UTILITY_H_INCLUDED
 
+#include <vector>
+#include <string>
 #include "gift.h"
 #include "obstacle.h"
 #include "character.h"
 #include "key.h"
 #include "connectionWithPlayer.h"
+#include "BackpackIm.h"
 
 enum class Type {
     emptyField,
@@ -57,6 +60,18 @@ struct ConnectionWindow {
     WindowForText_D* wft_b;
     MessForPlayer* mess;
     MessForPlayer* hint;
+};
+
+struct BackpackIm {
+    BackgroundIm* bi1;
+    BackgroundIm* bi2;
+    std::vector<ItemBack*> itb;
+};
+
+struct destroyableWall {
+    std::string dir;
+    int x;
+    int y;
 };
 
 #endif

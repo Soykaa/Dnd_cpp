@@ -3,9 +3,7 @@
 
 extern GameBoard *game;
 
-Key::Key(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
-    is_taken = false;
-}
+Key::Key(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
 void Key::setKey(const QString str, int x, int y, int locationNum) {
     int k = game->cell_width;

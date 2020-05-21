@@ -55,24 +55,24 @@ void Board::changeOneFieldType(size_t i, size_t j, Type type) {
     board_[i][j].changeType(type);
 }
 
-std::pair<int, int> Board::check(int heroNum) {
+destroyableWall Board::check(int heroNum) {
     int X = heroes[heroNum].x;
     int Y = heroes[heroNum].y;
-    std::vector<std::pair<int, int>> cords;
-    cords.push_back({X + 1, Y});
-    cords.push_back({X - 1, Y});
-    cords.push_back({X, Y + 1});
-    cords.push_back({X, Y - 1});
+    std::vector<destroyableWall> cords;
+    cords.push_back({"left", X + 1, Y});
+    cords.push_back({"right", X - 1, Y});
+    cords.push_back({"up", X, Y + 1});
+    cords.push_back({"down", X, Y - 1});
     for (auto c : cords) {
-        if (c.first < 0 || c.first >= amountOfEncounters_ ||
-            c.second < 0 || c.second >= amountOfEncounters_) {
+        if (c.x < 0 || c.x >= amountOfEncounters_ ||
+            c.y < 0 || c.y >= amountOfEncounters_) {
                 continue;
             }
-        if (board_[c.first][c.second].getType() == Type::destroyableWall) {
+        if (board_[c.x][c.y].getType() == Type::destroyableWall) {
                 return c;
         }
     }
-    return {-1, -1};
+    return {"", -1, -1};
 }
 
 void Board::takeItem(int x, int y, int heroNum) {

@@ -2,6 +2,9 @@
 #define DND_CONNECTION_WITH_PLAYER_H
 
 #include <QGraphicsPixmapItem>
+#include <map>
+#include <vector>
+#include <string>
 
 class Window : public QGraphicsPixmapItem {
 public:
@@ -30,7 +33,11 @@ public:
 class MessForPlayer : public QGraphicsTextItem {
 public:
     explicit MessForPlayer(QGraphicsItem *parent = 0);
-    void setMessForPlayer(const QString str, int x, int y, int locationNum);
+    void setMessForPlayer(int num, int x, int y, int locationNum);
+    void setMessForPlayer(const std::string, int x, int y, int locationNum);
+private:
+    std::vector<QString> init_messages;
+    std::map<std::string, QString> action_messages;
 };
 
 

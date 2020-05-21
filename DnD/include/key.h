@@ -7,7 +7,6 @@
 class Key : public QGraphicsPixmapItem {
 public:
     explicit Key(QGraphicsItem *parent = 0);
-    bool is_taken;
     void setKey(const QString str, int x, int y, int locationNum);
 };
 

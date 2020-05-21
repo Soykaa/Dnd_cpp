@@ -29,7 +29,7 @@ public:
     bool canWin(int heroNum);
     bool canDestroyWall(int heroNum);
     void destroyWall(int x, int y);
-    std::pair<int, int> check(int heroNum);
+    destroyableWall check(int heroNum);
     void makeTurn(Direction direction, int heroNum);
     void takeGift(size_t deltaDexterity, int heroNum);
     void changeOneFieldType(size_t i, size_t j, Type type);

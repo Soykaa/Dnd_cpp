@@ -4,9 +4,7 @@
 
 extern GameBoard *game;
 
-Gift::Gift(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
-    is_taken = false;
-}
+Gift::Gift(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
 void Gift::setGift(int x, int y, int locationNum) {
     int k = game->cell_width;

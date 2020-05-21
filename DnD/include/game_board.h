@@ -31,8 +31,9 @@ public:
     void changeLocation();
     Player* player_;
     Player* player2_;
-    bool firstMove = true;
+    bool gameIsStarted = false;
     ConnectionWindow conWind;
+    BackpackIm bp;
     std::vector<KeyCord>keys_;
     std::vector<Dice*> dices_;
     std::vector<std::vector<GiftCord>> gifts_;
@@ -50,6 +51,8 @@ public:
     void makeFrame(const QString str);
     void makeGame();
     void makeLeftWindow();
+    void makeBackpack();
+    void takeKey(int player);
     std::vector<Board>boards;
     std::vector<QGraphicsScene*>scenes;
     void keyPressEvent(QKeyEvent *event);
@@ -57,8 +60,8 @@ public:
     int start_x = 400;
     int start_y = 0;
     const int board_size = 795;
-    const double cell_width = board_size / boards[0].getAmountOfEncounters();
-    const int window_width = 1400;
+    const int cell_width = board_size / boards[0].getAmountOfEncounters();
+    const int window_width = start_x + board_size + 4*cell_width + 50;
     const int window_height = board_size + cell_width;
     const int extract_height = 90;
 };

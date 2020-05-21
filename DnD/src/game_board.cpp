@@ -1,4 +1,6 @@
 #include <QDebug>
+#include <QStyle>
+#include <QDesktopWidget>
 #include <QApplication>
 #include <QGraphicsItem>
 #include "include/sleep.h"
@@ -19,7 +21,7 @@ GameBoard::GameBoard() {
     frame_.resize(2);
     // keys_.resize(2);
     obstacles_.resize(2);
-    boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 1, boards[1].getAmountOfEncounters() - 1, Type::finnish);
+    boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 3, boards[1].getAmountOfEncounters() - 1, Type::finnish);
     currentLocation_ = Location::firstLocation;
     for (auto& scene : scenes) {
         scene = new QGraphicsScene();
@@ -60,6 +62,17 @@ void GameBoard::makeKeys(int location) {
     makeKey(0, 9, 0);
 }
 
+void GameBoard::takeKey(int player) {
+    ItemBack* it = new ItemBack();
+    int y;
+    if (player == 0)
+        y = 80;
+    else
+        y = 80 + (window_height - 50)/ 2 + 30;
+    //int y = 80 + 0 ? player : (window_height - 50)/ 2 + 30;
+    it->setItemBack("../images/key.png", start_x + board_size + cell_width + 30, y, 0, 0);
+}
+
 void GameBoard::makeFrame(const QString str) {
     for (int i = 0; i < window_height; i += cell_width) {
         Obstacle* o1 = new Obstacle();
@@ -81,6 +94,7 @@ void GameBoard::makeFrame(const QString str) {
 
 void GameBoard::makeGame() {
     makeLeftWindow();
+    makeBackpack();
     makeFrame("../images/obstacle.png");
     player_->setPlayer("../images/dragonborn.png");
     player_->setPos(start_x, start_y);
@@ -96,8 +110,10 @@ void GameBoard::makeGame() {
     makeRandomGifts(3, 1);
     makeKeys(0);
     makeObstacles();
-    //makeRandomObstacles(45, 0);
-    makeRandomObstacles(30, 1);
+    makeRandomObstacles(47, 0);
+    makeRandomObstacles(37, 1);
+    this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(),
+                                       qApp->desktop()->availableGeometry()));
     show();
 }
 
@@ -111,21 +127,51 @@ void GameBoard::makeLeftWindow() {
     conWind.wft_b = new WindowForText_D();
     conWind.wft_b->setWindowForText_D("../images/gst_bg", 0);
     conWind.hint = new MessForPlayer();
-    conWind.hint->setMessForPlayer("<h1> Нажмите пробел, чтобы начать игру </h1>", 470, 870, 0);
+    conWind.hint->setMessForPlayer(0, 450, 870, 0);
 
     Window* bkg2 = new Window();
     Master* master2 = new Master();
     WindowForText* wft2 = new WindowForText();
+    WindowForText_D* wft_d = new WindowForText_D();
+    wft_d->setWindowForText_D("../images/gst_bg", 1);
+
     bkg2->setWindow("../images/a.svg", 1);
     master2->setMaster("../images/qst.png", 1);
     wft2->setWindowForText("../images/gst_bg", 1);
+}
+
+void GameBoard::makeBackpack() {
+    bp.bi1 = new BackgroundIm();
+    bp.bi2 = new BackgroundIm();
+    bp.bi1->setBackgroundIm("../images/bkg_backpack.jpg", start_x + board_size + cell_width + 10, 10, 0);
+    bp.bi2->setBackgroundIm("../images/bkg_backpack.jpg", start_x + board_size + cell_width + 10, (window_height - 50)/ 2 + 40, 0);
+    ItemBack* it = new ItemBack();
+    it->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 80, 0, 0);
+    ItemBack* it2 = new ItemBack();
+    it2->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 80 + (window_height - 50)/ 2 + 30, 0, 0);
+    ItemBack* it3 = new ItemBack();
+    it3->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 300, 0, 0);
+    ItemBack* it4 = new ItemBack();
+    it4->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 300 + (window_height - 50)/ 2 + 30, 0, 0);
+    ItemBack* it5 = new ItemBack();
+    it5->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 190, 0, 1);
+    ItemBack* it6 = new ItemBack();
+    it6->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 190 + (window_height - 50)/ 2 + 30, 0, 1);
+    ItemBack* it7 = new ItemBack();
+    it7->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 130, 190, 0, 1);
+    ItemBack* it8 = new ItemBack();
+    it8->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 130, 190 + (window_height - 50)/ 2 + 30, 0, 1);
+    ItemBack* it9 = new ItemBack();
+    it9->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 80, 240, 0, 1);
+    ItemBack* it10 = new ItemBack();
+    it10->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 80, 240 + (window_height - 50)/ 2 + 30, 0, 1);
 }
 
 void GameBoard::makeRandomGifts(int amount, int location) {
     for (int i = 0; i < amount; i++) {
         int x = rand() % boards[location].getAmountOfEncounters();
         int y = rand() % boards[location].getAmountOfEncounters();
-        if (boards[location].getFieldType(x, y) == Type::emptyField)
+        if (!(x == 0 && y == 0) && boards[location].getFieldType(x, y) == Type::emptyField)
             makeGift(x, y, location);
     }
 }
@@ -160,8 +206,8 @@ void GameBoard::makeObstacles() {
         makeObstacle("../images/obstacle.png", i, 7, 0, false);
     }
     num = boards[0].getAmountOfEncounters() / 2;
-    makeObstacle("../images/obstacle.png", num, 8, 0, false);
-    makeObstacle("../images/obstacle.png", num, 9, 0, false);
+    for (int i = 8; i < boards[0].getAmountOfEncounters(); i++)
+        makeObstacle("../images/obstacle.png", num, i, 0, false);
 }
 
 void GameBoard::makeDoor(int x, int y) {
@@ -174,28 +220,28 @@ void GameBoard::makeDoor(int x, int y) {
 }
 
 void GameBoard::keyPressEvent(QKeyEvent *event) {
-    int i = locationNum;
-    if (event->key() == Qt::Key_Any) {
-        QApplication::quit();
-    }
-    if (firstMove) {
+    if (!gameIsStarted && event->key() == Qt::Key_Any) {
+        conWind.hint->setMessForPlayer("", 0, 0, 0);
+        gameIsStarted = true;
         conWind.mess = new MessForPlayer();
-        conWind.mess->setMessForPlayer("<h1>Приветствую Вас, <br> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; путники</h1>", 40, 575, 0);
+        conWind.mess->setMessForPlayer(1, 40, 575, 0); // 40, 575
         sleep(800);
-        conWind.mess->setMessForPlayer("<h1>&nbsp;&nbsp;Вы забрели в <br>мое подземелье</h1>", 40, 575, 0);
+        conWind.mess->setMessForPlayer(2, 40, 575, 0);
         sleep(800);
-        conWind.mess->setMessForPlayer("<h1>&nbsp;&nbsp;Найти выход <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;будет сложно, <br> &nbsp;&nbsp;но вы справитесь <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;если будете <br>действовать сообща</h1>",
-                                        25, 525, 0);
+        conWind.mess->setMessForPlayer(3, 25, 525, 0);
         sleep(800);
-        conWind.mess->setMessForPlayer("<h1>Я буду помогать вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;и <br> &nbsp;&nbsp;давать подсказки</h1>",
-                                        25, 575, 0);
+        conWind.mess->setMessForPlayer(4, 25, 575, 0);
         sleep(800);
-        conWind.mess->setMessForPlayer("<h1>Вот первая из них: </h1>", 35, 600, 0);
+        conWind.mess->setMessForPlayer(5, 35, 600, 0);
         sleep(800);
-        conWind.mess->setMessForPlayer("<h1> &nbsp;&nbsp;&nbsp;&nbsp;Дверь откроется <br> только <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;двумя <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ключами <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;одновременно</h1>",
-                                        15, 550, 0);
-        firstMove = false;
+        conWind.mess->setMessForPlayer(6, 15, 550, 0);
+        return;
     }
+    if (!gameIsStarted)
+        return;
+
+    int i = locationNum;
+
     if (gameIsFinished)
         return;
 
@@ -251,33 +297,41 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::gift) {
         boards[i].takeGift(18, 1);
         for (GiftCord g : gifts_[i]) {
-            if (g.x == boards[i].getCharacterPosition_X(1) && g.y == boards[i].getCharacterPosition_Y(1))
+            if (g.x == boards[i].getCharacterPosition_X(1) && g.y == boards[i].getCharacterPosition_Y(1)) {
                 g.gift->~Gift();
+            }
         }
     }
 
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0)) == Type::key) {
         boards[i].takeItem(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0), 0);
         for (KeyCord k : keys_) {
-            if (k.x == boards[i].getCharacterPosition_X(0) && k.y == boards[i].getCharacterPosition_Y(0))
+            if (k.x == boards[i].getCharacterPosition_X(0) && k.y == boards[i].getCharacterPosition_Y(0)) {
                 k.key->~Key();
+                takeKey(0);
+            }
         }
     }
 
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::key) {
         boards[i].takeItem(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1), 1);
         for (KeyCord k : keys_) {
-            if (k.x == boards[i].getCharacterPosition_X(1) && k.y == boards[i].getCharacterPosition_Y(1))
+            if (k.x == boards[i].getCharacterPosition_X(1) && k.y == boards[i].getCharacterPosition_Y(1)) {
                 k.key->~Key();
+                takeKey(1);
+            }
         }
     }
 
-    auto[a, b] = boards[i].check(0);
+    auto[dir1, a, b] = boards[i].check(0);
     qDebug() << a << " " << b << "\n";
-    if (a != -1 && b != -1 && boards[i].canDestroyWall(0)) {
+    if (dir1 != "" && boards[i].canDestroyWall(0)) {
+        std::string action = "1 break wall " + dir1;
+        conWind.mess->setMessForPlayer(action, 20, 575, locationNum);
         qDebug() << "press F to destroy wall " << a << " " << b << "\n";
         if (event->key() == Qt::Key_Shift) {
             qDebug() << "f pressed\n";
+            conWind.mess->setMessForPlayer("none", 20, 575, locationNum);
             for (ObstacleCord o : obstacles_[i])
                 if (o.x == a && o.y == b) {
                     o.obst->setObstacle("../images/broakenwall.png", a, b, i);
@@ -288,11 +342,15 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
         }
     }
 
-    auto[c, d] = boards[i].check(1);
-    if (c != -1 && d != -1 && boards[i].canDestroyWall(1)) {
+    auto[dir2, c, d] = boards[i].check(1);
+    if (dir2 != "" && boards[i].canDestroyWall(1)) {
+        std::string action = "2 break wall " + dir2;
+        sleep(200);
+        conWind.mess->setMessForPlayer(action, 20, 575, locationNum);
         qDebug() << "press F to destroy wall " << c << " " << d << "\n";
         if (event->key() == Qt::Key_CapsLock) {
             qDebug() << "f pressed\n";
+            conWind.mess->setMessForPlayer("none", 20, 575, locationNum);
             for (ObstacleCord o : obstacles_[i])
                 if (o.x == c && o.y == d) {
                     o.obst->setObstacle("../images/broakenwall.png", c, d, i);
@@ -318,8 +376,12 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0)) == Type::door &&
             boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::door) {
         qDebug() << "door\n";
-        if (boards[i].canOpenDoor(0) && boards[i].canOpenDoor(1))
-            changeLocation();
+        if (boards[i].canOpenDoor(0) && boards[i].canOpenDoor(1)) {
+            conWind.mess->setMessForPlayer("open door", 40, 575, locationNum);
+            if (event->key() == Qt::Key_Any) {
+                changeLocation();
+            }
+        }
     }
 }
 

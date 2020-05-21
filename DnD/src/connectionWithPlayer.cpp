@@ -37,13 +37,34 @@ void WindowForText_D::setWindowForText_D(const QString str, int locationNum) {
 }
 
 MessForPlayer::MessForPlayer(QGraphicsItem *parent) : QGraphicsTextItem(parent) {
-        game->scenes[0]->addItem(this);
+    game->scenes[0]->addItem(this);
+    init_messages.resize(10);
+    init_messages[0] = "<h1> Нажмите пробел, чтобы начать игру </h1>";
+    init_messages[1] = "<h1>Приветствую Вас, <br> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; путники</h1>";
+    init_messages[2] = "<h1>&nbsp;&nbsp;Вы забрели в <br>мое подземелье</h1>";
+    init_messages[3] = "<h1>&nbsp;&nbsp;Найти выход <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;будет сложно, <br> &nbsp;&nbsp;но вы справитесь <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;если будете <br>действовать сообща</h1>";
+    init_messages[4] = "<h1>Я буду помогать вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;и <br> &nbsp;&nbsp;давать подсказки</h1>";
+    init_messages[5] = "<h1>Вот первая из них: </h1>";
+    init_messages[6] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;Дверь откроется <br> только <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;двумя <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ключами <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;одновременно</h1>";
+    action_messages["none"] = "";
+    action_messages["can open door"] = "<h1>Молодцы, путники. <br>Теперь вы можете <br> открыть дверь</h1>";
+    action_messages["open door"] = "<h1>Нажмите пробел, <br> &nbsp;&nbsp;&nbsp;чтобы пройти <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;через дверь</h1>"; // 40, 575
+    action_messages["1 break wall left"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 1, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену слева</h1>"; // 20, 575
+    action_messages["1 break wall right"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 1, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену справа</h1>";
+    action_messages["1 break wall up"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 1, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену ниже</h1>";
+    action_messages["1 break wall down"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 1, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену выше</h1>";
+    action_messages["2 break wall left"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену слева</h1>"; // 20, 575
+    action_messages["2 break wall right"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену справа</h1>";
+    action_messages["2 break wall up"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену ниже</h1>";
+    action_messages["2 break wall down"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену выше</h1>";
 }
 
-void MessForPlayer::setMessForPlayer(const QString str, int x, int y, int locationNum) {
-    std::string s1 = "aa";
-    std::string s2 = "bb";
-    std::string s = s1 + s2;
-    setHtml(str);
+void MessForPlayer::setMessForPlayer(int num, int x, int y, int locationNum) {
+    setHtml(init_messages[num]);
+    setPos(x, y);
+}
+
+void MessForPlayer::setMessForPlayer(const std::string str, int x, int y, int locationNum) {
+    setHtml(action_messages[str]);
     setPos(x, y);
 }
