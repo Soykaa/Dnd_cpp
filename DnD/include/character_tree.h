@@ -2,7 +2,7 @@
 #define CHARACTER_TREE_H_INCLUDED
 
 #include <iostream>
-#include <cstring>
+#include <string>
 #include <iosfwd>
 
 class CharacterTreeNode {
