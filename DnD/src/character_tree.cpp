@@ -1,7 +1,7 @@
 #include <iostream>
 #include <utility>
 
-#include "character_tree.h"
+#include "include/character_tree.h"
 
 /* Class CharacterTreeNode */
 CharacterTreeNode::CharacterTreeNode(std::string qst, CharacterTreeNode* right, CharacterTreeNode* left)
