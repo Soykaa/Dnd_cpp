@@ -6,6 +6,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <vector>
 #include "utility.h"
+#include "enums.h"
 #include "player.h"
 #include "dice.h"
 #include "obstacle.h"
@@ -29,10 +30,14 @@ public:
     };
     Location currentLocation_;
     void changeLocation();
+    Well well;
     Player* player_;
     Player* player2_;
     bool gameIsStarted = false;
-    ConnectionWindow conWind;
+    CharIm charIm;
+    std::vector<ConnectionWindow> conWind;
+    std::vector<BackpackIm> bpi;
+    //ConnectionWindow conWind;
     BackpackIm bp;
     std::vector<KeyCord>keys_;
     std::vector<Dice*> dices_;
@@ -51,9 +56,15 @@ public:
     void makeFrame(const QString str);
     void makeGame();
     void makeLeftWindow();
+    void makeWell();
+    void makeRope(int x, int y, int locationNum);
     void makeBackpack();
     void takeKey(int player);
+
     void buildBoard(int location, std::string filename);
+
+    void takeRope(int player);
+    void takeGift(int player, int giftNum);
     std::vector<Board>boards;
     std::vector<QGraphicsScene*>scenes;
     void keyPressEvent(QKeyEvent *event);

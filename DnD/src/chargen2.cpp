@@ -1,6 +1,7 @@
 #include <QtGui>
 #include <QDesktopWidget>
 
+#include <cstdlib>
 #include "include/chargen.h"
 #include "ui_chargen2.h"
 #include "include/sleep.h"
@@ -47,7 +48,30 @@ void CharGen2::on_randomMode_clicked() {
     game->boards[1].heroes[1].h = game->boards[0].heroes[1].h;
     CharGen2::ui->standardMode->setEnabled(false);
     CharGen2::ui->randomMode->setText("Герерирую...");
-    sleep(600);
+    int num = game->charIm.char1;
+    srand(time(NULL));
+    if (game->boards[0].heroes[1].h->getRace() == CharRace::dragonborn) {
+        while (num == game->charIm.char1) {
+            num = rand() % 3;
+        }
+    }
+    if (game->boards[0].heroes[1].h->getRace() == CharRace::human) {
+        while (num == game->charIm.char1) {
+            num = (rand() % 4) + 3;
+        }
+    }
+    if (game->boards[0].heroes[1].h->getRace() == CharRace::elf) {
+        while (num == game->charIm.char1) {
+            num = (rand() % 3) + 7;
+        }
+    }
+    for (int i = 0; i < 10; i++) {
+        QString str = game->charIm.chars[i];
+        CharGen2::ui->chpic->setPixmap(QPixmap(str).scaled(200, 200));
+        sleep(100);
+    }
+    game->charIm.char2 = num;
+    CharGen2::ui->chpic->setPixmap(QPixmap(game->charIm.chars[game->charIm.char2]).scaled(200, 200));
     CharGen2::ui->randomMode->setText("Сгенерировано");
     CharGen2::ui->randomMode->setEnabled(false);
     CharGen2::ui->nextStep->show();
@@ -55,6 +79,7 @@ void CharGen2::on_randomMode_clicked() {
 
 void CharGen2::on_nextStep_clicked() {
     hide();
+    chgs->setImages(game->charIm.chars[game->charIm.char1], game->charIm.chars[game->charIm.char2]);
     chgs->show();
 }
 

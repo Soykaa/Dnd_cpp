@@ -12,6 +12,7 @@ CharGenSkills::CharGenSkills(QWidget *parent) :
     ui->setupUi(this);
 
     setFixedSize(650, 560);
+    //int num = game->charIm.char2;
 
     QPixmap pic("../images/a.svg");
     CharGenSkills::ui->bg->setScaledContents(true);
@@ -30,14 +31,6 @@ CharGenSkills::CharGenSkills(QWidget *parent) :
     CharGenSkills::ui->bg_text21->setScaledContents(true);
     CharGenSkills::ui->bg_text21->setPixmap(pic1.scaled(650, 560));
 
-    QPixmap hero1("../images/dragonborn.png");
-    CharGenSkills::ui->img1->setScaledContents(true);
-    CharGenSkills::ui->img1->setPixmap(hero1.scaled(120, 180));
-
-    QPixmap hero2("../images/character.png");
-    CharGenSkills::ui->img2->setScaledContents(true);
-    CharGenSkills::ui->img2->setPixmap(hero2.scaled(120, 180));
-
     //moving window to the center
     QDesktopWidget desktop;
     QRect rect = desktop.availableGeometry(this);
@@ -49,6 +42,16 @@ CharGenSkills::CharGenSkills(QWidget *parent) :
     center.setX(coord_x);
     center.setY(coord_y);
     move(center);
+}
+
+void CharGenSkills::setImages(QString str1, QString str2) {
+    QPixmap hero1(str1);
+    CharGenSkills::ui->img1->setScaledContents(true);
+    CharGenSkills::ui->img1->setPixmap(hero1.scaled(120, 180));
+
+    QPixmap hero2(str2);
+    CharGenSkills::ui->img2->setScaledContents(true);
+    CharGenSkills::ui->img2->setPixmap(hero2.scaled(120, 180));
 }
 
 CharGenSkills::~CharGenSkills() {

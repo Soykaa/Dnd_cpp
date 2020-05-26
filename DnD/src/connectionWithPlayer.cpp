@@ -36,9 +36,10 @@ void WindowForText_D::setWindowForText_D(const QString str, int locationNum) {
     game->scenes[locationNum]->addItem(this);
 }
 
-MessForPlayer::MessForPlayer(QGraphicsItem *parent) : QGraphicsTextItem(parent) {
-    game->scenes[0]->addItem(this);
-    init_messages.resize(10);
+
+MessForPlayer::MessForPlayer(int locationNum, QGraphicsItem *parent) : QGraphicsTextItem(parent) {
+    game->scenes[locationNum]->addItem(this);
+    init_messages.resize(20);
     init_messages[0] = "<h1> Нажмите пробел, чтобы начать игру </h1>";
     init_messages[1] = "<h1>Приветствую Вас, <br> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; путники</h1>";
     init_messages[2] = "<h1>&nbsp;&nbsp;Вы забрели в <br>мое подземелье</h1>";
@@ -46,6 +47,11 @@ MessForPlayer::MessForPlayer(QGraphicsItem *parent) : QGraphicsTextItem(parent) 
     init_messages[4] = "<h1>Я буду помогать вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;и <br> &nbsp;&nbsp;давать подсказки</h1>";
     init_messages[5] = "<h1>Вот первая из них: </h1>";
     init_messages[6] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;Дверь откроется <br> только <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;двумя <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ключами <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;одновременно</h1>";
+    init_messages[7] = "<h2>&nbsp;&nbsp;W - вверх, S - вниз <br> A - влево, D - вправо</h2>";
+    init_messages[8] = "<h2> Кнопка действий: <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caps Lock </h2>";
+    init_messages[9] = "<h2> &nbsp;&nbsp;&#8593;- вверх, &#8595; - вниз <br> &#8592; - влево, &#8594; - вправо</h2>";
+    init_messages[10] = "<h2> Кнопка действий: <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shift </h2>";
+    init_messages[11] = "<h1> УПРАВЛЕНИЕ <br> &nbsp;&nbsp;ИГРОКАМИ </h1>";
     action_messages["none"] = "";
     action_messages["can open door"] = "<h1>Молодцы, путники. <br>Теперь вы можете <br> открыть дверь</h1>";
     action_messages["open door"] = "<h1>Нажмите пробел, <br> &nbsp;&nbsp;&nbsp;чтобы пройти <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;через дверь</h1>"; // 40, 575
@@ -57,6 +63,7 @@ MessForPlayer::MessForPlayer(QGraphicsItem *parent) : QGraphicsTextItem(parent) 
     action_messages["2 break wall right"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену справа</h1>";
     action_messages["2 break wall up"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену ниже</h1>";
     action_messages["2 break wall down"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену выше</h1>";
+    action_messages["already has"] = "<h1> &nbsp;Не будьте жадными. <br> &nbsp;Больше этих <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;предметов<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;вам не нужно</h1>";
 }
 
 void MessForPlayer::setMessForPlayer(int num, int x, int y, int locationNum) {

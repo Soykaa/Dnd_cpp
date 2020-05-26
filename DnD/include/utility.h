@@ -9,18 +9,7 @@
 #include "key.h"
 #include "connectionWithPlayer.h"
 #include "BackpackIm.h"
-
-enum class Type {
-    emptyField,
-    obstacle,
-    door,
-    start,
-    finnish,
-    gift,
-    destroyableWall,
-    key
-    // TODO
-};
+#include "well.h"
 
 enum class Direction {
     up,
@@ -60,6 +49,12 @@ struct ConnectionWindow {
     WindowForText_D* wft_b;
     MessForPlayer* mess;
     MessForPlayer* hint;
+    MessForPlayer* hint2;
+    MessForPlayer* hint3;
+    MessForPlayer* hint4;
+    MessForPlayer* hint5;
+    ItemBack* char1;
+    ItemBack* char2;
 };
 
 struct BackpackIm {
@@ -72,6 +67,23 @@ struct destroyableWall {
     std::string dir;
     int x;
     int y;
+};
+
+struct CharIm{
+    int char1;
+    int char2;
+    std::vector<QString> chars;
+};
+
+struct RopeCord {
+    WellItem* rope;
+    int x;
+    int y;
+};
+
+struct Well {
+    WellItem* well;
+    std::vector<RopeCord> ropes;
 };
 
 #endif

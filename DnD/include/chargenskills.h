@@ -12,6 +12,7 @@ class CharGenSkills : public QWidget {
 
 public:
     explicit CharGenSkills(QWidget *parent = 0);
+    void setImages(QString str1, QString str2);
     ~CharGenSkills();
 
 private slots:

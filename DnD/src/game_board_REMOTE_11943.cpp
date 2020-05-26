@@ -3,7 +3,6 @@
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QGraphicsItem>
-#include <fstream>
 #include "include/sleep.h"
 #include "include/game_board.h"
 #include "include/player.h"
@@ -169,31 +168,21 @@ void GameBoard::makeGame() {
     makeLeftWindow();
     makeBackpack();
     makeFrame("../images/obstacle.png");
-
-    player_->setPlayer("../images/dragonborn.png");
-    scenes[0]->addItem(player_);
-    player2_->setPlayer("../images/character.png");
     player_->setPlayer(charIm.chars[charIm.char1]);
-    //player_->setPos(start_x, start_y);
-    //player_->setFlag(QGraphicsItem::ItemIsFocusable);
-    //player_->setFocus();
-    scenes[0]->addItem(player_);
-    player2_->setPlayer(charIm.chars[charIm.char2]);
-    //player2_->setPos(start_x, start_y);
-    //player2_->setFlag(QGraphicsItem::ItemIsFocusable);
-    //player2_->setFocus();
-    scenes[0]->addItem(player2_);
-    buildBoard(0, "../locations/first_location.txt");
-    makeDoor(5, 5);
+    player_->setPos(start_x, start_y);
     player_->setFlag(QGraphicsItem::ItemIsFocusable);
     player_->setFocus();
+    scenes[0]->addItem(player_);
+    player2_->setPlayer(charIm.chars[charIm.char2]);
+    player2_->setPos(start_x, start_y);
     player2_->setFlag(QGraphicsItem::ItemIsFocusable);
     player2_->setFocus();
-    buildBoard(1,"../locations/second_location.txt" );
+    scenes[0]->addItem(player2_);
+    makeDoor(5, 5);
     makeRandomGifts(10, 0);
     makeWell();
-    //makeKeys(0);
-    //makeObstacles();
+    makeKeys(0);
+    makeObstacles();
     //makeRandomObstacles(47, 0);
     //makeRandomObstacles(37, 1);
     this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(),
@@ -576,39 +565,5 @@ void GameBoard::changeLocation() {
         setScene(scenes[0]);
         currentLocation_ = Location::firstLocation;
         return;
-    }
-}
-
-void GameBoard::buildBoard(int location, std::string filename) {
-    std::ifstream file;
-    file.open(filename, std::ios_base::in);
-    assert(file.is_open());
-    while (!file.eof()) {
-        std::string object;
-        int x, y;
-        file >> object >> x >> y;
-        if (object == "player1") {
-            player_->setPos(start_x + x * game->cell_width, start_y + y * game->cell_width);
-        }
-        else if (object == "player2") {
-            player2_->setPos(start_x + x * game->cell_width, start_y + y * game->cell_width);
-        }
-        /*
-        else if (object == "door") {
-            makeDoor
-        }
-         */
-        else if (object == "gift") {
-            makeGift(x, y, location);
-        }
-        else if (object == "key") {
-            makeKey(x, y, location);
-        }
-        else if (object == "obstacle") {
-            makeObstacle("../images/obstacle.png", x, y, location, false);
-        }
-        else if (object == "destroyableObstacle") {
-            makeObstacle("../images/obstacle.png", x, y, location, true);
-        }
     }
 }
