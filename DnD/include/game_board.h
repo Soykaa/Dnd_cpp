@@ -53,6 +53,7 @@ public:
     void makeLeftWindow();
     void makeBackpack();
     void takeKey(int player);
+    void buildBoard(int location, std::string filename);
     std::vector<Board>boards;
     std::vector<QGraphicsScene*>scenes;
     void keyPressEvent(QKeyEvent *event);
@@ -61,7 +62,7 @@ public:
     int start_y = 0;
     const int board_size = 795;
     const int cell_width = board_size / boards[0].getAmountOfEncounters();
-    const int window_width = start_x + board_size + 4*cell_width + 50;
+    const int window_width = start_x + board_size + 4 * cell_width + 50;
     const int window_height = board_size + cell_width;
     const int extract_height = 90;
 };
