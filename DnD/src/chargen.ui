@@ -109,7 +109,7 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(136, 138, 133);
@@ -123,6 +123,19 @@ color: white;</string>
       <width>30</width>
       <height>30</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="chpic">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>35</y>
+      <width>160</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
