@@ -32,7 +32,7 @@ public:
 
 class MessForPlayer : public QGraphicsTextItem {
 public:
-    explicit MessForPlayer(QGraphicsItem *parent = 0);
+    explicit MessForPlayer(int locationNum, QGraphicsItem *parent = 0);
     void setMessForPlayer(int num, int x, int y, int locationNum);
     void setMessForPlayer(const std::string, int x, int y, int locationNum);
 private:

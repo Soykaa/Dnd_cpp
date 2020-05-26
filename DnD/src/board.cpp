@@ -17,6 +17,10 @@ Type Board::getFieldType(size_t i, size_t j) {
     return board_[i][j].getType();
 }
 
+ItemType Board::getFieldItemType(size_t i, size_t j) {
+    return board_[i][j].getItem();
+}
+
 size_t Board::getAmountOfEncounters() {
     return amountOfEncounters_;
 }
@@ -50,9 +54,12 @@ void Board::takeGift(size_t deltaDexterity, int heroNum) {
     heroes[heroNum].h->cs_.setDexterity(heroes[heroNum].h->cs_.getDexterity() + deltaDexterity);
 }
 
+bool Board::canUseNotUniqueItems(int heroNum, ItemType item) {
+    return heroes[heroNum].h->bp_.countItems(item) >= 3;
+}
 
-void Board::changeOneFieldType(size_t i, size_t j, Type type) {
-    board_[i][j].changeType(type);
+void Board::changeOneFieldType(size_t i, size_t j, Type type, ItemType item) {
+    board_[i][j].changeType(type, item);
 }
 
 destroyableWall Board::check(int heroNum) {
@@ -75,15 +82,28 @@ destroyableWall Board::check(int heroNum) {
     return {"", -1, -1};
 }
 
-void Board::takeItem(int x, int y, int heroNum) {
-    if (board_[x][y].getType() == Type::key) {
-        heroes[heroNum].h->bp_.addItem(Item(ItemType::triangle_key));
-        board_[x][y].changeType(Type::emptyField);
-    }
+std::pair<bool, int> Board::takeItems(int x, int y, int heroNum) {
+    ItemType item = board_[x][y].getItem();
+    int num = heroes[heroNum].h->bp_.countItems(item);
+    if (num == 3)
+        return {0, 3};
+    heroes[heroNum].h->bp_.addItem(Item(item));
+    board_[x][y].changeType(Type::emptyField);
+    return {1, num + 1};
+}
+
+bool Board::takeUniqItem(int x, int y, int heroNum) {
+    ItemType item = board_[x][y].getItem();
+    if (heroes[heroNum].h->bp_.findItem(item))
+        return 0;
+    heroes[heroNum].h->bp_.addItem(Item(item));
+    board_[x][y].changeType(Type::emptyField);
+    return 1;
 }
 
 bool Board::canOpenDoor(int heroNum) {
-    return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key);
+    return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key) ||
+            heroes[heroNum].h->bp_.findItem(ItemType::square_key);
 }
 
 
@@ -92,7 +112,9 @@ void Board::makeTurn(Direction direction, int heroNum) {
     int Y = heroes[heroNum].y;
     if (direction == Direction::down) {
             if (board_[X][Y + 1].getType() != Type::emptyField) {
-                if (board_[X][Y + 1].getType() == Type::obstacle || board_[X][Y + 1].getType() == Type::destroyableWall) {
+                Type t = board_[X][Y + 1].getType();
+                bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+                if (canNotGo) {
                     return;
                 }
             }
@@ -104,7 +126,9 @@ void Board::makeTurn(Direction direction, int heroNum) {
         if (heroes[heroNum].y <= 0)
             return;
         if (board_[X][Y - 1].getType() != Type::emptyField) {
-            if (board_[X][Y - 1].getType() == Type::obstacle || board_[X][Y - 1].getType() == Type::destroyableWall) {
+            Type t = board_[X][Y - 1].getType();
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+            if (canNotGo) {
                 return;
             }
         }
@@ -113,11 +137,13 @@ void Board::makeTurn(Direction direction, int heroNum) {
             heroes[heroNum].y++;
     }
     if (direction == Direction::right) {
-            if (board_[X + 1][Y].getType() != Type::emptyField) {
-                if (board_[X + 1][Y].getType() == Type::obstacle || board_[X + 1][Y].getType() == Type::destroyableWall) {
-                    return;
-                }
+        if (board_[X + 1][Y].getType() != Type::emptyField) {
+            Type t = board_[X + 1][Y].getType();
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+            if (canNotGo) {
+                return;
             }
+        }
         heroes[heroNum].x++;
         if (heroes[heroNum].x >= amountOfEncounters_)
             heroes[heroNum].x--;
@@ -126,7 +152,9 @@ void Board::makeTurn(Direction direction, int heroNum) {
         if (heroes[heroNum].x <= 0)
             return;
         if (board_[X - 1][Y].getType() != Type::emptyField) {
-            if (board_[X - 1][Y].getType() == Type::obstacle || board_[X - 1][Y].getType() == Type::destroyableWall) {
+            Type t = board_[X - 1][Y].getType();
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+            if (canNotGo) {
                 return;
             }
         }

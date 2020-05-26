@@ -8,26 +8,7 @@
 #include <iosfwd>
 #include "character_skills.h"
 #include "backpack.h"
-
-//! enums
-enum class CharRace {
-    dragonborn,
-    elf,
-    human
-};
-
-enum class CharClass {
-    fighter,
-    druid,
-    wizard,
-    enemy //special one!
-};
-
-enum class SuperPowers {
-    athletics,
-    arcrobatics,
-    persuasion
-};
+#include "enums.h"
 
 //!@class Character
 class Character {

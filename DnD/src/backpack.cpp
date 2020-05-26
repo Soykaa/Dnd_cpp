@@ -5,13 +5,6 @@
 #include "include/backpack.h"
 
 
-//!@class Backpack: realization
-//! destructor
-// Backpack::~Backpack() {
-//     // for (auto & item : items_)
-//     //     delete [] item;
-// }
-
 //! Methods
 void Backpack::addItem(Item it) {
     items_.push_back(it);
@@ -34,6 +27,10 @@ bool Backpack::findItem(ItemType it) {
     return std::find(items_.begin(), items_.end(), Item(it)) != items_.end();
 }
 
+int Backpack::countItems(ItemType it) {
+    return std::count(items_.begin(), items_.end(), Item(it));
+}
+
 void Backpack::deleteItem(ItemType type) {
     for (size_t i = 0; i < items_.size(); i++)
         if (items_[i].getItemType() == type)
@@ -49,14 +46,8 @@ std::ostream& Backpack::output(std::ostream& out) { // tmp output
     for (int32_t i = 0; i < items_.size(); i++) {
         out << i + 1;
         switch (items_[i].getItemType()) {
-            case ItemType::health_el:
-                std::cout << "Health elixir\n";
-                break;
-            case ItemType::weapon:
-                std::cout << "Weapon\n";
-                break;
-            case ItemType::present:
-                std::cout << "Present\n";
+            case ItemType::gift:
+                std::cout << "Gift\n";
                 break;
             case ItemType::triangle_key:
                 std::cout << "Triangle key\n";

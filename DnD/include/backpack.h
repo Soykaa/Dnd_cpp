@@ -20,6 +20,7 @@ public:
     Item getItem(ItemType it);
     bool isFull();
     bool findItem(ItemType it);
+    int countItems(ItemType it);
 private:
     std::vector<Item> items_;
     std::ostream& output(std::ostream& out);
