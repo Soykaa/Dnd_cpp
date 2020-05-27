@@ -78,9 +78,9 @@
   <widget class="QCommandLinkButton" name="nextStep">
    <property name="geometry">
     <rect>
-     <x>265</x>
+     <x>240</x>
      <y>385</y>
-     <width>100</width>
+     <width>130</width>
      <height>40</height>
     </rect>
    </property>
