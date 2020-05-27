@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QGraphicsItem>
 #include <fstream>
+#include <cassert>
 #include "include/sleep.h"
 #include "include/game_board.h"
 #include "include/player.h"
