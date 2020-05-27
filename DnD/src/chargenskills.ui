@@ -35,7 +35,7 @@
      <x>30</x>
      <y>240</y>
      <width>240</width>
-     <height>250</height>
+     <height>252</height>
     </rect>
    </property>
    <property name="text">
@@ -123,7 +123,7 @@
      <x>380</x>
      <y>240</y>
      <width>240</width>
-     <height>250</height>
+     <height>252</height>
     </rect>
    </property>
    <property name="text">
@@ -158,7 +158,7 @@
     <enum>Qt::LeftToRight</enum>
    </property>
    <property name="autoFillBackground">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(136, 138, 133);
@@ -218,6 +218,276 @@ color: white
    </property>
    <property name="text">
     <string>                 Игрок 2</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills11">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>240</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills21">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>240</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills12">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>268</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills13">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>296</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills14">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>324</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills15">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>352</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills16">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>380</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills22">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>268</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills23">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>296</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills24">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>324</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills25">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>352</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills26">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>380</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Likhan&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills17">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>408</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills18">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>436</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills19">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>464</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills27">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>408</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills28">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>436</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skills29">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>464</y>
+     <width>240</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

@@ -36,7 +36,7 @@ enum class CharClass {
 
 enum class SuperPowers {
     athletics,
-    arcrobatics,
+    acrobatics,
     persuasion
 };
 

@@ -2,6 +2,7 @@
 #define CHARGENSKILLS_H
 
 #include <QWidget>
+#include "character.h"
 
 namespace Ui {
 class CharGenSkills;
@@ -12,7 +13,8 @@ class CharGenSkills : public QWidget {
 
 public:
     explicit CharGenSkills(QWidget *parent = 0);
-    void setImages(QString str1, QString str2);
+    void setParams(QString str1, QString str2, Hero* h1, Hero* h2);
+    void setSkills();
     ~CharGenSkills();
 
 private slots:
