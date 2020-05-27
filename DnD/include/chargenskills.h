@@ -12,7 +12,7 @@ class CharGenSkills : public QWidget {
     Q_OBJECT
 
 public:
-    explicit CharGenSkills(QWidget *parent = 0);
+    explicit CharGenSkills(QWidget* parent = 0);
     void setParams(QString str1, QString str2, Hero* h1, Hero* h2);
     void setSkills();
     ~CharGenSkills();

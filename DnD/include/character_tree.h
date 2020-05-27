@@ -4,18 +4,21 @@
 #include <iostream>
 #include <string>
 #include <iosfwd>
+#include "include/character.h"
 
 class CharacterTreeNode {
 public:
-    CharacterTreeNode(std::string qst, CharacterTreeNode* right, CharacterTreeNode* left);
+    CharacterTreeNode(std::string qst, CharacterTreeNode* right, CharacterTreeNode* left, int ans);
     std::string getQst() const;
+    int getAns() const;
     CharacterTreeNode* getLeftNode() const;
     CharacterTreeNode* getRightNode() const;
     void deleteCharacterTreeNode();
 private:
     std::string _qst;
-    CharacterTreeNode* _left;
     CharacterTreeNode* _right;
+    CharacterTreeNode* _left;
+    int _ans;
 };
 
 class CharacterTree {
@@ -26,7 +29,8 @@ public:
     CharacterTree& operator=(CharacterTree) = delete;
     CharacterTreeNode* getCharacterTreeRoot() const;
     void buildTree();
-//private:
+
+private:
     CharacterTreeNode* _root;
 };
 

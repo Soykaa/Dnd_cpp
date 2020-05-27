@@ -23,9 +23,7 @@ public:
 
 private slots:
     void on_randomMode_clicked();
-
     void on_nextStep_clicked();
-
     void on_standardMode_clicked();
 
 private:

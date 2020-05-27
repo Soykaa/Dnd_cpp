@@ -6,8 +6,7 @@
 #include "include/game_menu.h"
 #include "include/game_board.h"
 
-
-GameBoard *game;
+GameBoard* game;
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
