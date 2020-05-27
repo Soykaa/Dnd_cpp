@@ -8,6 +8,7 @@
 #include <QTime>
 
 #include "chargen2.h"
+#include "character_tree.h"
 
 namespace Ui {
 class CharGenTree;

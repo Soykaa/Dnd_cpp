@@ -26,7 +26,7 @@ public:
     CharacterTree& operator=(CharacterTree) = delete;
     CharacterTreeNode* getCharacterTreeRoot() const;
     void buildTree();
-private:
+//private:
     CharacterTreeNode* _root;
 };
 

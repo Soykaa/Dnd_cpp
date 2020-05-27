@@ -15,8 +15,8 @@ class Character {
 public:
     Character();
     virtual ~Character();
-    Character(const Character&) = delete;
-    Character& operator =(const Character&) = delete;
+    Character(const Character&) = default;
+    Character& operator =(const Character&);
 
     size_t getHealth() const;
     void setHealth(size_t health);

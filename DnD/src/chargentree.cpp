@@ -1,8 +1,12 @@
 #include <QtGui>
 #include <QDesktopWidget>
-
+#include <QDebug>
 #include "include/chargentree.h"
 #include "ui_chargentree.h"
+#include "include/game_board.h"
+
+extern GameBoard *game;
+
 
 CharGenTree::CharGenTree(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::CharGenTree) {
@@ -44,6 +48,10 @@ CharGenTree::~CharGenTree() {
 }
 
 void CharGenTree::on_next_step_clicked() {
+    CharacterSkills cs;
+    Backpack bp;
+    game->boards[0].heroes[0].h = new Hero(cs, bp);
+    game->boards[1].heroes[0].h = game->boards[0].heroes[0].h;
     chg->show();
     this->close();
 }

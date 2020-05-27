@@ -11,6 +11,11 @@ destroyableObstacle 9 1
 destroyableObstacle 12 1
 destroyableObstacle 12 2  
 
+enemy 13 12 1
+enemy 12 13 2
+
+rope 14 1
+rope 8 13
 
 obstacle 0 3
 obstacle 0 5

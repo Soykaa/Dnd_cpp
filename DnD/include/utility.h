@@ -11,6 +11,7 @@
 #include "BackpackIm.h"
 #include "well.h"
 #include "door.h"
+#include "enemy.h"
 
 enum class Direction {
     up,
@@ -64,7 +65,7 @@ struct BackpackIm {
     std::vector<ItemBack*> itb;
 };
 
-struct destroyableWall {
+struct destroyableObject {
     std::string dir;
     int x;
     int y;
@@ -85,6 +86,7 @@ struct RopeCord {
 struct Well {
     WellItem* well;
     std::vector<RopeCord> ropes;
+    bool canUse = false;
 };
 
 struct Doors {
@@ -92,6 +94,13 @@ struct Doors {
     int x0, y0;
     Door* door1;
     int x1, y1;
+};
+
+struct EnemyImCord {
+    int x;
+    int y;
+    Enemy en;
+    EnemyIm* ei;
 };
 
 #endif

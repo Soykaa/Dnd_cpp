@@ -46,7 +46,7 @@ bool Board::canDestroyWall(int heroNum) {
     return heroes[heroNum].h->cs_.getStrength() >= a + rand()%(b-a) || canUseNotUniqueItems(heroNum, ItemType::gift);
 }
 
-void Board::destroyWall(int x, int y) {
+void Board::destroy(int x, int y) {
     board_[x][y].changeType(Type::emptyField);
     return;
 }
@@ -65,10 +65,32 @@ void Board::changeOneFieldType(size_t i, size_t j, Type type, ItemType item) {
     board_[i][j].changeType(type, item);
 }
 
-destroyableWall Board::check(int heroNum) {
+int Board::beatEnemy(int heroNum, Enemy* en) {
+    if (heroes[heroNum].h->cs_.getCharisma() > en->getHitPoints())
+        return 1;
+    else if (heroes[heroNum].h->cs_.getConstitution() > en->getHitPoints())
+        return 2;
+    return -1;
+}
+
+void Board::reduce(int heroNum) {
+    heroes[heroNum].h->cs_.setCharisma(0);
+    heroes[heroNum].h->cs_.setConstitution(0);
+}
+
+void Board::increase(int heroNum) {
+    int tmp = rand() % 2;
+    if (tmp)
+        heroes[heroNum].h->cs_.setCharisma(23);
+    else
+        heroes[heroNum].h->cs_.setConstitution(23);
+}
+
+
+destroyableObject Board::check(int heroNum, Type type) {
     int X = heroes[heroNum].x;
     int Y = heroes[heroNum].y;
-    std::vector<destroyableWall> cords;
+    std::vector<destroyableObject> cords;
     cords.push_back({"right", X + 1, Y});
     cords.push_back({"left", X - 1, Y});
     cords.push_back({"up", X, Y + 1});
@@ -78,7 +100,7 @@ destroyableWall Board::check(int heroNum) {
             c.y < 0 || c.y >= amountOfEncounters_) {
                 continue;
             }
-        if (board_[c.x][c.y].getType() == Type::destroyableWall) {
+        if (board_[c.x][c.y].getType() == type) {
                 return c;
         }
     }
@@ -104,9 +126,10 @@ bool Board::takeUniqItem(int x, int y, int heroNum) {
     return 1;
 }
 
-bool Board::canOpenDoor(int heroNum) {
-    return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key) ||
-            heroes[heroNum].h->bp_.findItem(ItemType::square_key);
+bool Board::canUseOneItem(int heroNum, ItemType item) {
+    return heroes[heroNum].h->bp_.findItem(item) ||
+            heroes[heroNum].h->bp_.findItem(item);
+    //return 1;
 }
 
 
@@ -116,7 +139,7 @@ void Board::makeTurn(Direction direction, int heroNum) {
     if (direction == Direction::down) {
             if (board_[X][Y + 1].getType() != Type::emptyField) {
                 Type t = board_[X][Y + 1].getType();
-                bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+                bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
                 if (canNotGo) {
                     return;
                 }
@@ -130,7 +153,7 @@ void Board::makeTurn(Direction direction, int heroNum) {
             return;
         if (board_[X][Y - 1].getType() != Type::emptyField) {
             Type t = board_[X][Y - 1].getType();
-            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
             if (canNotGo) {
                 return;
             }
@@ -142,7 +165,7 @@ void Board::makeTurn(Direction direction, int heroNum) {
     if (direction == Direction::right) {
         if (board_[X + 1][Y].getType() != Type::emptyField) {
             Type t = board_[X + 1][Y].getType();
-            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
             if (canNotGo) {
                 return;
             }
@@ -156,7 +179,7 @@ void Board::makeTurn(Direction direction, int heroNum) {
             return;
         if (board_[X - 1][Y].getType() != Type::emptyField) {
             Type t = board_[X - 1][Y].getType();
-            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door);
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
             if (canNotGo) {
                 return;
             }

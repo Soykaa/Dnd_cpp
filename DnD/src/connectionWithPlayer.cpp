@@ -52,6 +52,9 @@ MessForPlayer::MessForPlayer(int locationNum, QGraphicsItem *parent) : QGraphics
     init_messages[9] = "<h2> &nbsp;&nbsp;&#8593;- вверх, &#8595; - вниз <br> &#8592; - влево, &#8594; - вправо</h2>";
     init_messages[10] = "<h2> Кнопка действий: <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shift </h2>";
     init_messages[11] = "<h1> УПРАВЛЕНИЕ <br> &nbsp;&nbsp;ИГРОКАМИ </h1>";
+    init_messages[12] = "<h1>Молодцы путники.<br> &nbsp;&nbsp;Вы стали ближе<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;к победе</h1>";
+    init_messages[13] = "<h1> &nbsp;&nbsp;Но впереди <br> все еще ждут <br> &nbsp;&nbsp;&nbsp;испытания </h1>";
+    init_messages[14] = "<h1> Вы не сможете выйти <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;пока не сразите <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;врага </h1>";
     action_messages["none"] = "";
     action_messages["can open door"] = "<h1>Молодцы, путники. <br>Теперь вы можете <br> открыть дверь</h1>";
     action_messages["open door"] = "<h1>Нажмите пробел, <br> &nbsp;&nbsp;&nbsp;чтобы пройти <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;через дверь</h1>"; // 40, 575
@@ -66,6 +69,15 @@ MessForPlayer::MessForPlayer(int locationNum, QGraphicsItem *parent) : QGraphics
     action_messages["already has"] = "<h1> &nbsp;Не будьте жадными. <br> &nbsp;Больше этих <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;предметов<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;вам не нужно</h1>";
     action_messages["weak"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;Эту стену можно <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;сломать,<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;но вы еще <br> недостаточно сильны";
     action_messages["need gift"] = "<h1> 3 подарка <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;помогут вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;обрести <br> &nbsp;&nbsp;&nbsp;необходимые силы</h1>";
+    action_messages["no ropes"] = "<h1> Колодец желаний <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;сломан. <br> У него не хватает <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;веревки </h1>";
+    action_messages["can use well"] = "<h1> Теперь вы можете <br> &nbsp;&nbsp;&nbsp;&nbsp;использовать <br> колодец желаний!</h1>";
+    action_messages["want increase"] = "<h1> Чтобы увеличить <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;силы <br> &nbsp;&nbsp;нажмите кнопку <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;действий";
+    action_messages["increased"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;Ваши силы <br> &nbsp;&nbsp;&nbsp;&nbsp;улучшены! <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вы можете <br> победить врага";
+    action_messages["weak2"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;У вас <br> недостаточно сил <br> &nbsp;&nbsp;чтобы победить <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;врага </h1>";
+    action_messages["not enough ropes"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вам нужно <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;две веревки <br> чтобы использовать <br> &nbsp;&nbsp;колодец желаний <h1>";
+    action_messages["use ropes"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Нажмите пробел, <br> чтобы использовать <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;веревки</h1>";
+
+
 }
 
 void MessForPlayer::setMessForPlayer(int num, int x, int y, int locationNum) {

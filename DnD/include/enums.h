@@ -10,6 +10,7 @@ enum class Type {
     finnish,
     well,
     destroyableWall,
+    enemy,
     // TODO
 };
 

@@ -35,9 +35,11 @@ public:
     Player* player_;
     Player* player2_;
     bool gameIsStarted = false;
+    bool firstChange = true;
     CharIm charIm;
     std::vector<ConnectionWindow> conWind;
     std::vector<BackpackIm> bpi;
+    std::vector<std::vector<EnemyImCord>> enemies;
     //ConnectionWindow conWind;
     BackpackIm bp;
     Doors doors;
@@ -52,6 +54,7 @@ public:
     void makeObstacles();
     void makeGift(int x, int y, int location);
     void makeKey(int x, int y, int location);
+    void makeEnemy(int x, int y, int location, int num);
     void makeKeys(int location);
     void makeObstacle(const QString str, int x, int y, int location, bool destroyable);
     void makeDoor(int x0, int y0, int x1, int y1);
