@@ -79,7 +79,7 @@ void CharGen2::on_randomMode_clicked() {
 
 void CharGen2::on_nextStep_clicked() {
     hide();
-    chgs->setImages(game->charIm.chars[game->charIm.char1], game->charIm.chars[game->charIm.char2], game->boards[0].heroes[0].h);
+    chgs->setParams(game->charIm.chars[game->charIm.char1], game->charIm.chars[game->charIm.char2], game->boards[0].heroes[0].h, game->boards[0].heroes[1].h);
     chgs->show();
 }
 

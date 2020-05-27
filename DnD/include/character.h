@@ -39,7 +39,7 @@ public:
     CharacterSkills getHeroSkills() const;
     CharRace getRace() const;
     CharClass getClass() const;
-    void heroInfo();
+    SuperPowers getSP() const;
 
 private:
     size_t character_level_;

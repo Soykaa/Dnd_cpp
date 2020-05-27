@@ -79,7 +79,7 @@ Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
             sp_ = SuperPowers::persuasion;
             break;
         default:
-            sp_ = SuperPowers::athletics;
+            sp_ = SuperPowers::acrobatics;
             break;
     }
     name_ = "Sergey";
@@ -89,7 +89,7 @@ Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
 Hero::Hero(std::string name, const CharacterSkills& cs, const Backpack& bp)
         : Character(), cs_(cs), bp_(bp),
         character_level_(1), race_(CharRace::dragonborn),
-        class_(CharClass::fighter) {
+        class_(CharClass::fighter), sp_(SuperPowers::persuasion) {
     name_ = name;
 }
 
@@ -113,33 +113,6 @@ CharClass Hero::getClass() const {
     return class_;
 }
 
-void Hero::heroInfo() {
-    size_t cur_intelligence = cs_.getIntelligence();
-    size_t cur_wisdom = cs_.getWisdom();
-    size_t cur_strength = cs_.getStrength();
-    size_t cur_dexterity = cs_.getDexterity();
-    size_t cur_constitution = cs_.getConstitution();
-    size_t cur_charisma = cs_.getCharisma();
-
-    std::string cur_race, cur_class;
-    if (race_ == CharRace::dragonborn)
-        cur_race = "Dragonborn";
-    if (class_ == CharClass::fighter)
-        cur_class = "Fighter";
-
-    std::cout << "*********************************************************" << std::endl;
-    std::cout << "=========================================================" << std::endl;
-    std::cout << "          " << name_ << "           "
-              << "Level " << character_level_ << "            "<< std::endl;
-    std::cout << "=========================================================" << std::endl;
-    std::cout << "Race: " << cur_race << std::endl;
-    std::cout << "Class: " << cur_class << std::endl;
-    std::cout << "Health: " << health_ << std::endl;
-    std::cout << "Intelligence: " << cur_intelligence << std::endl;
-    std::cout << "Wisdom: " << cur_wisdom << std::endl;
-    std::cout << "Strength: " << cur_strength << std::endl;
-    std::cout << "Dexterity: " << cur_dexterity << std::endl;
-    std::cout << "Constitution: " << cur_constitution << std::endl;
-    std::cout << "Charisma: " << cur_charisma << std::endl;
-    std::cout << "*********************************************************" << std::endl;
+SuperPowers Hero::getSP() const {
+    return sp_;
 }
