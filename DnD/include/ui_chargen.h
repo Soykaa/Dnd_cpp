@@ -43,10 +43,10 @@ public:
         bg->setMaximumSize(QSize(400, 460));
         standardMode = new QPushButton(centralWidget);
         standardMode->setObjectName(QStringLiteral("standardMode"));
-        standardMode->setGeometry(QRect(35, 275, 130, 50));
+        standardMode->setGeometry(QRect(25, 275, 160, 50));
         randomMode = new QPushButton(centralWidget);
         randomMode->setObjectName(QStringLiteral("randomMode"));
-        randomMode->setGeometry(QRect(235, 275, 130, 50));
+        randomMode->setGeometry(QRect(210, 275, 160, 50));
         nextStep = new QCommandLinkButton(centralWidget);
         nextStep->setObjectName(QStringLiteral("nextStep"));
         nextStep->setGeometry(QRect(265, 385, 100, 40));
@@ -62,8 +62,8 @@ public:
     void retranslateUi(QMainWindow *CharGen) {
         CharGen->setWindowTitle(QApplication::translate("CharGen", "CharGen", Q_NULLPTR));
         bg->setText(QString());
-        standardMode->setText(QApplication::translate("CharGen", "Standard mode", Q_NULLPTR));
-        randomMode->setText(QApplication::translate("CharGen", "Random mode", Q_NULLPTR));
+        standardMode->setText(QApplication::translate("CharGen", "\320\241\321\202\320\260\320\275\320\264\320\260\321\200\321\202\320\275\321\213\320\271 \321\200\320\265\320\266\320\270\320\274", Q_NULLPTR));
+        randomMode->setText(QApplication::translate("CharGen", "\320\241\320\273\321\203\321\207\320\260\320\271\320\275\321\213\320\271 \321\200\320\265\320\266\320\270\320\274", Q_NULLPTR));
         nextStep->setText(QApplication::translate("CharGen", "\320\224\320\260\320\273\320\265\320\265", Q_NULLPTR));
     } // retranslateUi
 };

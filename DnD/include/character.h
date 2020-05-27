@@ -4,53 +4,21 @@
 #define CHARACTER_H_
 
 #include <iostream>
+#include <string>
 #include <iosfwd>
 #include "character_skills.h"
 #include "backpack.h"
-
-//! enums
-enum class CharRace {
-    dragonborn,
-    dwarf,
-    elf,
-    gnome,
-    human,
-    orc
-};
-
-enum class CharClass {
-    fighter,
-    druid,
-    paladin,
-    ranger,
-    rogue,
-    warlock,
-    wizard,
-    enemy //special one!
-};
-
-enum class SuperPowers {
-    athletics,
-    arcrobatics,
-    stealth,
-    arcana,
-    investigation,
-    medicine,
-    survival,
-    deception,
-    persuasion
-};
+#include "enums.h"
 
 //!@class Character
 class Character {
 public:
     Character();
     virtual ~Character();
-    Character(const Character&) = delete;
-    Character& operator =(const Character&) = delete;
+    Character(const Character&) = default;
+    Character& operator =(const Character&);
 
     size_t getHealth() const;
-
     void setHealth(size_t health);
 protected:
     size_t health_;
@@ -60,30 +28,29 @@ protected:
 class Hero: public Character {
 public:
     Hero(const CharacterSkills& cs, const Backpack& bp);
-    Hero(const char* name, const CharacterSkills& cs, const Backpack& bp);
+    Hero(std::string name, const CharacterSkills& cs, const Backpack& bp);
     ~Hero() override;
 
-    const char* getName() const;
-    char getSymbOnField() const;
-
-    size_t getActionPoints() const;
-    CharacterSkills getHeroSkills() const;
-    CharRace getRace() const;
-    CharClass getClass() const;
-
-    void setActionPoints(size_t ap);
-
-    void heroInfo();
     CharacterSkills cs_;
     Backpack bp_;
 
+    void setName(std::string name);
+    std::string getName() const;
+    CharacterSkills getHeroSkills() const;
+    CharRace getRace() const;
+    CharClass getClass() const;
+    SuperPowers getSP() const;
+
+    void setSP(SuperPowers sp);
+    void setRace(CharRace cr);
+    void setClass(CharClass cs);
+
 private:
-    char* name_;
     size_t character_level_;
-    size_t action_points_;
-    char symb_on_field_;
+    std::string name_;
     CharRace race_;
     CharClass class_;
+    SuperPowers sp_;
 };
 
 //! @class Enemy
@@ -99,7 +66,6 @@ public:
     void setHitPoints(size_t hit_points);
 private:
     size_t hit_points_; // just to make an attack
-    char symb_on_field_;
     CharClass class_;
 };
 

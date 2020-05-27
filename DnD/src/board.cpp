@@ -1,10 +1,14 @@
 #include "include/board.h"
+#include <QDebug>
+#include <algorithm>
 #include "include/door.h"
 #include "include/game_board.h"
 
 extern GameBoard *game;
 
-Board::Board() {}
+Board::Board() {
+    heroes.resize(2);
+}
 
 Encounter Board::getField(size_t i, size_t j) {
     return board_[i][j];
@@ -14,145 +18,174 @@ Type Board::getFieldType(size_t i, size_t j) {
     return board_[i][j].getType();
 }
 
+ItemType Board::getFieldItemType(size_t i, size_t j) {
+    return board_[i][j].getItem();
+}
+
 size_t Board::getAmountOfEncounters() {
     return amountOfEncounters_;
 }
 
-int Board::getCharacterPosition_X_1() {
-    return characterPosition_X_1;
+int Board::getCharacterPosition_X(int heroNum) {
+    return heroes[heroNum].x;
 }
 
-int Board::getCharacterPosition_Y_1() {
-    return characterPosition_Y_1;
+int Board::getCharacterPosition_Y(int heroNum) {
+    return heroes[heroNum].y;
 }
 
-int Board::getCharacterPosition_X_2() {
-    return characterPosition_X_2;
+
+bool Board::canWin(int heroNum) {
+    return heroes[heroNum].h->cs_.getDexterity() >= 19;
 }
 
-int Board::getCharacterPosition_Y_2() {
-    return characterPosition_Y_2;
+
+bool Board::canDestroyWall(int heroNum) {
+    int a = std::min(heroes[0].h->cs_.getStrength(), heroes[1].h->cs_.getStrength()) + 1;
+    int b = std::max(heroes[0].h->cs_.getStrength(), heroes[1].h->cs_.getStrength());
+    return heroes[heroNum].h->cs_.getStrength() >= a + rand()%(b-a) || canUseNotUniqueItems(heroNum, ItemType::gift);
 }
 
-bool Board::canWin_1() {
-    int cur_dexterity = h1->cs_.getDexterity();
-    return cur_dexterity >= 19;
+void Board::destroy(int x, int y) {
+    board_[x][y].changeType(Type::emptyField);
+    return;
 }
 
-bool Board::canWin_2() {
-    int cur_dexterity = h2->cs_.getDexterity();
-    return cur_dexterity >= 19;
+
+void Board::takeGift(size_t deltaDexterity, int heroNum) {
+    board_[heroes[heroNum].x][heroes[heroNum].y].changeType(Type::emptyField);
+    heroes[heroNum].h->cs_.setDexterity(heroes[heroNum].h->cs_.getDexterity() + deltaDexterity);
 }
 
-void Board::takeGift_1(size_t deltaDexterity) {
-    board_[characterPosition_X_1][characterPosition_Y_1].changeType(Type::emptyField);
-    h1->cs_.setDexterity(h1->cs_.getDexterity() + deltaDexterity);
+bool Board::canUseNotUniqueItems(int heroNum, ItemType item) {
+    return heroes[heroNum].h->bp_.countItems(item) >= 3;
 }
 
-void Board::takeGift_2(size_t deltaDexterity) {
-    board_[characterPosition_X_2][characterPosition_Y_2].changeType(Type::emptyField);
-    h2->cs_.setDexterity(h2->cs_.getDexterity() + deltaDexterity);
+void Board::changeOneFieldType(size_t i, size_t j, Type type, ItemType item) {
+    board_[i][j].changeType(type, item);
 }
 
-void Board::changeOneFieldType(size_t i, size_t j, Type type) {
-    board_[i][j].changeType(type);
+int Board::beatEnemy(int heroNum, Enemy* en) {
+    if (heroes[heroNum].h->cs_.getCharisma() > en->getHitPoints())
+        return 1;
+    else if (heroes[heroNum].h->cs_.getConstitution() > en->getHitPoints())
+        return 2;
+    return -1;
 }
 
-void Board::makeTurn_1(Direction direction) {
-    size_t X = characterPosition_X_1;
-    size_t Y = characterPosition_Y_1;
+void Board::reduce(int heroNum) {
+    heroes[heroNum].h->cs_.setCharisma(0);
+    heroes[heroNum].h->cs_.setConstitution(0);
+}
+
+void Board::increase(int heroNum) {
+    int tmp = rand() % 2;
+    if (tmp)
+        heroes[heroNum].h->cs_.setCharisma(23);
+    else
+        heroes[heroNum].h->cs_.setConstitution(23);
+}
+
+
+destroyableObject Board::check(int heroNum, Type type) {
+    int X = heroes[heroNum].x;
+    int Y = heroes[heroNum].y;
+    std::vector<destroyableObject> cords;
+    cords.push_back({"right", X + 1, Y});
+    cords.push_back({"left", X - 1, Y});
+    cords.push_back({"up", X, Y + 1});
+    cords.push_back({"down", X, Y - 1});
+    for (auto c : cords) {
+        if (c.x < 0 || c.x >= amountOfEncounters_ ||
+            c.y < 0 || c.y >= amountOfEncounters_) {
+                continue;
+            }
+        if (board_[c.x][c.y].getType() == type) {
+                return c;
+        }
+    }
+    return {"", -1, -1};
+}
+
+std::pair<bool, int> Board::takeItems(int x, int y, int heroNum) {
+    ItemType item = board_[x][y].getItem();
+    int num = heroes[heroNum].h->bp_.countItems(item);
+    if (num == 3)
+        return {0, 3};
+    heroes[heroNum].h->bp_.addItem(Item(item));
+    board_[x][y].changeType(Type::emptyField);
+    return {1, num + 1};
+}
+
+bool Board::takeUniqItem(int x, int y, int heroNum) {
+    ItemType item = board_[x][y].getItem();
+    if (heroes[heroNum].h->bp_.findItem(item))
+        return 0;
+    heroes[heroNum].h->bp_.addItem(Item(item));
+    board_[x][y].changeType(Type::emptyField);
+    return 1;
+}
+
+bool Board::canUseOneItem(int heroNum, ItemType item) {
+    return heroes[heroNum].h->bp_.findItem(item) ||
+            heroes[heroNum].h->bp_.findItem(item);
+    //return 1;
+}
+
+
+void Board::makeTurn(Direction direction, int heroNum) {
+    int X = heroes[heroNum].x;
+    int Y = heroes[heroNum].y;
     if (direction == Direction::down) {
             if (board_[X][Y + 1].getType() != Type::emptyField) {
-                if (board_[X][Y + 1].getType() == Type::obstacle) {
+                Type t = board_[X][Y + 1].getType();
+                bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
+                if (canNotGo) {
                     return;
                 }
             }
-        characterPosition_Y_1++;
-        if (characterPosition_Y_1 >= amountOfEncounters_)
-            characterPosition_Y_1--;
+        heroes[heroNum].y++;
+        if (heroes[heroNum].y >= amountOfEncounters_)
+            heroes[heroNum].y--;
     }
     if (direction == Direction::up) {
-        if (characterPosition_Y_1 <= 0)
+        if (heroes[heroNum].y <= 0)
             return;
         if (board_[X][Y - 1].getType() != Type::emptyField) {
-            if (board_[X][Y - 1].getType() == Type::obstacle) {
+            Type t = board_[X][Y - 1].getType();
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
+            if (canNotGo) {
                 return;
             }
         }
-        characterPosition_Y_1--;
-        if (characterPosition_Y_1 < 0)
-            characterPosition_Y_1++;
-        board_[characterPosition_X_1][characterPosition_Y_1].getType() == Type::door ? game->door_->player1 = true : game ->door_->player1 = false;
+        heroes[heroNum].y--;
+        if (heroes[heroNum].y < 0)
+            heroes[heroNum].y++;
     }
     if (direction == Direction::right) {
-            if (board_[X + 1][Y].getType() != Type::emptyField) {
-                if (board_[X + 1][Y].getType() == Type::obstacle) {
-                    return;
-                }
+        if (board_[X + 1][Y].getType() != Type::emptyField) {
+            Type t = board_[X + 1][Y].getType();
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
+            if (canNotGo) {
+                return;
             }
-        characterPosition_X_1++;
-        if (characterPosition_X_1 >= amountOfEncounters_)
-            characterPosition_X_1--;
+        }
+        heroes[heroNum].x++;
+        if (heroes[heroNum].x >= amountOfEncounters_)
+            heroes[heroNum].x--;
     }
     if (direction == Direction::left) {
-        if (characterPosition_X_1 <= 0)
+        if (heroes[heroNum].x <= 0)
             return;
         if (board_[X - 1][Y].getType() != Type::emptyField) {
-            if (board_[X - 1][Y].getType() == Type::obstacle) {
+            Type t = board_[X - 1][Y].getType();
+            bool canNotGo = (t != Type::item) && (t != Type::start) && (t != Type::finnish) && (t != Type::door) && (t != Type::well);
+            if (canNotGo) {
                 return;
             }
         }
-        characterPosition_X_1--;
-        if (characterPosition_X_1 < 0)
-            characterPosition_X_1++;
-    }
-}
-
-void Board::makeTurn_2(Direction direction) {
-    size_t X = characterPosition_X_2;
-    size_t Y = characterPosition_Y_2;
-    if (direction == Direction::down) {
-            if (board_[X][Y + 1].getType() != Type::emptyField) {
-                if (board_[X][Y + 1].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_Y_2++;
-        if (characterPosition_Y_2 >= amountOfEncounters_)
-            characterPosition_Y_2--;
-    }
-    if (direction == Direction::up) {
-        if (characterPosition_Y_2 <= 0)
-            return;
-        if (board_[X][Y - 1].getType() != Type::emptyField) {
-            if (board_[X][Y - 1].getType() == Type::obstacle) {
-                return;
-            }
-        }
-        characterPosition_Y_2--;
-        if (characterPosition_Y_2 < 0)
-            characterPosition_Y_2++;
-    }
-    if (direction == Direction::right) {
-            if (board_[X + 1][Y].getType() != Type::emptyField) {
-                if (board_[X + 1][Y].getType() == Type::obstacle) {
-                    return;
-                }
-            }
-        characterPosition_X_2++;
-        if (characterPosition_X_2 >= amountOfEncounters_)
-            characterPosition_X_2--;
-    }
-    if (direction == Direction::left) {
-        if (characterPosition_X_2 <= 0)
-            return;
-        if (board_[X - 1][Y].getType() != Type::emptyField) {
-            if (board_[X - 1][Y].getType() == Type::obstacle) {
-                return;
-            }
-        }
-        characterPosition_X_2--;
-        if (characterPosition_X_2 < 0)
-            characterPosition_X_2++;
+        heroes[heroNum].x--;
+        if (heroes[heroNum].x < 0)
+            heroes[heroNum].x++;
     }
 }
