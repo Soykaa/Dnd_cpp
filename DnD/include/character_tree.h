@@ -29,6 +29,7 @@ public:
     CharacterTree& operator=(CharacterTree) = delete;
     CharacterTreeNode* getCharacterTreeRoot() const;
     void buildTree();
+    void generateChar(Hero* h, CharacterTreeNode* n);
 
 private:
     CharacterTreeNode* _root;

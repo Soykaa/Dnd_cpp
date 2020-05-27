@@ -25,11 +25,6 @@ class GameBoard : public QGraphicsView {
 public:
     int locationNum = 0;
     GameBoard();
-    enum class Location {
-        firstLocation, //можно назвать как-то осмысленно
-        secondLocation,
-    };
-    Location currentLocation_;
     void changeLocation();
     Well well;
     Player* player_;
@@ -55,6 +50,7 @@ public:
     void makeGift(int x, int y, int location);
     void makeKey(int x, int y, int location);
     void makeEnemy(int x, int y, int location, int num);
+    void makeExit(int x, int  y, int locationNum);
     void makeKeys(int location);
     void makeObstacle(const QString str, int x, int y, int location, bool destroyable);
     void makeDoor(int x0, int y0, int x1, int y1);

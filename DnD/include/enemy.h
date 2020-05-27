@@ -10,4 +10,4 @@ public:
     void setEnemyIm(QString str, int x, int y, int locationNum);
 };
 
-#endif //DND_GIFT_H
+#endif //DND_ENEMY_H

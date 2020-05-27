@@ -35,8 +35,7 @@ GameBoard::GameBoard() {
     enemies.resize(2);
     bpi.resize(2);
     obstacles_.resize(2);
-    boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 3, boards[1].getAmountOfEncounters() - 1, Type::finnish);
-    currentLocation_ = Location::firstLocation;
+    //boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 3, boards[1].getAmountOfEncounters() - 1, Type::finnish);
     for (auto& scene : scenes) {
         scene = new QGraphicsScene();
         scene -> setSceneRect(0, 0, window_width, window_height + extract_height);
@@ -197,7 +196,6 @@ void GameBoard::makeGame() {
     player2_->setFlag(QGraphicsItem::ItemIsFocusable);
     player2_->setFocus();
     buildBoard(1, "../locations/second_location.txt");
-    makeRandomGifts(10, 0);
     this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(), qApp->desktop()->availableGeometry()));
     show();
 }
@@ -273,6 +271,12 @@ void GameBoard::makeObstacle(const QString str, int x, int y, int location, bool
     boards[location].changeOneFieldType(x, y, destroyable ? Type::destroyableWall : Type::obstacle);
 }
 
+void GameBoard::makeExit(int x, int y, int locationNum) {
+    Door*  d = new Door();
+    d->setDoor(x, y, locationNum, 1);
+    boards[locationNum].changeOneFieldType(x, y, Type::finnish);
+}
+
 
 void GameBoard::makeRandomObstacles(int amount, int location) {
     for (int i = 0; i < amount; i++) {
@@ -304,8 +308,8 @@ void GameBoard::makeDoor(int x0, int y0, int x1, int y1) {
     doors.y0 = y0;
     doors.x1 = x1;
     doors.y1 = y1;
-    doors.door0->setDoor(x0, y0, 0);
-    doors.door1->setDoor(x1, y1, 1);
+    doors.door0->setDoor(x0, y0, 0 , 0);
+    doors.door1->setDoor(x1, y1, 1, 0);
     boards[0].changeOneFieldType(x0, y0, Type::door);
     boards[1].changeOneFieldType(x1, y1, Type::door);
 }
@@ -346,19 +350,15 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
         return;
 
     if (event->key() == Qt::Key_Left) {
-        //conWind[0].mess->setMessForPlayer("can use well", 40, 575, 0);
             boards[i].makeTurn(Direction::left, 0);
     }
     if (event->key() == Qt::Key_Right) {
-        //conWind[0].mess->setMessForPlayer("want increase", 40, 560, 0);
             boards[i].makeTurn(Direction::right, 0);
     }
     if (event->key() == Qt::Key_Up) {
-        //conWind[0].mess->setMessForPlayer("increased", 60, 550, 0);
             boards[i].makeTurn(Direction::up, 0);
     }
     if (event->key() == Qt::Key_Down) {
-        //conWind[0].mess->setMessForPlayer("use ropes", 15, 575, 0);
             boards[i].makeTurn(Direction::down, 0);
     }
 
@@ -447,7 +447,6 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
         } else {
             conWind[i].mess->setMessForPlayer("no ropes", 40, 555, locationNum);
         }
-
     }
 
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::well) {
@@ -459,12 +458,8 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
             }
         } else {
             conWind[i].mess->setMessForPlayer("no ropes", 40, 555, locationNum);
-
         }
-
     }
-    
-
 
     if (boards[i].getFieldItemType(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0)) == ItemType::triangle_key) {
         if (boards[i].takeUniqItem(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0), 0)) {
@@ -611,8 +606,6 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
             }
         } else {
             conWind[i].mess->setMessForPlayer("weak2", 40, 550, 0);
-            // sleep(900);
-            // conWind[i].mess->setMessForPlayer("need gift", 25, 550, locationNum);
         }
         sleep(900);
         conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
@@ -649,16 +642,13 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
             }
         } else {
             conWind[i].mess->setMessForPlayer("weak2", 40, 550, 0);
-            // sleep(900);
-            // conWind[i].mess->setMessForPlayer("need gift", 25, 550, locationNum);
         }
         sleep(900);
         conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
     }
 
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0)) == Type::finnish &&
-        boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::finnish &&
-        boards[i].canUseNotUniqueItems(0) && boards[i].canUseNotUniqueItems(1)) {
+        boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::finnish) {
         gameIsFinished = true;
         Message *text = new Message();
         text->setMessage(i);
@@ -681,7 +671,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
 }
 
 void GameBoard::changeLocation() {
-    if (currentLocation_ == Location::firstLocation) {
+    if (locationNum == 0) {
         locationNum = 1;
         setBackgroundBrush(QBrush(QImage("../images/second_location.jpg")));
         scenes[1]->addItem(player_);
@@ -698,14 +688,13 @@ void GameBoard::changeLocation() {
             sleep(800);
             conWind[1].mess->setMessForPlayer(13, 60, 575, 0);
             sleep(800);
-            conWind[1].mess->setMessForPlayer(14, 15, 560, 0); 
+            conWind[1].mess->setMessForPlayer(14, 15, 560, 0);
             sleep(800);
             firstChange = false;
         }
-        currentLocation_ = Location::secondLocation;
         return;
     }
-    if (currentLocation_ == Location::secondLocation) {
+    if (locationNum == 1) {
         locationNum = 0;
         setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
         scenes[0]->addItem(player_);
@@ -717,7 +706,6 @@ void GameBoard::changeLocation() {
         player_->setPos(start_x + boards[1].getCharacterPosition_X(0) * cell_width, start_y + boards[1].getCharacterPosition_Y(0) * cell_width);
         player2_->setPos(start_x + boards[1].getCharacterPosition_X(1) * cell_width, start_y + boards[1].getCharacterPosition_Y(1) * cell_width);
         setScene(scenes[0]);
-        currentLocation_ = Location::firstLocation;
         return;
     }
 }
@@ -744,6 +732,8 @@ void GameBoard::buildBoard(int location, std::string filename) {
             makeRope(x, y, location);
         } else if (object == "key") {
             makeKey(x, y, location);
+        } else if (object == "exit") {
+            makeExit(x, y, location);
         } else if (object == "well") {
             makeWell(x, y, location);
         } else if (object == "enemy") {

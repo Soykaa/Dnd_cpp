@@ -76,8 +76,6 @@ MessForPlayer::MessForPlayer(int locationNum, QGraphicsItem *parent) : QGraphics
     action_messages["weak2"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;У вас <br> недостаточно сил <br> &nbsp;&nbsp;чтобы победить <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;врага </h1>";
     action_messages["not enough ropes"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вам нужно <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;две веревки <br> чтобы использовать <br> &nbsp;&nbsp;колодец желаний <h1>";
     action_messages["use ropes"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Нажмите пробел, <br> чтобы использовать <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;веревки</h1>";
-
-
 }
 
 void MessForPlayer::setMessForPlayer(int num, int x, int y, int locationNum) {
