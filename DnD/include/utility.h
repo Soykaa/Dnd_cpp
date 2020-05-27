@@ -10,6 +10,7 @@
 #include "connectionWithPlayer.h"
 #include "BackpackIm.h"
 #include "well.h"
+#include "door.h"
 
 enum class Direction {
     up,
@@ -84,6 +85,13 @@ struct RopeCord {
 struct Well {
     WellItem* well;
     std::vector<RopeCord> ropes;
+};
+
+struct Doors {
+    Door* door0;
+    int x0, y0;
+    Door* door1;
+    int x1, y1;
 };
 
 #endif

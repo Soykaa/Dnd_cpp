@@ -39,6 +39,7 @@ public:
     std::vector<BackpackIm> bpi;
     //ConnectionWindow conWind;
     BackpackIm bp;
+    Doors doors;
     std::vector<KeyCord>keys_;
     std::vector<Dice*> dices_;
     std::vector<std::vector<GiftCord>> gifts_;
@@ -52,11 +53,11 @@ public:
     void makeKey(int x, int y, int location);
     void makeKeys(int location);
     void makeObstacle(const QString str, int x, int y, int location, bool destroyable);
-    void makeDoor(int x, int y);
+    void makeDoor(int x0, int y0, int x1, int y1);
     void makeFrame(const QString str);
     void makeGame();
     void makeLeftWindow();
-    void makeWell();
+    void makeWell(int x, int y, int locationNum);
     void makeRope(int x, int y, int locationNum);
     void makeBackpack();
     void takeKey(int player);

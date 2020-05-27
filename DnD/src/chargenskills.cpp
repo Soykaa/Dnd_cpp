@@ -4,6 +4,7 @@
 #include "include/chargenskills.h"
 #include "ui_chargenskills.h"
 #include "include/game_board.h"
+#include "include/character.h"
 
 extern GameBoard *game;
 
@@ -44,10 +45,12 @@ CharGenSkills::CharGenSkills(QWidget *parent) :
     move(center);
 }
 
-void CharGenSkills::setImages(QString str1, QString str2) {
+void CharGenSkills::setImages(QString str1, QString str2, Hero* h1) {
     QPixmap hero1(str1);
     CharGenSkills::ui->img1->setScaledContents(true);
     CharGenSkills::ui->img1->setPixmap(hero1.scaled(120, 180));
+    std::string str = h1->getName();
+    CharGenSkills::ui->bg_text11->setText(QString::fromLocal8Bit(str.c_str()));
 
     QPixmap hero2(str2);
     CharGenSkills::ui->img2->setScaledContents(true);

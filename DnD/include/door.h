@@ -6,7 +6,7 @@
 class Door : public QGraphicsPixmapItem {
 public:
     explicit Door(QGraphicsItem *parent = 0);
-    void setDoor();
+    void setDoor(int x, int y, int locationNum);
     bool player1, player2;
 };
 

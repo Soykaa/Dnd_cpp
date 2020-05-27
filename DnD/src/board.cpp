@@ -1,5 +1,6 @@
 #include "include/board.h"
 #include <QDebug>
+#include <algorithm>
 #include "include/door.h"
 #include "include/game_board.h"
 
@@ -40,11 +41,13 @@ bool Board::canWin(int heroNum) {
 
 
 bool Board::canDestroyWall(int heroNum) {
-    return heroes[heroNum].h->cs_.getStrength() >=1;
+    int a = std::min(heroes[0].h->cs_.getStrength(), heroes[1].h->cs_.getStrength()) + 1;
+    int b = std::max(heroes[0].h->cs_.getStrength(), heroes[1].h->cs_.getStrength());
+    return heroes[heroNum].h->cs_.getStrength() >= a + rand()%(b-a) || canUseNotUniqueItems(heroNum, ItemType::gift);
 }
 
 void Board::destroyWall(int x, int y) {
-        board_[x][y].changeType(Type::emptyField);
+    board_[x][y].changeType(Type::emptyField);
     return;
 }
 
@@ -66,8 +69,8 @@ destroyableWall Board::check(int heroNum) {
     int X = heroes[heroNum].x;
     int Y = heroes[heroNum].y;
     std::vector<destroyableWall> cords;
-    cords.push_back({"left", X + 1, Y});
-    cords.push_back({"right", X - 1, Y});
+    cords.push_back({"right", X + 1, Y});
+    cords.push_back({"left", X - 1, Y});
     cords.push_back({"up", X, Y + 1});
     cords.push_back({"down", X, Y - 1});
     for (auto c : cords) {
@@ -102,8 +105,9 @@ bool Board::takeUniqItem(int x, int y, int heroNum) {
 }
 
 bool Board::canOpenDoor(int heroNum) {
-    return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key) ||
-            heroes[heroNum].h->bp_.findItem(ItemType::square_key);
+    return 1;
+    // return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key) ||
+    //         heroes[heroNum].h->bp_.findItem(ItemType::square_key);
 }
 
 

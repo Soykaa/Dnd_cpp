@@ -3,6 +3,7 @@
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QGraphicsItem>
+#include <cassert>
 #include <fstream>
 #include "include/sleep.h"
 #include "include/game_board.h"
@@ -107,22 +108,20 @@ void GameBoard::makeRope(int x, int y, int location) {
     rp.x = x;
     rp.y = y;
     well.ropes.push_back(rp);
-    //gifts_[location].push_back(gf);
     boards[location].changeOneFieldType(x, y, Type::item, ItemType::rope);
 }
 
-void GameBoard::makeWell() {
+void GameBoard::makeWell(int x, int y, int locationNum) {
     well.well = new WellItem();
-    well.well->setWellItem(5, 5, 1, 0);
-    boards[1].changeOneFieldType(5, 5, Type::well);
-    boards[1].changeOneFieldType(6, 5, Type::well);
-    boards[1].changeOneFieldType(7, 5, Type::well);
-    boards[1].changeOneFieldType(5, 6, Type::well);
-    boards[1].changeOneFieldType(6, 6, Type::well);
-    boards[1].changeOneFieldType(7, 6, Type::well);
-    makeRope(2, 2, 0);
-    makeRope(4, 4, 0);
+    well.well->setWellItem(x, y, locationNum, 0);
+    boards[locationNum].changeOneFieldType(x, y, Type::well);
+    boards[locationNum].changeOneFieldType(x + 1, y, Type::well);
+    boards[locationNum].changeOneFieldType(x + 2, y, Type::well);
+    boards[locationNum].changeOneFieldType(x, y + 1, Type::well);
+    boards[locationNum].changeOneFieldType(x + 1, y + 1, Type::well);
+    boards[locationNum].changeOneFieldType(x + 2, y + 1, Type::well);
 }
+
 void GameBoard::takeGift(int player, int giftNum) {
     ItemBack* it1 = new ItemBack();
     ItemBack* it2 = new ItemBack();
@@ -184,20 +183,19 @@ void GameBoard::makeGame() {
     //player2_->setFocus();
     scenes[0]->addItem(player2_);
     buildBoard(0, "../locations/first_location.txt");
-    makeDoor(5, 5);
+    //makeDoor(5, 5);
     player_->setFlag(QGraphicsItem::ItemIsFocusable);
     player_->setFocus();
     player2_->setFlag(QGraphicsItem::ItemIsFocusable);
     player2_->setFocus();
     buildBoard(1,"../locations/second_location.txt" );
     makeRandomGifts(10, 0);
-    makeWell();
+    //makeWell();
     //makeKeys(0);
     //makeObstacles();
     //makeRandomObstacles(47, 0);
     //makeRandomObstacles(37, 1);
-    this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(),
-                                       qApp->desktop()->availableGeometry()));
+    this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(), qApp->desktop()->availableGeometry()));
     show();
 }
 
@@ -296,20 +294,24 @@ void GameBoard::makeObstacles() {
         makeObstacle("../images/obstacle.png", num, i, 0, false);
 }
 
-void GameBoard::makeDoor(int x, int y) {
-    door_ = new Door();
-    door_->setDoor();
-    door_->setPos(x * game->cell_width + start_x, y * game->cell_width + start_y);
-    scenes[0]->addItem(door_);
-    boards[0].changeOneFieldType(x, y, Type::door);
-    boards[1].changeOneFieldType(x + 1, y + 1, Type::door);
+void GameBoard::makeDoor(int x0, int y0, int x1, int y1) {
+    doors.door0 = new Door();
+    doors.door1 = new Door();
+    doors.x0 = x0;
+    doors.y0 = y0;
+    doors.x1 = x1;
+    doors.y1 = y1;
+    doors.door0->setDoor(x0, y0, 0);
+    doors.door1->setDoor(x1, y1, 1);
+    boards[0].changeOneFieldType(x0, y0, Type::door);
+    boards[1].changeOneFieldType(x1, y1, Type::door);
 }
 
 void GameBoard::keyPressEvent(QKeyEvent *event) {
     if (!gameIsStarted && event->key() == Qt::Key_Any) {
         conWind[0].hint->setMessForPlayer("", 0, 0, 0);
         gameIsStarted = true;
-        conWind[0].mess->setMessForPlayer(1, 40, 575, 0);
+        conWind[0].mess->setMessForPlayer(1, 40, 575, 0); // 40 575
         sleep(800);
         conWind[0].mess->setMessForPlayer(2, 40, 575, 0);
         sleep(800);
@@ -478,40 +480,52 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
 
     auto[dir1, a, b] = boards[i].check(0);
     qDebug() << a << " " << b << "\n";
-    if (dir1 != "" && boards[i].canDestroyWall(0)) {
-        std::string action = "1 break wall " + dir1;
-        conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
-        qDebug() << "press F to destroy wall " << a << " " << b << "\n";
-        if (event->key() == Qt::Key_Shift) {
-            qDebug() << "f pressed\n";
-            conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
-            for (ObstacleCord o : obstacles_[i])
-                if (o.x == a && o.y == b) {
-                    o.obst->setObstacle("../images/broakenwall.png", a, b, i);
-                    sleep(450);
-                    o.obst->~Obstacle();
-                }
-            boards[i].destroyWall(a, b);
+    if (dir1 != "") {
+        if(boards[i].canDestroyWall(0)) {
+            std::string action = "1 break wall " + dir1;
+            conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
+            qDebug() << "press F to destroy wall " << a << " " << b << "\n";
+            if (event->key() == Qt::Key_Shift) {
+                qDebug() << "f pressed\n";
+                conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
+                for (ObstacleCord o : obstacles_[i])
+                    if (o.x == a && o.y == b) {
+                        o.obst->setObstacle("../images/broakenwall.png", a, b, i);
+                        sleep(450);
+                        o.obst->~Obstacle();
+                    }
+                boards[i].destroyWall(a, b);
+            }
+        } else {
+            conWind[i].mess->setMessForPlayer("weak", 15, 550, locationNum);
+            sleep(900);
+            conWind[i].mess->setMessForPlayer("need gift", 25, 550, locationNum);
         }
         sleep(900);
         conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
     }
 
     auto[dir2, c, d] = boards[i].check(1);
-    if (dir2 != "" && boards[i].canDestroyWall(1)) {
-        std::string action = "2 break wall " + dir2;
-        conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
-        qDebug() << "press F to destroy wall " << c << " " << d << "\n";
-        if (event->key() == Qt::Key_CapsLock) {
-            qDebug() << "f pressed\n";
-            conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
-            for (ObstacleCord o : obstacles_[i])
-                if (o.x == c && o.y == d) {
-                    o.obst->setObstacle("../images/broakenwall.png", c, d, i);
-                    sleep(450);
-                    o.obst->~Obstacle();
-                }
-            boards[i].destroyWall(c, d);
+    if (dir2 != "") {
+        if (boards[i].canDestroyWall(1)) {
+            std::string action = "2 break wall " + dir2;
+            conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
+            qDebug() << "press F to destroy wall " << c << " " << d << "\n";
+            if (event->key() == Qt::Key_CapsLock) {
+                qDebug() << "f pressed\n";
+                conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
+                for (ObstacleCord o : obstacles_[i])
+                    if (o.x == c && o.y == d) {
+                        o.obst->setObstacle("../images/broakenwall.png", c, d, i);
+                        sleep(450);
+                        o.obst->~Obstacle();
+                    }
+                boards[i].destroyWall(c, d);
+            }
+        } else {
+            conWind[i].mess->setMessForPlayer("weak", 15, 550, locationNum);
+            sleep(900);
+            conWind[i].mess->setMessForPlayer("need gift", 25, 550, locationNum);
         }
         sleep(900);
         conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
@@ -547,15 +561,15 @@ void GameBoard::changeLocation() {
         setBackgroundBrush(QBrush(QImage("../images/second_location.jpg")));
         scenes[1]->addItem(player_);
         scenes[1]->addItem(player2_);
-        scenes[1]->addItem(door_);
-        door_->setPos(9 * game->cell_width + start_x, 9 * game->cell_width + start_y);
-        boards[1].heroes[0].x = 9;
-        boards[1].heroes[0].y = 9;
-        boards[1].heroes[1].x = 9;
-        boards[1].heroes[1].y = 9;
+        //scenes[1]->addItem(door_);
+        //door_->setPos(9 * game->cell_width + start_x, 9 * game->cell_width + start_y);
+        boards[1].heroes[0].x = doors.x1;
+        boards[1].heroes[0].y = doors.y1;
+        boards[1].heroes[1].x = doors.x1;
+        boards[1].heroes[1].y = doors.y1;
         player_->setPos(start_x + boards[1].getCharacterPosition_X(0) * cell_width, start_y + boards[1].getCharacterPosition_Y(0) * cell_width);
         player2_->setPos(start_x + boards[1].getCharacterPosition_X(1) * cell_width, start_y + boards[1].getCharacterPosition_Y(1) * cell_width);
-        boards[1].changeOneFieldType(9, 9, Type::door);
+        //boards[1].changeOneFieldType(9, 9, Type::door);
         setScene(scenes[1]);
         currentLocation_ = Location::secondLocation;
         return;
@@ -563,16 +577,15 @@ void GameBoard::changeLocation() {
     if (currentLocation_ == Location::secondLocation) {
         locationNum = 0;
         setBackgroundBrush(QBrush(QImage("../images/new_background.png")));
-        door_->setPos(5 * game->cell_width + start_x, 5 * game ->cell_width + start_y);
+        //door_->setPos(5 * game->cell_width + start_x, 5 * game ->cell_width + start_y);
         scenes[0]->addItem(player_);
         scenes[0]->addItem(player2_);
-        boards[1].heroes[0].x = 5;
-        boards[1].heroes[0].y = 5;
-        boards[1].heroes[1].x = 5;
-        boards[1].heroes[1].y = 5;
+        boards[1].heroes[0].x = doors.x0;
+        boards[1].heroes[0].y = doors.y0;
+        boards[1].heroes[1].x = doors.x0;
+        boards[1].heroes[1].y = doors.y0;
         player_->setPos(start_x + boards[1].getCharacterPosition_X(0) * cell_width, start_y + boards[1].getCharacterPosition_Y(0) * cell_width);
         player2_->setPos(start_x + boards[1].getCharacterPosition_X(1) * cell_width, start_y + boards[1].getCharacterPosition_Y(1) * cell_width);
-        scenes[0]->addItem(door_);
         setScene(scenes[0]);
         currentLocation_ = Location::firstLocation;
         return;
@@ -593,16 +606,24 @@ void GameBoard::buildBoard(int location, std::string filename) {
         else if (object == "player2") {
             player2_->setPos(start_x + x * game->cell_width, start_y + y * game->cell_width);
         }
-        /*
+        
         else if (object == "door") {
-            makeDoor
+            int x1, y1;
+            file >> x1 >> y1;
+            makeDoor(x, y, x1, y1);
         }
-         */
+         
         else if (object == "gift") {
             makeGift(x, y, location);
         }
+        else if (object == "rope") {
+            makeRope(x, y, location);
+        }
         else if (object == "key") {
             makeKey(x, y, location);
+        }
+        else if (object == "well") {
+            makeWell(x, y, location);
         }
         else if (object == "obstacle") {
             makeObstacle("../images/obstacle.png", x, y, location, false);

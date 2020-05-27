@@ -64,6 +64,9 @@ MessForPlayer::MessForPlayer(int locationNum, QGraphicsItem *parent) : QGraphics
     action_messages["2 break wall up"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену ниже</h1>";
     action_messages["2 break wall down"] = "<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Игрок 2, <br>&nbsp;&nbsp;вы можете сломать <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стену выше</h1>";
     action_messages["already has"] = "<h1> &nbsp;Не будьте жадными. <br> &nbsp;Больше этих <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;предметов<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;вам не нужно</h1>";
+    action_messages["weak"] = "<h1> &nbsp;&nbsp;&nbsp;&nbsp;Эту стену можно <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;сломать,<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;но вы еще <br> недостаточно сильны";
+    action_messages["need gift"] = "<h1> 3 подарка <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;помогут вам <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;обрести <br> &nbsp;&nbsp;&nbsp;необходимые силы</h1>";
+
 }
 
 void MessForPlayer::setMessForPlayer(int num, int x, int y, int locationNum) {
