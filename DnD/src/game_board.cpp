@@ -35,7 +35,6 @@ GameBoard::GameBoard() {
     enemies.resize(2);
     bpi.resize(2);
     obstacles_.resize(2);
-    //boards[1].changeOneFieldType(boards[1].getAmountOfEncounters() - 3, boards[1].getAmountOfEncounters() - 1, Type::finnish);
     for (auto& scene : scenes) {
         scene = new QGraphicsScene();
         scene -> setSceneRect(0, 0, window_width, window_height + extract_height);
