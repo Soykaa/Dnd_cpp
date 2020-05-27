@@ -101,9 +101,9 @@ void CharacterTree::buildTree() {
 }
 
 void CharacterTree::generateChar(Hero* h, CharacterTreeNode* n) {
-    switch(n->getAns()) {
+    switch (n->getAns()) {
         case 1:
-            h->setSP(SuperPowers::persuasion); 
+            h->setSP(SuperPowers::persuasion);
             h->setClass(CharClass::druid);
             h->setRace(CharRace::elf);
             break;
@@ -257,21 +257,22 @@ void CharacterTree::generateChar(Hero* h, CharacterTreeNode* n) {
         h->cs_.setStrength(9);
         h->cs_.setDexterity(8);
         h->cs_.setConstitution(6);
-        h->cs_.setCharisma(12);         
-    } else
+        h->cs_.setCharisma(12);       
+    }
     if (h->getClass() == CharClass::druid) {
         h->cs_.setIntelligence(14);
         h->cs_.setWisdom(10);
         h->cs_.setStrength(7);
         h->cs_.setDexterity(7);
         h->cs_.setConstitution(8);
-        h->cs_.setCharisma(9);            
-    } else {
+        h->cs_.setCharisma(9);          
+    }
+    if (h->getClass() == CharClass::fighter) {
         h->cs_.setIntelligence(5);
         h->cs_.setWisdom(7);
         h->cs_.setStrength(14);
         h->cs_.setDexterity(12);
         h->cs_.setConstitution(11);
-        h->cs_.setCharisma(9);            
+        h->cs_.setCharisma(9);          
     }
 }

@@ -5,7 +5,6 @@
 #include <QPixmap>
 #include <QPushButton>
 #include <QCommandLinkButton>
-#include<QPushButton>
 #include <QTime>
 
 #include "chargen2.h"
@@ -21,7 +20,7 @@ class CharGenTree : public QMainWindow {
 public:
     explicit CharGenTree(QWidget* parent = 0);
     ~CharGenTree();
- 	void generate_char(Hero* h);
+    void generate_char(Hero* h);
 
 private slots:
     void on_next_step_clicked();
@@ -33,7 +32,7 @@ private:
     CharGen2* chg;
     CharacterTree t1;
     Hero* h;
-	QPushButton* no_button;
+    QPushButton* no_button;
     QPushButton* yes_button;
     bool chck_no, chck_yes;
 };

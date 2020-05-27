@@ -30,7 +30,7 @@ private slots:
 private:
     Ui::CharGenTree2* ui;
     CharGenSkills* chgs;
-	CharacterTree t2;
+    CharacterTree t2;
     bool chck_no, chck_yes;
 };
 
