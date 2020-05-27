@@ -5,7 +5,6 @@
 #include <QGraphicsItem>
 #include <cassert>
 #include <fstream>
-#include <cassert>
 #include "include/sleep.h"
 #include "include/game_board.h"
 #include "include/player.h"
@@ -189,7 +188,7 @@ void GameBoard::makeGame() {
     player_->setFocus();
     player2_->setFlag(QGraphicsItem::ItemIsFocusable);
     player2_->setFocus();
-    buildBoard(1,"../locations/second_location.txt" );
+    buildBoard(1, "../locations/second_location.txt");
     makeRandomGifts(10, 0);
     //makeWell();
     //makeKeys(0);
@@ -482,7 +481,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     auto[dir1, a, b] = boards[i].check(0);
     qDebug() << a << " " << b << "\n";
     if (dir1 != "") {
-        if(boards[i].canDestroyWall(0)) {
+        if (boards[i].canDestroyWall(0)) {
             std::string action = "1 break wall " + dir1;
             conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
             qDebug() << "press F to destroy wall " << a << " " << b << "\n";
@@ -603,33 +602,23 @@ void GameBoard::buildBoard(int location, std::string filename) {
         file >> object >> x >> y;
         if (object == "player1") {
             player_->setPos(start_x + x * game->cell_width, start_y + y * game->cell_width);
-        }
-        else if (object == "player2") {
+        } else if (object == "player2") {
             player2_->setPos(start_x + x * game->cell_width, start_y + y * game->cell_width);
-        }
-        
-        else if (object == "door") {
+        } else if (object == "door") {
             int x1, y1;
             file >> x1 >> y1;
             makeDoor(x, y, x1, y1);
-        }
-         
-        else if (object == "gift") {
+        } else if (object == "gift") {
             makeGift(x, y, location);
-        }
-        else if (object == "rope") {
+        } else if (object == "rope") {
             makeRope(x, y, location);
-        }
-        else if (object == "key") {
+        } else if (object == "key") {
             makeKey(x, y, location);
-        }
-        else if (object == "well") {
+        } else if (object == "well") {
             makeWell(x, y, location);
-        }
-        else if (object == "obstacle") {
+        } else if (object == "obstacle") {
             makeObstacle("../images/obstacle.png", x, y, location, false);
-        }
-        else if (object == "destroyableObstacle") {
+        } else if (object == "destroyableObstacle") {
             makeObstacle("../images/obstacle.png", x, y, location, true);
         }
     }

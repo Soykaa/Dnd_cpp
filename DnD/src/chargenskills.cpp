@@ -71,8 +71,6 @@ void CharGenSkills::setParams(QString str1, QString str2, Hero* h1, Hero* h2) {
     QPixmap hero1(str1);
     CharGenSkills::ui->img1->setScaledContents(true);
     CharGenSkills::ui->img1->setPixmap(hero1.scaled(120, 180));
-    std::string str = h1->getName();
-    CharGenSkills::ui->bg_text11->setText(QString::fromLocal8Bit(str.c_str()));
 
     CharGenSkills::ui->skills11->setText(CharGenSkills::ui->skills11->text() + "           " + QString::number(h1->cs_.getIntelligence()));
     CharGenSkills::ui->skills12->setText(CharGenSkills::ui->skills12->text() + "            " + QString::number(h1->cs_.getWisdom()));
@@ -92,14 +90,14 @@ void CharGenSkills::setParams(QString str1, QString str2, Hero* h1, Hero* h2) {
         CharGenSkills::ui->skills18->setText(CharGenSkills::ui->skills18->text() + "             Драконорожденный");
     if (h1->getRace() == CharRace::elf)
         CharGenSkills::ui->skills18->setText(CharGenSkills::ui->skills18->text() + "                                Эльф");
-    if (h1->getRace() == CharRace::human) 
+    if (h1->getRace() == CharRace::human)
         CharGenSkills::ui->skills18->setText(CharGenSkills::ui->skills18->text() + "                           Человек");
 
     if (h1->getSP() == SuperPowers::acrobatics)
         CharGenSkills::ui->skills19->setText(CharGenSkills::ui->skills19->text() + "     Сверхгибкость");
     if (h1->getSP() == SuperPowers::athletics)
         CharGenSkills::ui->skills19->setText(CharGenSkills::ui->skills19->text() + "          Сверхсила");
-    if (h1->getSP() == SuperPowers::persuasion) 
+    if (h1->getSP() == SuperPowers::persuasion)
         CharGenSkills::ui->skills19->setText(CharGenSkills::ui->skills19->text() + "   Убедительность");
 
 
@@ -119,21 +117,21 @@ void CharGenSkills::setParams(QString str1, QString str2, Hero* h1, Hero* h2) {
         CharGenSkills::ui->skills27->setText(CharGenSkills::ui->skills27->text() + "                               Маг");
     if (h2->getClass() == CharClass::druid)
         CharGenSkills::ui->skills27->setText(CharGenSkills::ui->skills27->text() + "                           Друид");
-    if (h2->getClass() == CharClass::fighter) 
+    if (h2->getClass() == CharClass::fighter)
         CharGenSkills::ui->skills27->setText(CharGenSkills::ui->skills27->text() + "                           Воин");
 
-    if (h2->getRace() == CharRace::dragonborn) 
+    if (h2->getRace() == CharRace::dragonborn)
         CharGenSkills::ui->skills28->setText(CharGenSkills::ui->skills28->text() + "             Драконорожденный");
     if (h2->getRace() == CharRace::elf)
         CharGenSkills::ui->skills28->setText(CharGenSkills::ui->skills28->text() + "                                Эльф");
     if (h2->getRace() == CharRace::human)
         CharGenSkills::ui->skills28->setText(CharGenSkills::ui->skills28->text() + "                           Человек");
 
-    if (h2->getSP() == SuperPowers::acrobatics) 
+    if (h2->getSP() == SuperPowers::acrobatics)
         CharGenSkills::ui->skills29->setText(CharGenSkills::ui->skills29->text() + "     Сверхгибкость");
     if (h2->getSP() == SuperPowers::athletics)
         CharGenSkills::ui->skills29->setText(CharGenSkills::ui->skills29->text() + "          Сверхсила");
-    if (h2->getSP() == SuperPowers::persuasion) 
+    if (h2->getSP() == SuperPowers::persuasion)
         CharGenSkills::ui->skills29->setText(CharGenSkills::ui->skills29->text() + "   Убедительность");
 }
 

@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <vector>
+#include <string>
 #include "utility.h"
 #include "enums.h"
 #include "player.h"

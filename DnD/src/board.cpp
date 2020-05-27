@@ -105,9 +105,8 @@ bool Board::takeUniqItem(int x, int y, int heroNum) {
 }
 
 bool Board::canOpenDoor(int heroNum) {
-    return 1;
-    // return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key) ||
-    //         heroes[heroNum].h->bp_.findItem(ItemType::square_key);
+    return heroes[heroNum].h->bp_.findItem(ItemType::triangle_key) ||
+            heroes[heroNum].h->bp_.findItem(ItemType::square_key);
 }
 
 
