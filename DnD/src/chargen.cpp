@@ -22,8 +22,6 @@ CharGen::CharGen(QWidget *parent)
     QPixmap pic("../images/a.svg");
     CharGen::ui->bg->setScaledContents(true);
     CharGen::ui->bg->setPixmap(pic.scaled(400, 460));
-    // CharGen::ui->chpic->setScaledContents(true);
-    // CharGen::ui->chpic->setPixmap(pic.scaled(200, 200));
 
     CharGen::ui->nextStep->hide();
 

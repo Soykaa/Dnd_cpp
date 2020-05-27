@@ -116,3 +116,15 @@ CharClass Hero::getClass() const {
 SuperPowers Hero::getSP() const {
     return sp_;
 }
+
+void Hero::setClass(CharClass cc) {
+    Hero::class_ = cc;
+}
+
+void Hero::setRace(CharRace cr) {
+    Hero::race_ = cr;
+}
+
+void Hero::setSP(SuperPowers sp) {
+    Hero::sp_ = sp;
+}

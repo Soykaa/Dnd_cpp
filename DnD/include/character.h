@@ -41,6 +41,10 @@ public:
     CharClass getClass() const;
     SuperPowers getSP() const;
 
+    void setSP(SuperPowers sp);
+    void setRace(CharRace cr);
+    void setClass(CharClass cs);
+
 private:
     size_t character_level_;
     std::string name_;

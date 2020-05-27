@@ -9,6 +9,7 @@
 #include <QWidget>
 
 #include "chargenskills.h"
+#include "include/character_tree.h"
 
 namespace Ui {
 class CharGenTree2;
@@ -21,12 +22,16 @@ public:
     explicit CharGenTree2(QWidget* parent = 0);
     ~CharGenTree2();
 
+private slots:
+    void on_next_step_clicked();
+    void on_no_button_clicked();
+    void on_yes_button_clicked();
+
 private:
     Ui::CharGenTree2* ui;
     CharGenSkills* chgs;
-
-private slots:
-    void on_next_step_clicked();
+	CharacterTree t2;
+    bool chck_no, chck_yes;
 };
 
 #endif // CHARGENTREE2_H
