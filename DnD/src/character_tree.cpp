@@ -265,7 +265,7 @@ void CharacterTree::generateChar(Hero* h, CharacterTreeNode* n) {
         h->cs_.setStrength(7);
         h->cs_.setDexterity(7);
         h->cs_.setConstitution(8);
-        h->cs_.setCharisma(9);  
+        h->cs_.setCharisma(9);
     }
     if (h->getClass() == CharClass::fighter) {
         h->cs_.setIntelligence(5);
@@ -273,6 +273,6 @@ void CharacterTree::generateChar(Hero* h, CharacterTreeNode* n) {
         h->cs_.setStrength(14);
         h->cs_.setDexterity(12);
         h->cs_.setConstitution(11);
-        h->cs_.setCharisma(9); 
+        h->cs_.setCharisma(9);
     }
 }
