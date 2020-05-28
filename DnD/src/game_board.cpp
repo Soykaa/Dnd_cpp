@@ -340,8 +340,8 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
             conWind[i].hint3->setMessForPlayer(9, 930, window_height + 15, 0);
             conWind[i].hint4->setMessForPlayer(10, 1200, window_height + 15, 0);
             conWind[i].hint5->setMessForPlayer(11, 615, window_height + 10, 0);
-            conWind[i].char1->setItemBack(charIm.chars[charIm.char1], 540, window_height + 20, i, 1);
-            conWind[i].char2->setItemBack(charIm.chars[charIm.char2], 850, window_height + 20, i, 1);
+            conWind[i].char1->setItemBack(charIm.chars[charIm.char1], 850, window_height + 20, i, 1);
+            conWind[i].char2->setItemBack(charIm.chars[charIm.char2], 540, window_height + 20, i, 1);
         }
         return;
     }
@@ -589,15 +589,15 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
                 en = &e.en;
             }
         }
-        int res = boards[i].beatEnemy(0, en);
-        if (res != -1) {
+        int res1 = boards[i].beatEnemy(0, en);
+        if (res1 != -1) {
             std::string action = "1 beat enemy " + dir3;
             conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
             if (event->key() == Qt::Key_Shift) {
                 conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
                 for (EnemyImCord e : enemies[i]) {
                     if (e.x == aa && e.y == bb) {
-                        if (res == 1) {
+                        if (res1 == 1) {
                             e.ei->setEnemyIm("../images/h.png", aa, bb, i);
                             conWind[i].mess->setMessForPlayer("beat charisma", 40, 590, 0);
                         } else {
@@ -624,15 +624,15 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
             if (e.x == cc && e.y == dd) {
                 en = &e.en;
             }
-        int res = boards[i].beatEnemy(1, en);
-        if (res != -1) {
+        int res2 = boards[i].beatEnemy(1, en);
+        if (res2 != -1) {
             std::string action = "2 beat enemy " + dir4;
             conWind[i].mess->setMessForPlayer(action, 5, 575, locationNum);
             if (event->key() == Qt::Key_CapsLock) {
                 conWind[i].mess->setMessForPlayer("none", 20, 575, locationNum);
                 for (EnemyImCord e : enemies[i]) {
                     if (e.x == cc && e.y == dd) {
-                        if (res == 1) {
+                        if (res2 == 1) {
                             e.ei->setEnemyIm("../images/h.png", cc, dd, i);
                             conWind[i].mess->setMessForPlayer("beat charisma", 40, 590, 0);
                         } else {

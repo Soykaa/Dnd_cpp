@@ -83,9 +83,9 @@ void Board::reduce(int heroNum) {
 void Board::increase(int heroNum) {
     int tmp = rand() % 2;
     if (tmp)
-        heroes[heroNum].h->cs_.setCharisma(23);
+        heroes[heroNum].h->cs_.setCharisma(35);
     else
-        heroes[heroNum].h->cs_.setStrength(23);
+        heroes[heroNum].h->cs_.setStrength(35);
 }
 
 
@@ -129,8 +129,7 @@ bool Board::takeUniqItem(int x, int y, int heroNum) {
 }
 
 bool Board::canUseOneItem(int heroNum, ItemType item) {
-    //return heroes[heroNum].h->bp_.findItem(item);
-    return 1;
+    return heroes[heroNum].h->bp_.findItem(item);
 }
 
 
