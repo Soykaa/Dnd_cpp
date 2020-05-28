@@ -604,6 +604,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
                             e.ei->setEnemyIm("../images/s.png", aa, bb, i);
                             conWind[i].mess->setMessForPlayer("beat strength", 40, 590, 0);
                         }
+                        sleep(450);
                         boards[i].reduce(0);
                         e.ei->~EnemyIm();
                     }
