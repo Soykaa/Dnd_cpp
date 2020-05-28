@@ -11,9 +11,6 @@
 class Backpack {
 public:
     Backpack() = default;
-    //~Backpack();
-    //Backpack(const Backpack&) = delete;
-    //Backpack& operator=(const Backpack&) = delete;
 
     void addItem(Item);
     void deleteItem(ItemType type);

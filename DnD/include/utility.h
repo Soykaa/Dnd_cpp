@@ -62,6 +62,8 @@ struct ConnectionWindow {
 struct BackpackIm {
     BackgroundIm* bi1;
     BackgroundIm* bi2;
+    MessForPlayer* name1;
+    MessForPlayer* name2;
     std::vector<ItemBack*> itb;
 };
 

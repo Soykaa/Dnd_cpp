@@ -41,9 +41,11 @@ bool Board::canWin(int heroNum) {
 
 
 bool Board::canDestroyWall(int heroNum) {
-    int a = std::min(heroes[0].h->cs_.getStrength(), heroes[1].h->cs_.getStrength()) + 1;
-    int b = std::max(heroes[0].h->cs_.getStrength(), heroes[1].h->cs_.getStrength());
-    return heroes[heroNum].h->cs_.getStrength() >= a + rand()%(b-a) || canUseNotUniqueItems(heroNum, ItemType::gift);
+    int a = std::min(heroes[0].h->cs_.getConstitution(), heroes[1].h->cs_.getConstitution());
+    int b = std::max(heroes[0].h->cs_.getConstitution(), heroes[1].h->cs_.getConstitution());
+    if (b == a)
+        return canUseNotUniqueItems(heroNum, ItemType::gift);
+    return heroes[heroNum].h->cs_.getConstitution() >= a + rand()%(b-a) || canUseNotUniqueItems(heroNum, ItemType::gift);
 }
 
 void Board::destroy(int x, int y) {
@@ -68,14 +70,14 @@ void Board::changeOneFieldType(size_t i, size_t j, Type type, ItemType item) {
 int Board::beatEnemy(int heroNum, Enemy* en) {
     if (heroes[heroNum].h->cs_.getCharisma() > en->getHitPoints())
         return 1;
-    else if (heroes[heroNum].h->cs_.getConstitution() > en->getHitPoints())
+    else if (heroes[heroNum].h->cs_.getStrength() > en->getHitPoints())
         return 2;
     return -1;
 }
 
 void Board::reduce(int heroNum) {
     heroes[heroNum].h->cs_.setCharisma(0);
-    heroes[heroNum].h->cs_.setConstitution(0);
+    heroes[heroNum].h->cs_.setStrength(0);
 }
 
 void Board::increase(int heroNum) {
@@ -83,7 +85,7 @@ void Board::increase(int heroNum) {
     if (tmp)
         heroes[heroNum].h->cs_.setCharisma(23);
     else
-        heroes[heroNum].h->cs_.setConstitution(23);
+        heroes[heroNum].h->cs_.setStrength(23);
 }
 
 
@@ -127,9 +129,8 @@ bool Board::takeUniqItem(int x, int y, int heroNum) {
 }
 
 bool Board::canUseOneItem(int heroNum, ItemType item) {
-    return heroes[heroNum].h->bp_.findItem(item) ||
-            heroes[heroNum].h->bp_.findItem(item);
-    //return 1;
+    //return heroes[heroNum].h->bp_.findItem(item);
+    return 1;
 }
 
 

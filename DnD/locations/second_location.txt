@@ -13,6 +13,9 @@ destroyableObstacle 12 2
 
 enemy 13 12 1
 enemy 12 13 2
+enemy 13 13 3
+
+exit 14 14
 
 rope 14 1
 rope 8 13
