@@ -83,7 +83,7 @@ void CharGenTree::on_next_step_clicked() {
     Backpack bp;
     game->boards[0].heroes[0].h = new Hero(cs, bp);
     t1.generateChar(game->boards[0].heroes[0].h, cur_node);
-    game->boards[1].heroes[0].h = game->boards[0].heroes[1].h;
+    game->boards[1].heroes[0].h = game->boards[0].heroes[0].h;
     int num;
     if (game->boards[0].heroes[0].h->getRace() == CharRace::dragonborn) {
         num = rand() % 3;
