@@ -104,7 +104,7 @@ Hero::Hero(std::string name, const CharacterSkills& cs, Backpack  bp)
 //! Destructor
 Hero::~Hero() = default;
 
-void Hero::setName(std::string name){
+void Hero::setName(std::string name) {
     name_ = std::move(name);
 }
 
