@@ -18,8 +18,8 @@ class CharGen2 : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit CharGen2(QWidget *parent = 0);
-    ~CharGen2();
+    explicit CharGen2(QWidget *parent = nullptr);
+    ~CharGen2() override;
 
 private slots:
     void on_randomMode_clicked();

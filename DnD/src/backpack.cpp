@@ -32,7 +32,7 @@ int Backpack::countItems(ItemType it) {
 }
 
 void Backpack::deleteItem(ItemType type) {
-    for (size_t i = 0; i < items_.size(); i++)
+    for (size_t i = 0; i != items_.size(); ++i)
         if (items_[i].getItemType() == type)
             items_.erase(items_.begin()+i);
 }
@@ -43,7 +43,7 @@ std::ostream& operator <<(std::ostream& out, Backpack& bp) {
 }
 
 std::ostream& Backpack::output(std::ostream& out) { // tmp output
-    for (int32_t i = 0; i < items_.size(); i++) {
+    for (size_t i = 0; i != items_.size(); ++i) {
         out << i + 1;
         switch (items_[i].getItemType()) {
             case ItemType::gift:

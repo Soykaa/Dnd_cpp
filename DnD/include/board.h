@@ -22,7 +22,7 @@ public:
     Encounter getField(size_t i, size_t j);
     Type getFieldType(size_t i, size_t j);
     ItemType getFieldItemType(size_t i, size_t j);
-    size_t getAmountOfEncounters();
+    static size_t getAmountOfEncounters();
     int getCharacterPosition_X(int heroNum);
     int getCharacterPosition_Y(int heroNum);
     bool takeUniqItem(int x, int y, int heroNum);

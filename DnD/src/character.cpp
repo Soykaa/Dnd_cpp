@@ -1,6 +1,8 @@
 /* Author: Itsenko Ekaterina */
 
 #include "include/character.h"
+
+#include <utility>
 #include "include/backpack.h"
 
 //!@class Character: realization
@@ -43,8 +45,12 @@ void Enemy::setHitPoints(size_t hit_points) {
 
 //!@class Hero: realization
 //! default constructor
-Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
-        : Character(), cs_(cs), bp_(bp), character_level_(1) {
+Hero::Hero(const CharacterSkills& cs, Backpack  bp)
+        : Character()
+        , cs_(cs)
+        , bp_(std::move(bp))
+        , character_level_(1)
+        , name_("Sergey") {
     int num_for_race = rand() % 3 + 1, num_for_class = rand() % 3 + 1,
     num_for_sp = rand() % 3 + 1;
 
@@ -82,22 +88,24 @@ Hero::Hero(const CharacterSkills& cs, const Backpack& bp)
             sp_ = SuperPowers::acrobatics;
             break;
     }
-    name_ = "Sergey";
 }
 
 //! non-default constructor
-Hero::Hero(std::string name, const CharacterSkills& cs, const Backpack& bp)
-        : Character(), cs_(cs), bp_(bp),
-        character_level_(1), race_(CharRace::dragonborn),
-        class_(CharClass::fighter), sp_(SuperPowers::persuasion) {
-    name_ = name;
-}
+Hero::Hero(std::string name, const CharacterSkills& cs, Backpack  bp)
+        : Character()
+        , cs_(cs)
+        , bp_(std::move(bp))
+        , character_level_(1)
+        , name_(std::move(name))
+        , race_(CharRace::dragonborn)
+        , class_(CharClass::fighter)
+        , sp_(SuperPowers::persuasion) {}
 
 //! Destructor
 Hero::~Hero() = default;
 
-void Hero::setName(std::string name) {
-    name_ = name;
+void Hero::setName(std::string name){
+    name_ = std::move(name);
 }
 
 //! getters

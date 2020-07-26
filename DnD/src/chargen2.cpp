@@ -47,9 +47,9 @@ void CharGen2::on_randomMode_clicked() {
     game->boards[0].heroes[1].h = new Hero(cs, bp);
     game->boards[1].heroes[1].h = game->boards[0].heroes[1].h;
     CharGen2::ui->standardMode->setEnabled(false);
-    CharGen2::ui->randomMode->setText("Герерирую...");
+    CharGen2::ui->randomMode->setText("Генерирую...");
     int num = game->charIm.char1;
-    srand(time(NULL));
+    srand(time(nullptr));
     if (game->boards[0].heroes[1].h->getRace() == CharRace::dragonborn) {
         while (num == game->charIm.char1) {
             num = rand() % 3;

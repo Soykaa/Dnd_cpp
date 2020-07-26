@@ -90,9 +90,9 @@ void GameBoard::makeKeys(int location) {
     makeKey(0, 9, 0);
 }
 
-void GameBoard::takeKey(int player) {
-    ItemBack* it1 = new ItemBack();
-    ItemBack* it2 = new ItemBack();
+void GameBoard::takeKey(int player) const {
+    auto* it1 = new ItemBack();
+    auto* it2 = new ItemBack();
     int y;
     if (player == 0)
         y = 80;
@@ -102,9 +102,9 @@ void GameBoard::takeKey(int player) {
     it2->setItemBack("../images/key.png", start_x + board_size + cell_width + 30, y, 1, 0);
 }
 
-void GameBoard::takeRope(int player) {
-    ItemBack* it1 = new ItemBack();
-    ItemBack* it2 = new ItemBack();
+void GameBoard::takeRope(int player) const {
+    auto* it1 = new ItemBack();
+    auto* it2 = new ItemBack();
     int y;
     if (player == 0)
         y = 300;
@@ -115,18 +115,18 @@ void GameBoard::takeRope(int player) {
 }
 
 void GameBoard::makeRope(int x, int y, int location) {
-    RopeCord rp;
+    RopeCord rp{};
     rp.rope = new WellItem();
-    rp.rope->setWellItem(x, y, location, 1);
+    rp.rope->setWellItem(x, y, location, true);
     rp.x = x;
     rp.y = y;
     well.ropes.push_back(rp);
     boards[location].changeOneFieldType(x, y, Type::item, ItemType::rope);
 }
 
-void GameBoard::makeWell(int x, int y, int locationNum) {
+void GameBoard::makeWell(int x, int y, int unusedLocationNum) {
     well.well = new WellItem();
-    well.well->setWellItem(x, y, locationNum, 0);
+    well.well->setWellItem(x, y, locationNum, false);
     boards[locationNum].changeOneFieldType(x, y, Type::obstacle);
     boards[locationNum].changeOneFieldType(x + 1, y, Type::obstacle);
     boards[locationNum].changeOneFieldType(x + 2, y, Type::obstacle);
@@ -138,9 +138,9 @@ void GameBoard::makeWell(int x, int y, int locationNum) {
     boards[locationNum].changeOneFieldType(x + 2, y + 2, Type::well);
 }
 
-void GameBoard::takeGift(int player, int giftNum) {
-    ItemBack* it1 = new ItemBack();
-    ItemBack* it2 = new ItemBack();
+void GameBoard::takeGift(int player, int giftNum) const {
+    auto* it1 = new ItemBack();
+    auto* it2 = new ItemBack();
     int x, y;
     if (giftNum == 1) {
         x = start_x + board_size + cell_width + 30;
@@ -161,21 +161,21 @@ void GameBoard::takeGift(int player, int giftNum) {
     it2->setItemBack("../images/gift.png", x, y, 1, 1);
 }
 
-void GameBoard::makeFrame(const QString str) {
+void GameBoard::makeFrame(const QString& str) const {
     for (int i = 0; i < window_height; i += cell_width) {
-        Obstacle* o1 = new Obstacle();
+        auto* o1 = new Obstacle();
         o1->setForFrame(str, start_x - cell_width, i, 0);
-        Obstacle* o2 = new Obstacle();
+        auto* o2 = new Obstacle();
         o2->setForFrame(str, start_x + board_size, i, 0);
-        Obstacle* o3 = new Obstacle();
+        auto* o3 = new Obstacle();
         o3->setForFrame(str, start_x - cell_width, i, 1);
-        Obstacle* o4 = new Obstacle();
+        auto* o4 = new Obstacle();
         o4->setForFrame(str, start_x + board_size, i, 1);
     }
     for (int i = start_x; i < board_size + start_x; i += cell_width) {
-        Obstacle* o1 = new Obstacle();
+        auto* o1 = new Obstacle();
         o1->setForFrame(str, i, window_height - cell_width, 0);
-        Obstacle* o2 = new Obstacle();
+        auto* o2 = new Obstacle();
         o2->setForFrame(str, i, window_height - cell_width, 1);
     }
 }
@@ -202,7 +202,7 @@ void GameBoard::makeGame() {
 }
 
 void GameBoard::makeLeftWindow() {
-    for (int i = 0; i < conWind.size(); i++) {
+    for (size_t i = 0; i != conWind.size(); ++i) {
         conWind[i].window = new Window();
         conWind[i].master = new Master();
         conWind[i].wft_l = new WindowForText();
@@ -224,30 +224,30 @@ void GameBoard::makeLeftWindow() {
 }
 
 void GameBoard::makeBackpack() {
-    for (int i = 0; i < bpi.size(); i++) {
+    for (size_t i = 0; i != bpi.size(); ++i) {
         bpi[i].bi1 = new BackgroundIm();
         bpi[i].bi2 = new BackgroundIm();
         bpi[i].bi1->setBackgroundIm("../images/bkg_backpack.jpg", start_x + board_size + cell_width + 10, 10, i);
         bpi[i].bi2->setBackgroundIm("../images/bkg_backpack.jpg", start_x + board_size + cell_width + 10, (window_height - 50)/ 2 + 40, i);
-        ItemBack* it = new ItemBack();
+        auto* it = new ItemBack();
         it->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 80, i, 0);
-        ItemBack* it2 = new ItemBack();
+        auto* it2 = new ItemBack();
         it2->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 80 + (window_height - 50)/ 2 + 30, i, 0);
-        ItemBack* it3 = new ItemBack();
+        auto* it3 = new ItemBack();
         it3->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 300, i, 0);
-        ItemBack* it4 = new ItemBack();
+        auto* it4 = new ItemBack();
         it4->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 300 + (window_height - 50)/ 2 + 30, i, 0);
-        ItemBack* it5 = new ItemBack();
+        auto* it5 = new ItemBack();
         it5->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 190, i, 1);
-        ItemBack* it6 = new ItemBack();
+        auto* it6 = new ItemBack();
         it6->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 30, 190 + (window_height - 50)/ 2 + 30, i, 1);
-        ItemBack* it7 = new ItemBack();
+        auto* it7 = new ItemBack();
         it7->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 130, 190, i, 1);
-        ItemBack* it8 = new ItemBack();
+        auto* it8 = new ItemBack();
         it8->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 130, 190 + (window_height - 50)/ 2 + 30, i, 1);
-        ItemBack* it9 = new ItemBack();
+        auto* it9 = new ItemBack();
         it9->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 80, 240, i, 1);
-        ItemBack* it10 = new ItemBack();
+        auto* it10 = new ItemBack();
         it10->setItemBack("../images/bkg_it.jpg", start_x + board_size + cell_width + 80, 240 + (window_height - 50)/ 2 + 30, i, 1);
         bpi[i].name1 = new MessForPlayer(i);
         bpi[i].name1->setMessForPlayer(15, start_x + board_size + cell_width + 45, 25, 0);
@@ -266,8 +266,8 @@ void GameBoard::makeRandomGifts(int amount, int location) {
     }
 }
 
-void GameBoard::makeObstacle(const QString str, int x, int y, int location, bool destroyable) {
-    ObstacleCord oc;
+void GameBoard::makeObstacle(const QString& str, int x, int y, int location, bool destroyable) {
+    ObstacleCord oc{};
     oc.obst = new Obstacle();
     oc.obst->setObstacle(str, x, y, location);
     oc.x = x;
@@ -276,15 +276,15 @@ void GameBoard::makeObstacle(const QString str, int x, int y, int location, bool
     boards[location].changeOneFieldType(x, y, destroyable ? Type::destroyableWall : Type::obstacle);
 }
 
-void GameBoard::makeExit(int x, int y, int locationNum) {
+void GameBoard::makeExit(int x, int y, int localLocationNum) {
     Door*  d = new Door();
-    d->setDoor(x, y, locationNum, 1);
-    boards[locationNum].changeOneFieldType(x, y, Type::finnish);
+    d->setDoor(x, y, localLocationNum, true);
+    boards[localLocationNum].changeOneFieldType(x, y, Type::finnish);
 }
 
 
 void GameBoard::makeRandomObstacles(int amount, int location) {
-    for (int i = 0; i < amount; i++) {
+    for (size_t i = 0; i != amount; ++i) {
         int x = rand() % boards[location].getAmountOfEncounters();
         int y = rand() % boards[location].getAmountOfEncounters();
         if (boards[location].getFieldType(x, y) == Type::emptyField)
@@ -293,8 +293,8 @@ void GameBoard::makeRandomObstacles(int amount, int location) {
 }
 
 void GameBoard::makeObstacles() {
-    int num = rand() % (boards[0].getAmountOfEncounters() / 2);
-    for (int i = 0; i < boards[0].getAmountOfEncounters(); i++) {
+    size_t num = rand() % (boards[0].getAmountOfEncounters() / 2);
+    for (size_t i = 0; i != boards[0].getAmountOfEncounters(); ++i) {
         if (i == num || i == boards[0].getAmountOfEncounters() / 2 + num + 1) {
             makeObstacle("../images/obstacle.png", i, 7, 0, true);
             continue;
@@ -302,7 +302,7 @@ void GameBoard::makeObstacles() {
         makeObstacle("../images/obstacle.png", i, 7, 0, false);
     }
     num = boards[0].getAmountOfEncounters() / 2;
-    for (int i = 8; i < boards[0].getAmountOfEncounters(); i++)
+    for (size_t i = 8; i != boards[0].getAmountOfEncounters(); ++i)
         makeObstacle("../images/obstacle.png", num, i, 0, false);
 }
 
@@ -313,8 +313,8 @@ void GameBoard::makeDoor(int x0, int y0, int x1, int y1) {
     doors.y0 = y0;
     doors.x1 = x1;
     doors.y1 = y1;
-    doors.door0->setDoor(x0, y0, 0 , 0);
-    doors.door1->setDoor(x1, y1, 1, 0);
+    doors.door0->setDoor(x0, y0, 0 , false);
+    doors.door1->setDoor(x1, y1, 1, false);
     boards[0].changeOneFieldType(x0, y0, Type::door);
     boards[1].changeOneFieldType(x1, y1, Type::door);
 }
@@ -340,8 +340,8 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
             conWind[i].hint3->setMessForPlayer(9, 930, window_height + 15, 0);
             conWind[i].hint4->setMessForPlayer(10, 1200, window_height + 15, 0);
             conWind[i].hint5->setMessForPlayer(11, 615, window_height + 10, 0);
-            conWind[i].char1->setItemBack(charIm.chars[charIm.char1], 850, window_height + 20, i, 1);
-            conWind[i].char2->setItemBack(charIm.chars[charIm.char2], 540, window_height + 20, i, 1);
+            conWind[i].char1->setItemBack(charIm.chars[charIm.char1], 850, window_height + 20, i, true);
+            conWind[i].char2->setItemBack(charIm.chars[charIm.char2], 540, window_height + 20, i, true);
         }
         return;
     }
@@ -534,7 +534,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     }
 
     auto[dir1, a, b] = boards[i].check(0);
-    if (dir1 != "") {
+    if (!dir1.empty()) {
         if (boards[i].canDestroyWall(0)) {
                 std::string action = "1 break wall " + dir1;
                 conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
@@ -558,7 +558,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     }
 
     auto[dir2, c, d] = boards[i].check(1);
-    if (dir2 != "") {
+    if (!dir2.empty()) {
         if (boards[i].canDestroyWall(1)) {
             std::string action = "2 break wall " + dir2;
             conWind[i].mess->setMessForPlayer(action, 20, 575, locationNum);
@@ -582,7 +582,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     }
 
     auto[dir3, aa, bb] = boards[i].check(0, Type::enemy);
-    if (dir3 != "") {
+    if (!dir3.empty()) {
         Enemy* en;
         for (EnemyImCord e : enemies[i]) {
             if (e.x == aa && e.y == bb) {
@@ -619,7 +619,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     }
 
     auto[dir4, cc, dd] = boards[i].check(1,  Type::enemy);
-    if (dir4 != "") {
+    if (!dir4.empty()) {
         Enemy* en;
         for (EnemyImCord e : enemies[i])
             if (e.x == cc && e.y == dd) {
@@ -657,7 +657,7 @@ void GameBoard::keyPressEvent(QKeyEvent *event) {
     if (boards[i].getFieldType(boards[i].getCharacterPosition_X(0), boards[i].getCharacterPosition_Y(0)) == Type::finnish &&
         boards[i].getFieldType(boards[i].getCharacterPosition_X(1), boards[i].getCharacterPosition_Y(1)) == Type::finnish) {
         gameIsFinished = true;
-        Message *text = new Message();
+        auto *text = new Message();
         text->setMessage(i);
         text->setPos(500, 400);
 
@@ -716,7 +716,7 @@ void GameBoard::changeLocation() {
     }
 }
 
-void GameBoard::buildBoard(int location, std::string filename) {
+void GameBoard::buildBoard(int location, const std::string& filename) {
     std::ifstream file;
     file.open(filename, std::ios_base::in);
     assert(file.is_open());

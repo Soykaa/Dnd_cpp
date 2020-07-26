@@ -6,7 +6,7 @@ extern GameBoard *game;
 
 Window::Window(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
-void Window::setWindow(const QString str, int locationNum) {
+void Window::setWindow(const QString& str, int locationNum) {
     setPixmap(QPixmap(str).scaled(game->start_x - game->cell_width, game->window_height));
     setPos(0, 0);
     game->scenes[locationNum]->addItem(this);
@@ -14,7 +14,7 @@ void Window::setWindow(const QString str, int locationNum) {
 
 Master::Master(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
-void Master::setMaster(const QString str, int locationNum) {
+void Master::setMaster(const QString& str, int locationNum) {
     setPixmap(QPixmap(str));
     setPos(35, 0);
     game->scenes[locationNum]->addItem(this);
@@ -22,7 +22,7 @@ void Master::setMaster(const QString str, int locationNum) {
 
 WindowForText::WindowForText(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
-void WindowForText::setWindowForText(const QString str, int locationNum) {
+void WindowForText::setWindowForText(const QString& str, int locationNum) {
     setPixmap(QPixmap(str).scaled(game->start_x - game->cell_width, 350));
     setPos(0, 450);
     game->scenes[locationNum]->addItem(this);
@@ -30,7 +30,7 @@ void WindowForText::setWindowForText(const QString str, int locationNum) {
 
 WindowForText_D::WindowForText_D(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
-void WindowForText_D::setWindowForText_D(const QString str, int locationNum) {
+void WindowForText_D::setWindowForText_D(const QString& str, int locationNum) {
     setPixmap(QPixmap(str).scaled(game->window_width, game->extract_height));
     setPos(0, game->window_height);
     game->scenes[locationNum]->addItem(this);
@@ -96,7 +96,7 @@ void MessForPlayer::setMessForPlayer(int num, int x, int y, int locationNum) {
     setPos(x, y);
 }
 
-void MessForPlayer::setMessForPlayer(const std::string str, int x, int y, int locationNum) {
+void MessForPlayer::setMessForPlayer(const std::string& str, int x, int y, int locationNum) {
     setHtml(action_messages[str]);
     setPos(x, y);
 }

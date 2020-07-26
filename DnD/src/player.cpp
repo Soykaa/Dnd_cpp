@@ -8,7 +8,7 @@ extern GameBoard *game;
 
 Player::Player(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {}
 
-void Player::setPlayer(const QString str) {
+void Player::setPlayer(const QString& str) {
     int size = game->cell_width;
     setPixmap(QPixmap(str).scaled(size, size));
 }

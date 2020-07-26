@@ -27,8 +27,8 @@ protected:
 //! @class Hero
 class Hero: public Character {
 public:
-    Hero(const CharacterSkills& cs, const Backpack& bp);
-    Hero(std::string name, const CharacterSkills& cs, const Backpack& bp);
+    Hero(const CharacterSkills& cs, Backpack  bp);
+    Hero(std::string name, const CharacterSkills& cs, Backpack  bp);
     ~Hero() override;
 
     CharacterSkills cs_;

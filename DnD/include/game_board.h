@@ -50,22 +50,22 @@ public:
     void makeGift(int x, int y, int location);
     void makeKey(int x, int y, int location);
     void makeEnemy(int x, int y, int location, int num);
-    void makeExit(int x, int  y, int locationNum);
+    void makeExit(int x, int  y, int localLocationNum);
     void makeKeys(int location);
-    void makeObstacle(const QString str, int x, int y, int location, bool destroyable);
+    void makeObstacle(const QString& str, int x, int y, int location, bool destroyable);
     void makeDoor(int x0, int y0, int x1, int y1);
-    void makeFrame(const QString str);
+    void makeFrame(const QString& str) const;
     void makeGame();
     void makeLeftWindow();
     void makeWell(int x, int y, int locationNum);
     void makeRope(int x, int y, int locationNum);
     void makeBackpack();
-    void takeKey(int player);
+    void takeKey(int player) const;
 
-    void buildBoard(int location, std::string filename);
+    void buildBoard(int location, const std::string& filename);
 
-    void takeRope(int player);
-    void takeGift(int player, int giftNum);
+    void takeRope(int player) const;
+    void takeGift(int player, int giftNum) const;
     std::vector<Board>boards;
     std::vector<QGraphicsScene*>scenes;
     void keyPressEvent(QKeyEvent *event);
