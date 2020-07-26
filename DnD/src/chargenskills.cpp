@@ -66,7 +66,7 @@ CharGenSkills::CharGenSkills(QWidget *parent) :
     move(center);
 }
 
-void CharGenSkills::setParams(QString str1, QString str2, Hero* h1, Hero* h2) {
+void CharGenSkills::setParams(const QString& str1, const QString& str2, Hero* h1, Hero* h2) {
     /* first hero */
     QPixmap hero1(str1);
     CharGenSkills::ui->img1->setScaledContents(true);

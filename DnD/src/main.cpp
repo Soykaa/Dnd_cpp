@@ -15,5 +15,5 @@ int main(int argc, char *argv[]) {
     window.setWindowTitle("Dungeon and dragons");
     window.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, window.size(), qApp->desktop()->availableGeometry()));
     window.show();
-    return app.exec();
+    return QApplication::exec();
 }

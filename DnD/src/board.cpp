@@ -50,7 +50,6 @@ bool Board::canDestroyWall(int heroNum) {
 
 void Board::destroy(int x, int y) {
     board_[x][y].changeType(Type::emptyField);
-    return;
 }
 
 
@@ -122,10 +121,10 @@ std::pair<bool, int> Board::takeItems(int x, int y, int heroNum) {
 bool Board::takeUniqItem(int x, int y, int heroNum) {
     ItemType item = board_[x][y].getItem();
     if (heroes[heroNum].h->bp_.findItem(item))
-        return 0;
+        return false;
     heroes[heroNum].h->bp_.addItem(Item(item));
     board_[x][y].changeType(Type::emptyField);
-    return 1;
+    return true;
 }
 
 bool Board::canUseOneItem(int heroNum, ItemType item) {

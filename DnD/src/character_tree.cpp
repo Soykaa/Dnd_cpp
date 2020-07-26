@@ -1,10 +1,11 @@
 #include <iostream>
+#include <utility>
 
 #include "include/character_tree.h"
 
 /* Class CharacterTreeNode */
 CharacterTreeNode::CharacterTreeNode(std::string qst, CharacterTreeNode* right, CharacterTreeNode* left, int ans)
-    : _qst(qst), _right(right), _left(left), _ans(ans)
+    : _qst(std::move(qst)), _right(right), _left(left), _ans(ans)
     {}
 
 std::string CharacterTreeNode::getQst() const {
@@ -48,7 +49,7 @@ void CharacterTree::buildTree() {
     nodes[51] = new CharacterTreeNode("Сгенерировано", nullptr, nullptr, 9);
     nodes[50] = new CharacterTreeNode("Сгенерировано", nullptr, nullptr, 8);
     nodes[49] = new CharacterTreeNode("Сгенерировано", nullptr, nullptr, 7);
-    nodes[48] = new CharacterTreeNode("Ваш персонаж имеет крупный?", nodes[52], nodes[51], 0);
+    nodes[48] = new CharacterTreeNode("Ваш персонаж крупный?", nodes[52], nodes[51], 0);
     nodes[47] = new CharacterTreeNode("Сгенерировано", nullptr, nullptr, 12);
     nodes[46] = new CharacterTreeNode("Ваш персонаж мускулистый?", nodes[50], nodes[49], 0);
     nodes[45] = new CharacterTreeNode("Сгенерировано", nullptr, nullptr, 11);
