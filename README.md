@@ -1,14 +1,16 @@
-# Dnd_cpp
+# Dungeons and Dragons
 
-Ссылка на гугл док: https://docs.google.com/document/d/1I4Ri1zWtjhze8bRNkX-s8R6mnI4sOrut0yR1rkC9gTQ
+Google doc: https://docs.google.com/document/d/1I4Ri1zWtjhze8bRNkX-s8R6mnI4sOrut0yR1rkC9gTQ
 
-Используемая библиотека: Qt 5.9.9
+Used library: Qt 5.9.9
 
-Инструкция по сборке игры:
-1) Зайти в папку DnD_cpp/DnD/build
-2) Ввести команду "cmake ..", затем "make"
-3) Запустить исполняемый файл: "./DnD"
+Game assembly instructions:
+1) Move to `DnD_cpp/DnD/build`
+2) Enter `cmake ..`, then `make`
+3) Run execution file: `./DnD`
 
-Примечание: в очень редких случаях один из игроков может перестать двигаться по полю.
-Нам не удалось найти источник этой проблемы, поэтому если она вдруг возникнет, пересборка проекта должна помочь справиться с ней. 
-Спасибо за понимание.
+**Note:** in some rare cases one of the players can stop his moves over the game field.
+We didn't find source of the problem. If it occurs, project re-assembly can be the solution.
+Thanks for understanding.
+
+Contributions are welcome!
